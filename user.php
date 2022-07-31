@@ -79,32 +79,32 @@
                 <div class="home_grid_cont_s">
                         <div class="home_grid_item p-2 border border-secondary cursor_pointer_s position-relative">
                             <div class="dark_bg_s"></div>
-                            <div class="width_fit_s mx-auto mb-2 text-white">Raitings</div>
+                            <div class="width_fit_s mx-auto mb-2 text-white h5">Raitings</div>
                             <div class="grid_img_s"></div>
                         </div>
                         <div class="home_grid_item p-2 border border-secondary cursor_pointer_s position-relative">
                             <div class="dark_bg_s"></div>
-                            <div class="width_fit_s mx-auto mb-2 text-white">My Results</div>
+                            <div class="width_fit_s mx-auto mb-2 text-white h5">My Results</div>
                             <div class="grid_img_s"></div>
                         </div>
                         <div class="home_grid_item p-2 border border-secondary cursor_pointer_s position-relative">
                             <div class="dark_bg_s"></div>
-                            <div class="width_fit_s mx-auto mb-2 text-white">Friends</div>
+                            <div class="width_fit_s mx-auto mb-2 text-white h5">Friends</div>
                             <div class="grid_img_s"></div>
                         </div>
                         <div class="home_grid_item p-2 border border-secondary cursor_pointer_s position-relative">
                             <div class="dark_bg_s"></div> 
-                            <div class="width_fit_s mx-auto mb-2 text-white">Events</div>
+                            <div class="width_fit_s mx-auto mb-2 text-white h5">Events</div>
                             <div class="grid_img_s"></div>
                         </div>
                         <div class="home_grid_item p-2 border border-secondary cursor_pointer_s position-relative">
                             <div class="dark_bg_s"></div>
-                            <div class="width_fit_s mx-auto mb-2 text-white">Contact us</div>
+                            <div class="width_fit_s mx-auto mb-2 text-white h5">Contact us</div>
                             <div class="grid_img_s"></div>
                         </div>
                         <div class="home_grid_item p-2 border border-secondary cursor_pointer_s position-relative">
                             <div class="dark_bg_s"></div>
-                            <div class="width_fit_s mx-auto mb-2 text-white">Donate</div>
+                            <div class="width_fit_s mx-auto mb-2 text-white h5">Donate</div>
                             <div class="grid_img_s"></div>
                         </div>
                 </div>
@@ -112,16 +112,17 @@
 
             <!-- raitings page -->
             <div class="page container-md bg-secondary text-white mt-5 p-3">
-                <div class="container d-flex justify-content-center"><div class="update_tables_btn btn btn-primary">Update Tables</div></div>
-                    <div class="d-flex flex-wrap justify-content-around mt-2">
-                        <!-- top 10 eng to geo raitings -->
+                <div class="h1 width_fit_s mx-auto m-5 text-warning">Raitings</div>
+                <div class="update_tables_btn width_fit_s update_btn d-block btn btn-primary mx-auto">Update Tables</div>
+                    <div class="d-flex flex-wrap justify-content-around mt-5">
+                        <!-- top 10 eng to geo raitings no time -->
                         <div>
                             <div class="d-flex gap-1 justify-content-center align-items-center">
                                 <div class="h3 text-center">Top 10 Eng-Geo No Time</div>
                                 <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">timer_off</i></div>
                             </div>
                             
-                            <div class="container w-25 d-flex justify-content-center flex-wrap">
+                            <div class="container d-flex flex-wrap">
                                 <table class="table table-hover table-dark mt-2 text-center align-middle">
                                     <thead>
                                         <tr>
@@ -144,14 +145,14 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- top 10 geo to eng raitings -->
+                        <!-- top 10 geo to eng raitings no time -->
                         <div>
                             <div class="d-flex gap-1 justify-content-center align-items-center">
                                 <div class="h3 text-center">Top 10 Geo-Eng No Time</div>
                                 <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">timer_off</i></div>
                             </div>
                             
-                            <div class="container w-25 d-flex justify-content-center flex-wrap">
+                            <div class="container d-flex flex-wrap">
                                 <table class="table table-hover table-dark mt-2 text-center align-middle">
                                     <thead>
                                         <tr>
@@ -162,7 +163,6 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                            $userHasImg = false;
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
@@ -175,14 +175,103 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    
-                    
-                    
+                        
+                        <!-- top 10 eng to geo raitings with time -->
+                        <div class="container mt-5">
+                            <div class="d-flex gap-1 justify-content-center align-items-center">
+                                <div class="h3 text-center">Top 10 Eng-Geo With Time</div>
+                                <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">timer</i></div>
+                            </div>
+                            
+                            <div class="container d-flex flex-wrap overflow-auto">
+                                <table class="table table-hover table-dark mt-2 text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2" class="align-middle">#</th>
+                                            <th colspan="2">5 min</th>
+                                            <th colspan="2">3 min</th>
+                                            <th colspan="2">1 min</th>
+                                        </tr>
+                                        <tr>
+                                            <th>user</th>
+                                            <th>point</th>
+                                            <th>user</th>
+                                            <th>point</th>
+                                            <th>user</th>
+                                            <th>point</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                            for ($i=0; $i <10 ; $i++) { 
+                                                echo "<tr>";
+                                                    echo "<th>" . ($i+1) . "</th>";
+                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time5min_img rounded-circle'>" . "<span class='top10_e_g_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_e_g_with_time5min_point'>" . "999" . "</td>";
+                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time3min_img rounded-circle'>" . "<span class='top10_e_g_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_e_g_with_time3min_point'>" . "999" . "</td>";
+                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time1min_img rounded-circle'>" . "<span class='top10_e_g_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_e_g_with_time1min_point'>" . "999" . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                
+                        <!-- top 10 geo to eng raitings with time -->
+                        <div class="container mt-5">
+                            <div class="d-flex gap-1 justify-content-center align-items-center">
+                                <div class="h3 text-center">Top 10 Geo-Eng With Time</div>
+                                <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">timer</i></div>
+                            </div>
+                            
+                            <div class="container d-flex flex-wrap overflow-auto">
+                                <table class="table table-hover table-dark mt-2 text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2" class="align-middle">#</th>
+                                            <th colspan="2">5 min</th>
+                                            <th colspan="2">3 min</th>
+                                            <th colspan="2">1 min</th>
+                                        </tr>
+                                        <tr>
+                                            <th>user</th>
+                                            <th>point</th>
+                                            <th>user</th>
+                                            <th>point</th>
+                                            <th>user</th>
+                                            <th>point</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                            for ($i=0; $i <10 ; $i++) { 
+                                                echo "<tr>";
+                                                    echo "<th>" . ($i+1) . "</th>";
+                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time5min_img rounded-circle'>" . "<span class='top10_g_e_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_g_e_with_time5min_point'>" . "999" . "</td>";
+                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time3min_img rounded-circle'>" . "<span class='top10_g_e_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_g_e_with_time3min_point'>" . "999" . "</td>";
+                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time1min_img rounded-circle'>" . "<span class='top10_g_e_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_g_e_with_time1min_point'>" . "999" . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
             </div>
-            <div class="page container-md bg-dark text-white">My Results</div>
+
+            <!-- my results page -->
+            <div class="page container-md bg-secondary text-white mt-5 p-3">
+                <div class="width_fit_s mx-auto h1 text-warning m-5">My Results</div>
+                <div class="update_btn d-block btn btn-primary width_fit_s mx-auto">Update My Results</div>
+            </div>
             <div class="page container-md bg-dark text-white">Friends</div>
             <div class="page container-md bg-dark text-white">Events</div>
             <div class="page container-md bg-dark text-white">Contact us</div>

@@ -52,6 +52,108 @@ $(document).ready(function() {
                 }
             }
         })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "EGTop10WithTime5min"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_e_g_with_time5min_user:eq(${i})`).text(`${data[i].username}`);
+                        $(`.top10_e_g_with_time5min_point:eq(${i})`).text(`${data[i].e_g_points_5min}`);
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "EGTop10WithTime3min"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_e_g_with_time3min_user:eq(${i})`).text(`${data[i].username}`);
+                        $(`.top10_e_g_with_time3min_point:eq(${i})`).text(`${data[i].e_g_points_3min}`);
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "EGTop10WithTime1min"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_e_g_with_time1min_user:eq(${i})`).text(`${data[i].username}`);
+                        $(`.top10_e_g_with_time1min_point:eq(${i})`).text(`${data[i].e_g_points_1min}`);
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "GETop10WithTime5min"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_g_e_with_time5min_user:eq(${i})`).text(`${data[i].username}`);
+                        $(`.top10_g_e_with_time5min_point:eq(${i})`).text(`${data[i].g_e_points_5min}`);
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "GETop10WithTime3min"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_g_e_with_time3min_user:eq(${i})`).text(`${data[i].username}`);
+                        $(`.top10_g_e_with_time3min_point:eq(${i})`).text(`${data[i].g_e_points_3min}`);
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "GETop10WithTime1min"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_g_e_with_time1min_user:eq(${i})`).text(`${data[i].username}`);
+                        $(`.top10_g_e_with_time1min_point:eq(${i})`).text(`${data[i].g_e_points_1min}`);
+                    }
+                }
+            }
+        })
     }
 
     function setImgsForRaitings() {
@@ -65,16 +167,57 @@ $(document).ready(function() {
             success: function(data) {
                 if (data != 0) {
                     for (var i = 0; i < data.length; i++) {
-                        for (var j = 0; j < $(".top10_e_g_no_time_user").length; j++) {
+                        /**no times */
+                        for (var j = 0; j < 10; j++) {
                             if (data[i].user == $(`.top10_e_g_no_time_user:eq(${j})`).text()) {
                                 $(`.top10_e_g_no_time_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
                             }
                         }
-                        for (var j = 0; j < $(".top10_g_e_no_time_user").length; j++) {
+                        for (var j = 0; j < 10; j++) {
                             if (data[i].user == $(`.top10_g_e_no_time_user:eq(${j})`).text()) {
                                 $(`.top10_g_e_no_time_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
                             }
                         }
+
+                        /** */
+
+                        /**eng to geo with time*/
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_e_g_with_time5min_user:eq(${j})`).text()) {
+                                $(`.top10_e_g_with_time5min_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_e_g_with_time3min_user:eq(${j})`).text()) {
+                                $(`.top10_e_g_with_time3min_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_e_g_with_time1min_user:eq(${j})`).text()) {
+                                $(`.top10_e_g_with_time1min_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+
+                        /** */
+
+                        /**geo to eng with time*/
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_g_e_with_time5min_user:eq(${j})`).text()) {
+                                $(`.top10_g_e_with_time5min_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_g_e_with_time3min_user:eq(${j})`).text()) {
+                                $(`.top10_g_e_with_time3min_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_g_e_with_time1min_user:eq(${j})`).text()) {
+                                $(`.top10_g_e_with_time1min_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+
+                        /** */
 
                     }
                 }
@@ -148,8 +291,6 @@ $(document).ready(function() {
         })
     })
 
-    /** */
-
     /**login */
     $(".login_btn").click(function() {
         var user = $(".login_username_input>input").val();
@@ -173,8 +314,6 @@ $(document).ready(function() {
         })
     })
 
-    /** */
-
 
     /**logout */
     $(".logout_btn").click(function() {
@@ -191,8 +330,6 @@ $(document).ready(function() {
             }
         })
     })
-
-    /** */
 
 
     /**set user profile img */
@@ -229,16 +366,12 @@ $(document).ready(function() {
         }
     })
 
-    /** */
-
     /** click on dropdown item forces slide up*/
     $(".dp_item").click(function() {
         $(".settings").css("transform", "rotate(0deg)");
         $(".drop_down").slideUp(200);
         userSettingState = true;
     })
-
-    /** */
 
     /**display home page first */
     $(".page").hide();
@@ -251,8 +384,6 @@ $(document).ready(function() {
         displayPage(0);
     })
 
-    /** */
-
     /**define home grid clicks */
     for (var index = 0; index < $(".home_grid_item").length; index++) {
         gridClicks(index);
@@ -264,5 +395,21 @@ $(document).ready(function() {
         setImgsForRaitings();
     })
 
+    /**update button animation */
+    $(".update_btn").mousedown(function() {
+        $(".update_btn").css("transform", "scale(0.8)");
+    })
+
+    $(".update_btn").mouseup(function(e) {
+        e.stopPropagation(); // not quit neccessery but anyway
+        $(".update_btn").css("transform", "scale(1)");
+    })
+
+    /** */
+
+    /**mouse up on document anywhere will reset update btn's transform prop */
+    $(document).on("mouseup", function() {
+        $(".update_btn").css("transform", "scale(1)");
+    })
 
 })
