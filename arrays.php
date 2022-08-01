@@ -19,6 +19,7 @@ if(isset($_POST['arraysBtn'])){
             }
 
             echo json_encode($usersArray);
+            mysqli_close($conn);
             break;
         case 'user_imgs_array':
             $userImgsArray = array();

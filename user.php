@@ -352,8 +352,13 @@
                 </div>
                 <div class="container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Search Friend</div>
-                    <div class="search_friend_iput"><input type="text" class="p-2" placeholder="friend username"></div>
-                    <div class="btn btn-primary mt-3">Search Friend</div>
+                    <div class="d-flex flex-column gap-2 align-items-center">
+                        <div class="d-flex flex-column gap-2 align-items-center">
+                            <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here"></div>
+                            <div class="search_user_btn btn btn-primary mt-3">Search User</div>
+                        </div>
+                        <div class="search_result p-2 d-flex flex-wrap"></div>
+                    </div>
                 </div>
                 <div class="req_sent_cont container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Sent</div>

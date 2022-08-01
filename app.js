@@ -90,7 +90,6 @@ $(document).ready(function() {
                         /** */
 
                         /**friends page */
-
                         for (var j = 0; j < $(".friend_name").length; j++) {
                             if (data[i].user == $(`.friend_name:eq(${j})`).text()) {
                                 $(`.friend_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
@@ -344,22 +343,24 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                if (data != 0) {
-                    filteredData = data.filter(function(value, index) {
-                        return value.user_name == user;
-                    })
+                filteredData = data.filter(function(value, index) {
+                    return value.user_name == user;
+                })
+                if (filteredData.length != 0) {
                     for (var i = 0; i < filteredData.length; i++) {
-                        $(".friends_cont_inner").append("<div class='firends_cont_item p-2 border border d-flex flex-column gap-2 align-items-center'></div>")
+                        $(".friends_cont_inner").append("<div class='firends_cont_item p-2 border d-flex flex-column gap-2 align-items-center'></div>")
                     }
                     for (var i = 0; i < $(".firends_cont_item").length; i++) {
                         $(`.firends_cont_item:eq(${i})`).append("<div class='firends_cont_item_img_and_username d-flex gap-2 align-items-center'></div>");
-                        $(`.firends_cont_item:eq(${i})`).append("<div class='btn btn-danger'>Unfriend</div>");
+                        $(`.firends_cont_item:eq(${i})`).append("<div class='unfriend_btn btn btn-danger'>Unfriend</div>");
                     }
                     for (var i = 0; i < $(".firends_cont_item_img_and_username").length; i++) {
                         $(`.firends_cont_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='friend_img rounded-circle' width='60' height='60'></div>")
                         $(`.firends_cont_item_img_and_username:eq(${i})`).append(`<div class='friend_name'>${filteredData[i].friend_name}</div>`);
                     }
                     setUserImgs();
+                } else {
+                    $(".friends_cont_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
                 }
             }
         })
@@ -374,22 +375,24 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                if (data != 0) {
-                    filteredData = data.filter(function(value, index) {
-                        return value.friend_name == user;
-                    })
+                filteredData = data.filter(function(value, index) {
+                    return value.friend_name == user;
+                })
+                if (filteredData.length != 0) {
                     for (var i = 0; i < filteredData.length; i++) {
-                        $(".req_sent_inner").append("<div class='req_sent_item p-2 border border d-flex flex-column gap-2 align-items-center'></div>")
+                        $(".req_sent_inner").append("<div class='req_sent_item p-2 border d-flex flex-column gap-2 align-items-center'></div>")
                     }
                     for (var i = 0; i < $(".req_sent_item").length; i++) {
                         $(`.req_sent_item:eq(${i})`).append("<div class='req_sent_item_img_and_username d-flex gap-2 align-items-center'></div>");
-                        $(`.req_sent_item:eq(${i})`).append("<div class='btn btn-danger'>Unsend</div>");
+                        $(`.req_sent_item:eq(${i})`).append("<div class='unsend_btn btn btn-danger'>Unsend</div>");
                     }
                     for (var i = 0; i < $(".req_sent_item_img_and_username").length; i++) {
                         $(`.req_sent_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_sent_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_sent_item_img_and_username:eq(${i})`).append(`<div class='req_sent_name'>${filteredData[i].user_name}</div>`);
                     }
                     setUserImgs();
+                } else {
+                    $(".req_sent_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
                 }
             }
         })
@@ -404,30 +407,33 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                if (data != 0) {
-                    filteredData = data.filter(function(value, index) {
-                        return value.user_name == user;
-                    })
+                filteredData = data.filter(function(value, index) {
+                    return value.user_name == user;
+                })
+                if (filteredData.length != 0) {
                     for (var i = 0; i < filteredData.length; i++) {
-                        $(".req_rec_inner").append("<div class='req_rec_item p-2 border border d-flex flex-column gap-2 align-items-center'></div>")
+                        $(".req_rec_inner").append("<div class='req_rec_item p-2 border d-flex flex-column gap-2 align-items-center'></div>")
                     }
                     for (var i = 0; i < $(".req_rec_item").length; i++) {
                         $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_item_img_and_username d-flex gap-2 align-items-center'></div>");
                         $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_btns_cont d-flex gap-2'></div>");
                     }
                     for (var i = 0; i < $(".req_rec_btns_cont").length; i++) {
-                        $(`.req_rec_btns_cont:eq(${i})`).append("<div class='btn btn-success'>Add As Friend</div>");
-                        $(`.req_rec_btns_cont:eq(${i})`).append("<div class='btn btn-danger'>Reject</div>");
+                        $(`.req_rec_btns_cont:eq(${i})`).append("<div class='add_friend_btn btn btn-success'>Add As Friend</div>");
+                        $(`.req_rec_btns_cont:eq(${i})`).append("<div class='rej_friend_btn btn btn-danger'>Reject</div>");
                     }
                     for (var i = 0; i < $(".req_rec_item_img_and_username").length; i++) {
                         $(`.req_rec_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_rec_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_rec_item_img_and_username:eq(${i})`).append(`<div class='req_rec_name'>${filteredData[i].friend_name}</div>`);
                     }
                     setUserImgs();
+                } else {
+                    $(".req_rec_inner ").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
                 }
             }
         })
     }
+
 
     /** */
 
@@ -441,7 +447,11 @@ $(document).ready(function() {
     getReqsSentArray();
     getReqsRecArray();
     /** */
+
+    /**set user imgs */
     setUserImgs();
+
+
     $(".login_show_hide_password>input").click(function() {
         if ($(".login_password_input>input").attr("type") == "password") {
             $(".login_password_input>input").attr("type", "text");
@@ -610,6 +620,15 @@ $(document).ready(function() {
         setUserImgs();
     })
 
+    $(".update_my_friends_btn").click(function() {
+        $(".friends_cont_inner").empty();
+        $(".req_sent_inner").empty();
+        $(".req_rec_inner").empty();
+        getFriendsArray();
+        getReqsSentArray();
+        getReqsRecArray();
+    })
+
     /**update button animation */
     $(".update_btn").mousedown(function() {
         $(".update_btn").css("transform", "scale(0.8)");
@@ -627,6 +646,226 @@ $(document).ready(function() {
         $(".update_btn").css("transform", "scale(1)");
     })
 
+    /**unfriend */
+    $(document).on("click", ".unfriend_btn", function() {
+        var index = $(".unfriend_btn").index(this);
+        var friend = $(`.friend_name:eq(${index})`).text().trim();
+        if (confirm(`Are You Sure You Want To Remove Friend ${friend} ?`)) {
+            $(`.firends_cont_item:eq(${index})`).remove();
+            $.ajax({
+                url: "friends_page.php",
+                type: "post",
+                data: {
+                    friendsPageBtn: "unfriend",
+                    user: user,
+                    friend: friend,
+                },
+                success: function() {
+                    $(".update_my_friends_btn").click();
+                }
+            })
 
+        }
+    })
+
+    /**unsend friend request */
+    $(document).on("click", ".unsend_btn", function() {
+        var index = $(".unsend_btn").index(this);
+        var friend = $(`.req_sent_name:eq(${index})`).text().trim();
+        if (confirm(`Do You Want To Unsend Request ?`)) {
+            $(`.req_sent_item:eq(${index})`).remove();
+            $.ajax({
+                url: "friends_page.php",
+                type: "post",
+                data: {
+                    friendsPageBtn: "unsend",
+                    user: user,
+                    friend: friend,
+                },
+                success: function() {
+                    $(".update_my_friends_btn").click();
+                }
+            })
+        }
+    })
+
+    /**add friend */
+    $(document).on("click", ".add_friend_btn", function() {
+        var index = $(".add_friend_btn").index(this);
+        var friend = $(`.req_rec_name:eq(${index})`).text().trim();
+        if (confirm(`Do You Want To Add ${friend} As Friend ?`)) {
+            $(`.req_rec_item:eq(${index})`).remove();
+            $.ajax({
+                url: "friends_page.php",
+                type: "post",
+                data: {
+                    friendsPageBtn: "addFriend",
+                    user: user,
+                    friend: friend,
+                },
+                success: function() {
+                    $(".update_my_friends_btn").click();
+                }
+            })
+        }
+    })
+
+    /**reject friend request*/
+    $(document).on("click", ".rej_friend_btn", function() {
+        var index = $(".rej_friend_btn").index(this);
+        var friend = $(`.req_rec_name:eq(${index})`).text().trim();
+        if (confirm(`Do You Want Reject Request From ${friend} ?`)) {
+            $(`.req_rec_item:eq(${index})`).remove();
+            $.ajax({
+                url: "friends_page.php",
+                type: "post",
+                data: {
+                    friendsPageBtn: "rejFriend",
+                    user: user,
+                    friend: friend,
+                },
+                success: function() {
+                    $(".update_my_friends_btn").click();
+                }
+            })
+        }
+    })
+
+    $(".search_friend_iput>input").keydown(function(e) {
+        if (e.which === 13) { //click on enter
+            $(".search_user_btn").click();
+        }
+    })
+
+    $(".search_user_btn").click(function() {
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "users_array"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    var searchedUser = $(".search_friend_iput>input").val().trim();
+                    var noSearchResult = true;
+                    for (var i = 0; i < data.length; i++) {
+                        if (searchedUser == data[i].username && searchedUser != "") {
+                            noSearchResult = false;
+                            $(".search_result").empty();
+                            $(".search_result").append("<div class='search_result_item p-2 d-flex flex-column gap-2 align-items-center'></div>")
+                            $(`.search_result_item`).append("<div class='search_result_item_img_and_username d-flex gap-2 align-items-center'></div>");
+                            $(`.search_result_item`).append("<div class='search_result_btns_cont d-flex gap-2'></div>");
+                            $(`.search_result_btns_cont`).append("<div class='send_friend_req_btn btn btn-success'>Send Friend Request</div>");
+                            $(`.search_result_btns_cont`).append("<div class='clean_search_user_btn btn btn-danger'>Clean</div>");
+                            $(`.search_result_item_img_and_username`).append("<div><img src='./Img/user_default_avatar.png' class='search_user_img rounded-circle' width='60' height='60'></div>")
+                            $(`.search_result_item_img_and_username`).append(`<div class='search_user_name'>${data[i].username}</div>`);
+                            break;
+                            for (var i = 0; i < $(".req_rec_item").length; i++) {
+                                $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_item_img_and_username d-flex gap-2 align-items-center'></div>");
+                                $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_btns_cont d-flex gap-2'></div>");
+                            }
+                            for (var i = 0; i < $(".req_rec_btns_cont").length; i++) {
+                                $(`.req_rec_btns_cont:eq(${i})`).append("<div class='add_friend_btn btn btn-success'>Add As Friend</div>");
+                                $(`.req_rec_btns_cont:eq(${i})`).append("<div class='rej_friend_btn btn btn-danger'>Reject</div>");
+                            }
+                        }
+                    }
+                    $(".send_friend_req_btn").click(function() {
+                        var friend = $(".search_user_name").text().trim();
+
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "friends"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                var isInFriends = false;
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].user_name && friend == data[i].friend_name) {
+                                        isInFriends = true;
+                                        alert("The User Is Already Your Friend");
+                                        break;
+                                    }
+                                }
+                                if (!isInFriends) {
+                                    var isInReqSents = false;
+                                    $.ajax({
+                                        url: "arrays.php",
+                                        type: "post",
+                                        data: {
+                                            arraysBtn: "reqs_sent"
+                                        },
+                                        dataType: "json",
+                                        success: function(data) {
+                                            console.log("here")
+                                            for (var i = 0; i < data.length; i++) {
+                                                if (user == data[i].friend_name && friend == data[i].user_name) {
+                                                    isInReqSents = true;
+                                                    alert("You Already Have Sent Request To This User");
+                                                    break;
+                                                }
+                                            }
+                                            if (!isInReqSents) {
+                                                if (user == friend) {
+                                                    alert("You And Yourself Are Already Friends. \n Unless You Are Suicidal")
+                                                } else {
+                                                    $.ajax({
+                                                        url: "friends_page.php",
+                                                        type: "post",
+                                                        data: {
+                                                            friendsPageBtn: "send_req",
+                                                            user: user,
+                                                            friend: friend
+                                                        },
+                                                        success: function() {
+                                                            $(".update_my_friends_btn").click();
+                                                        }
+                                                    })
+                                                }
+                                            }
+                                        }
+                                    })
+
+
+                                }
+                            }
+                        })
+                    })
+                    $.ajax({
+                        url: "arrays.php",
+                        type: "post",
+                        data: {
+                            arraysBtn: "user_imgs_array"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data != 0) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (searchedUser == data[i].user) {
+                                        $(".search_user_img").attr("src", `./Img/profile_imgs/${data[i].img}`);
+                                        break;
+                                    }
+
+                                }
+                            }
+                        }
+                    })
+                    if (noSearchResult && searchedUser != "") {
+                        $(".search_result").empty();
+                        $(".search_result").append("<div class='search_result_item p-2 d-flex flex-column gap-2 align-items-center'></div>")
+                        $(`.search_result_item`).append("<div>There Is Not Such User</div>");
+                        $(`.search_result_item`).append("<div class='clean_search_user_btn btn btn-danger'>Clean</div>");
+                    }
+                    $(".clean_search_user_btn").click(function() {
+                        $(".search_result").empty();
+                    })
+                }
+            }
+        })
+    })
 
 })
