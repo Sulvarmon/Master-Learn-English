@@ -25,7 +25,7 @@ button:focus {
     text-underline-offset: 3px;
 }
 
-.width_fit_s {
+.w_fit_s {
     width: fit-content;
 }
 

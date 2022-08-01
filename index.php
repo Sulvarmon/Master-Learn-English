@@ -62,13 +62,12 @@
             <div class="login_here_btn btn btn-primary ">Log In Here</div>
         </div>
     </div>
-    
 
 
 
 
 
 
-    
+
 
 </html>

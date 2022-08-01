@@ -145,7 +145,76 @@ if(isset($_POST['arraysBtn'])){
 
             echo json_encode($GETop10WithTime1min);
             break;
-             
+        case 'quizEG':
+            $quizEG = array();
+
+            $sql = "SELECT * FROM quiz_points ORDER BY e_g_points DESC";
+            $query = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($query) > 0){
+                while($row = mysqli_fetch_assoc($query)){
+                    array_push($quizEG, $row);
+                }
+            }
+
+            echo json_encode($quizEG);
+            break;
+        case 'quizGE':
+            $quizGE = array();
+
+            $sql = "SELECT * FROM quiz_points ORDER BY g_e_points DESC";
+            $query = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($query) > 0){
+                while($row = mysqli_fetch_assoc($query)){
+                    array_push($quizGE, $row);
+                }
+            }
+
+            echo json_encode($quizGE);
+            break;
+        case 'friends':
+            $friends = array();
+
+            $sql = "SELECT * FROM friends";
+            $query = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($query) > 0){
+                while($row = mysqli_fetch_assoc($query)){
+                    array_push($friends, $row);
+                }
+            }
+
+            echo json_encode($friends);
+            break;
+        case 'reqs_sent':
+            $reqSent = array();
+
+            $sql = "SELECT * FROM friend_req";
+            $query = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($query) > 0){
+                while($row = mysqli_fetch_assoc($query)){
+                    array_push($reqSent, $row);
+                }
+            }
+
+            echo json_encode($reqSent);
+            break;
+        case 'reqs_rec':
+            $reqRent = array();
+
+            $sql = "SELECT * FROM friend_req";
+            $query = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($query) > 0){
+                while($row = mysqli_fetch_assoc($query)){
+                    array_push($reqRent, $row);
+                }
+            }
+
+            echo json_encode($reqRent);
+            break;
         default:
             # code...
             break;
