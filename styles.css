@@ -29,6 +29,10 @@ button:focus {
     width: fit-content;
 }
 
+.h_fit_s {
+    height: fit-content;
+}
+
 .cursor_pointer_s {
     cursor: pointer;
 }

@@ -371,7 +371,7 @@ $(document).ready(function() {
             url: "arrays.php",
             type: "post",
             data: {
-                arraysBtn: "reqs_sent"
+                arraysBtn: "requests"
             },
             dataType: "json",
             success: function(data) {
@@ -403,7 +403,7 @@ $(document).ready(function() {
             url: "arrays.php",
             type: "post",
             data: {
-                arraysBtn: "reqs_rec"
+                arraysBtn: "requests"
             },
             dataType: "json",
             success: function(data) {
@@ -434,6 +434,16 @@ $(document).ready(function() {
         })
     }
 
+    function showHidePassword(clickedEl, input) {
+        $(`.${clickedEl}`).click(function() {
+            if ($(`.${input}`).attr("type") == "password") {
+                $(`.${input}`).attr("type", "text");
+            } else {
+                $(`.${input}`).attr("type", "password");
+            }
+        })
+    }
+
 
     /** */
 
@@ -451,22 +461,9 @@ $(document).ready(function() {
     /**set user imgs */
     setUserImgs();
 
-
-    $(".login_show_hide_password>input").click(function() {
-        if ($(".login_password_input>input").attr("type") == "password") {
-            $(".login_password_input>input").attr("type", "text");
-        } else {
-            $(".login_password_input>input").attr("type", "password");
-        }
-    })
-
-    $(".reg_show_hide_password>input").click(function() {
-        if ($(".reg_password_input>input").attr("type") == "password") {
-            $(".reg_password_input>input").attr("type", "text");
-        } else {
-            $(".reg_password_input>input").attr("type", "password");
-        }
-    })
+    showHidePassword("login_show_hide_password>input", "login_password_input>input");
+    showHidePassword("reg_show_hide_password>input", "reg_password_input>input");
+    showHidePassword("change_pass_show_hide>input", "change_password_input>input");
 
     $(".login_username_input>input, .login_password_input>input").keydown(function(e) {
         if (e.which == 13) {
@@ -501,6 +498,8 @@ $(document).ready(function() {
             success: function(data) {
                 if (data == "111") {
                     alert("Registration Was Successful \n Go To Login Page To Log In");
+                    $(".reg_username_input>input").val("");
+                    $(".reg_password_input>input").val("");
                 } else {
                     if (data != 0) {
                         alert(data);
@@ -608,6 +607,10 @@ $(document).ready(function() {
         gridClicks(index);
     }
 
+    $(".profile_page_link").click(function() {
+        displayPage(7);
+    })
+
     /**update raitings data and images by clicking the button */
     $(".update_tables_btn").click(function() {
         getRaitingsData();
@@ -693,42 +696,84 @@ $(document).ready(function() {
     $(document).on("click", ".add_friend_btn", function() {
         var index = $(".add_friend_btn").index(this);
         var friend = $(`.req_rec_name:eq(${index})`).text().trim();
-        if (confirm(`Do You Want To Add ${friend} As Friend ?`)) {
-            $(`.req_rec_item:eq(${index})`).remove();
-            $.ajax({
-                url: "friends_page.php",
-                type: "post",
-                data: {
-                    friendsPageBtn: "addFriend",
-                    user: user,
-                    friend: friend,
-                },
-                success: function() {
-                    $(".update_my_friends_btn").click();
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "requests",
+            },
+            dataType: 'json',
+            success: function(data) {
+                var reqHasBeenUnsent = true;
+                for (var i = 0; i < data.length; i++) {
+                    if (friend == data[i].friend_name && user == data[i].user_name) {
+                        reqHasBeenUnsent = false;
+                        if (confirm(`Do You Want To Add ${friend} As Friend ?`)) {
+                            $(`.req_rec_item:eq(${index})`).remove();
+                            $.ajax({
+                                url: "friends_page.php",
+                                type: "post",
+                                data: {
+                                    friendsPageBtn: "addFriend",
+                                    user: user,
+                                    friend: friend,
+                                },
+                                success: function() {
+                                    $(".update_my_friends_btn").click();
+                                }
+                            })
+                        }
+                        break;
+                    }
                 }
-            })
-        }
+                if (reqHasBeenUnsent) {
+                    $(`.req_rec_item:eq(${index})`).remove();
+                    alert("This User Unsent Request");
+                }
+            }
+        })
     })
 
     /**reject friend request*/
     $(document).on("click", ".rej_friend_btn", function() {
         var index = $(".rej_friend_btn").index(this);
         var friend = $(`.req_rec_name:eq(${index})`).text().trim();
-        if (confirm(`Do You Want Reject Request From ${friend} ?`)) {
-            $(`.req_rec_item:eq(${index})`).remove();
-            $.ajax({
-                url: "friends_page.php",
-                type: "post",
-                data: {
-                    friendsPageBtn: "rejFriend",
-                    user: user,
-                    friend: friend,
-                },
-                success: function() {
-                    $(".update_my_friends_btn").click();
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "requests",
+            },
+            dataType: 'json',
+            success: function(data) {
+                var reqHasBeenUnsent = true;
+                for (var i = 0; i < data.length; i++) {
+                    if (friend == data[i].friend_name && user == data[i].user_name) {
+                        reqHasBeenUnsent = false;
+                        if (confirm(`Do You Want Reject Request From ${friend} ?`)) {
+                            $(`.req_rec_item:eq(${index})`).remove();
+                            $.ajax({
+                                url: "friends_page.php",
+                                type: "post",
+                                data: {
+                                    friendsPageBtn: "rejFriend",
+                                    user: user,
+                                    friend: friend,
+                                },
+                                success: function() {
+                                    $(".update_my_friends_btn").click();
+                                }
+                            })
+                        }
+                        break;
+                    }
                 }
-            })
-        }
+                if (reqHasBeenUnsent) {
+                    $(`.req_rec_item:eq(${index})`).remove();
+                    alert("This User Unsent Request");
+                }
+            }
+        })
     })
 
     $(".search_friend_iput>input").keydown(function(e) {
@@ -738,7 +783,6 @@ $(document).ready(function() {
     })
 
     $(".search_user_btn").click(function() {
-
         $.ajax({
             url: "arrays.php",
             type: "post",
@@ -762,14 +806,6 @@ $(document).ready(function() {
                             $(`.search_result_item_img_and_username`).append("<div><img src='./Img/user_default_avatar.png' class='search_user_img rounded-circle' width='60' height='60'></div>")
                             $(`.search_result_item_img_and_username`).append(`<div class='search_user_name'>${data[i].username}</div>`);
                             break;
-                            for (var i = 0; i < $(".req_rec_item").length; i++) {
-                                $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_item_img_and_username d-flex gap-2 align-items-center'></div>");
-                                $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_btns_cont d-flex gap-2'></div>");
-                            }
-                            for (var i = 0; i < $(".req_rec_btns_cont").length; i++) {
-                                $(`.req_rec_btns_cont:eq(${i})`).append("<div class='add_friend_btn btn btn-success'>Add As Friend</div>");
-                                $(`.req_rec_btns_cont:eq(${i})`).append("<div class='rej_friend_btn btn btn-danger'>Reject</div>");
-                            }
                         }
                     }
                     $(".send_friend_req_btn").click(function() {
@@ -797,7 +833,7 @@ $(document).ready(function() {
                                         url: "arrays.php",
                                         type: "post",
                                         data: {
-                                            arraysBtn: "reqs_sent"
+                                            arraysBtn: "requests"
                                         },
                                         dataType: "json",
                                         success: function(data) {
@@ -829,8 +865,6 @@ $(document).ready(function() {
                                             }
                                         }
                                     })
-
-
                                 }
                             }
                         })
@@ -862,10 +896,29 @@ $(document).ready(function() {
                     }
                     $(".clean_search_user_btn").click(function() {
                         $(".search_result").empty();
+                        $(".search_friend_iput>input").val("");
                     })
                 }
             }
         })
     })
+
+    $(".delete_account_btn").click(function() {
+        if (confirm("Are You Sure You Want To Permanently Delete Your Account ?")) {
+            $.ajax({
+                url: "delete_user.php",
+                type: "post",
+                data: {
+                    deleteUserBtn: true
+                },
+                success: function() {
+                    window.location.href = "./index.php";
+                }
+            })
+        }
+    })
+
+
+
 
 })

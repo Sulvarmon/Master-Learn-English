@@ -188,21 +188,7 @@ if(isset($_POST['arraysBtn'])){
 
             echo json_encode($friends);
             break;
-        case 'reqs_sent':
-            $reqSent = array();
-
-            $sql = "SELECT * FROM friend_req";
-            $query = mysqli_query($conn, $sql);
-            
-            if(mysqli_num_rows($query) > 0){
-                while($row = mysqli_fetch_assoc($query)){
-                    array_push($reqSent, $row);
-                }
-            }
-
-            echo json_encode($reqSent);
-            break;
-        case 'reqs_rec':
+        case 'requests':
             $reqRent = array();
 
             $sql = "SELECT * FROM friend_req";

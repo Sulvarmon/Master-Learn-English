@@ -67,7 +67,7 @@
                 <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down">
                     <div class="d-flex flex-column gap-5 align-item-center justify-content-center mx-auto w_fit_s ">
                         <div class="home dp_item link_s mx-auto">Home</div>
-                        <div class="dp_item link_s mx-auto">Profile</div>
+                        <div class="profile_page_link dp_item link_s mx-auto">Profile</div>
                         <div class="dp_item logout_btn btn btn-primary mx-auto">Log Out</div>
                     </div>
                 </div>
@@ -111,8 +111,8 @@
 
             <!-- raitings page -->
             <div class="page container-md bg-secondary text-white mt-5 p-3">
-                <div class="h1 w_fit_s mx-auto m-5 text-warning">Raitings</div>
-                <div class="update_tables_btn w_fit_s update_btn d-block btn btn-primary mx-auto">Update Tables</div>
+                <div class="h1 w_fit_s mx-auto m-5 text-warning">Raitings Page</div>
+                <div class="update_tables_btn w_fit_s update_btn d-block btn btn-primary mx-auto">Update Raitings Page</div>
                 <div class="d-flex flex-wrap justify-content-around mt-5">
                     <!-- top 10 eng to geo raitings no time -->
                     <div>
@@ -183,7 +183,7 @@
                         </div>
 
                         <div class="container d-flex flex-wrap overflow-auto">
-                            <table class="table table-hover table-dark mt-2 text-center align-middle">
+                            <table class="table table-hover table-dark mt-2 text-center align-middle ">
                                 <thead>
                                     <tr>
                                         <th rowspan="2" class="align-middle">#</th>
@@ -268,8 +268,8 @@
 
             <!-- my results page -->
             <div class="page container-md bg-secondary text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">My Results</div>
-                <div class="update_btn update_my_results_btn d-block btn btn-primary w_fit_s mx-auto">Update My Results</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">My Results Page</div>
+                <div class="update_btn update_my_results_btn d-block btn btn-primary w_fit_s mx-auto">Update My Results Page</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                     <div><img class="results_user_img" src="./Img/user_default_avatar.png" width="250" height="250"></div>
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
@@ -369,9 +369,49 @@
                     <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2"></div>
                 </div>
             </div>
-            <div class="page container-md bg-dark text-white">Events</div>
-            <div class="page container-md bg-dark text-white">Contact us</div>
-            <div class="page container-md bg-dark text-white">Donate</div>
+            <div class="page container-md bg-secondary text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Events Page</div>
+                <div class="update_btn update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Events Page</div>
+            </div>
+            <div class="page container-md bg-secondary text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Contacts Page</div>
+            </div>
+            <div class="page container-md bg-secondary text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Donation Page</div>
+            </div>
+            <div class="page container-md bg-secondary text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Profile Page</div>
+                <div class="d-flex flex-column align-items-center p-2 gap-5">
+                    <div class="p-3 border d-flex flex-column align-items-center">
+                        <div class="h5 m-2">Change Username</div>
+                        <div class="d-flex gap-2 align-items-center flex-wrap justify-content-center m-3">
+                            <div class="change_username_input"><input class="p-2" type="text" placeholder="type new username"></div>
+                            <div class="change_username_btn btn btn-primary">Change Username</div>
+                        </div>
+                    </div>
+                    <div class="p-3 border d-flex flex-column align-items-center">
+                        <div class="h5 m-2">Change Password</div>
+                        <div class="d-flex gap-2 align-items-center flex-wrap justify-content-center m-3">
+                            <div class="change_password_input"><input class="p-2" type="password" placeholder="type new username"></div>
+                            <div class="change_password_btn btn btn-primary">Change Password</div>
+                        </div>
+                        <div class="change_pass_show_hide d-flex gap-2"><input class="p-2" type="checkbox"><span>Show Pass</span></div>
+                    </div>
+                    <div class="p-3 border d-flex flex-column align-items-center">
+                        <div class="h5 m-2">Upload Image</div>
+                        <form class="d-flex gap-2 align-items-center flex-wrap justify-content-center m-3" action="upload_img.php" method="post" enctype="multipart/form-data">
+                            <div class="overflow-auto" style="width: 220px"><input class="p-2" type="file" name="profileImg" required></div>
+                            <button class="btn btn-primary" type="submit" name="uploadImgBtn">Upload</button>
+                        </form>
+                    </div>
+                    <div class="p-3 border d-flex flex-column align-items-center">
+                        <div class="h5 m-2">Danger Zone</div>
+                        <div class="d-flex gap-2 align-items-center flex-wrap justify-content-center m-3">
+                            <div class="delete_account_btn btn btn-danger">Delece Account</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
