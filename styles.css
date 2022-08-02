@@ -40,20 +40,8 @@ button:focus {
 
 /**/
 
-.login_bg_s {
-    background-image: url("./Img/login_bg.jpg");
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    z-index: -100;
-}
-
-.user_bg_s {
-    background-image: url("./Img/user_bg.jpg");
+.website_bg_s {
+    background-image: url("./Img/website_bg.jpg");
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -66,7 +54,7 @@ button:focus {
 
 .login_cont_s {
     width: fit-content;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .grid_img_s {
@@ -116,4 +104,8 @@ button:focus {
 
 .settings_s>i {
     font-size: 30px;
+}
+
+.page_bg_color_s {
+    background-color: rgba(0, 0, 0, 0.7);
 }

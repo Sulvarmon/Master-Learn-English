@@ -594,6 +594,7 @@ $(document).ready(function() {
         $(".settings").css("transform", "rotate(0deg)");
         $(".drop_down").slideUp(200);
         userSettingState = true;
+        $(".play_btn_wrapper").show();
     })
 
     /**display home page first */
@@ -605,6 +606,7 @@ $(document).ready(function() {
     /**click on username or drop down home displays home page */
     $(".home").click(function() {
         displayPage(0);
+        $(".play_btn_wrapper").show();
     })
 
     /**define home grid clicks */
@@ -614,6 +616,11 @@ $(document).ready(function() {
 
     $(".profile_page_link").click(function() {
         displayPage(7);
+    })
+
+    $(".play_btn").click(function() {
+        displayPage(8);
+        $(".play_btn_wrapper").hide();
     })
 
     /**update raitings data and images by clicking the button */
@@ -963,6 +970,6 @@ $(document).ready(function() {
         }
     })
 
-
+    // $(".play_btn").click();
 
 })

@@ -22,7 +22,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Learn English</title>
 
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -52,26 +52,42 @@
 
     <body>
 
-        <div class="user_bg_s"></div>
+        <div class="website_bg_s"></div>
         <div class="user_cont_s">
             <!-- header -->
-            <div class="container-md bg-light p-2 position-relative d-flex justify-content-between align-items-center">
+            <div class="container-md page_bg_color_s p-2 position-relative d-flex justify-content-between align-items-center">
                 <div class="d-flex gap-2">
                     <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-                        <div>Hello</div>
-                        <div class="home username link_s"> <b><?php echo $user ?></b> </div>
+                        <div class="text-white">Hello</div>
+                        <div class="home username link_s text-white"> <b><?php echo $user ?></b> </div>
                     </div>
-                    <img src="./Img/user_default_avatar.png" width="90" height="90" class="user_img rounded-circle">
+                    <img src="./Img/user_default_avatar.png" width="90" height="90" class="user_img rounded-circle border border-2">
                 </div>
-                <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons">settings</i></div>
-                <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down">
+                <div class="play_btn_wrapper">
+                    <div class="text-white play_btn_cont align-items-center justify-content-center gap-3 d-none d-md-flex p-1 ps-5 pe-5 rounded">
+                        <span>Go Here To Start</span>
+                        <i class="material-icons">arrow_forward</i>
+                        <div class="play_btn btn btn-warning ps-5 pe-5">Play</div>
+                    </div>
+                </div>
+
+                <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons text-white">settings</i></div>
+                <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down rounded">
                     <div class="d-flex flex-column gap-5 align-item-center justify-content-center mx-auto w_fit_s ">
                         <div class="home dp_item link_s mx-auto">Home</div>
                         <div class="profile_page_link dp_item link_s mx-auto">Profile</div>
-                        <div class="dp_item logout_btn btn btn-primary mx-auto">Log Out</div>
+                        <div class="logout_btn btn btn-primary mx-auto">Log Out</div>
                     </div>
                 </div>
             </div>
+            <div class="play_btn_wrapper">
+                <div class="page_bg_color_s text-white container-fluid d-flex align-items-center justify-content-center gap-1 p-1 mb-3 mt-3 rounded d-md-none">
+                    <span>Go Here To Start</span>
+                    <i class="material-icons">arrow_forward</i>
+                    <div class="play_btn btn btn-warning ps-5 pe-5">Play</div>
+                </div>
+            </div>
+
 
             <!-- home page -->
             <div class="page main_cont container-md mt-5">
@@ -110,7 +126,7 @@
             </div>
 
             <!-- raitings page -->
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="h1 w_fit_s mx-auto m-5 text-warning">Raitings Page</div>
                 <div class="update_tables_btn w_fit_s update_btn d-block btn btn-primary mx-auto">Update Raitings Page</div>
                 <div class="d-flex flex-wrap justify-content-around mt-5">
@@ -267,7 +283,7 @@
             </div>
 
             <!-- my results page -->
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">My Results Page</div>
                 <div class="update_btn update_my_results_btn d-block btn btn-primary w_fit_s mx-auto">Update My Results Page</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
@@ -342,7 +358,7 @@
                 </div>
 
             </div>
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Friends page</div>
                 <div class="update_btn update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Friends Page</div>
                 <!-- contents are appended in js file -->
@@ -369,17 +385,17 @@
                     <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2"></div>
                 </div>
             </div>
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Events Page</div>
                 <div class="update_btn update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Events Page</div>
             </div>
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Contacts Page</div>
             </div>
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Donation Page</div>
             </div>
-            <div class="page container-md bg-secondary text-white mt-5 p-3">
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Profile Page</div>
                 <div class="d-flex flex-column align-items-center p-2 gap-5">
                     <div class="p-3 border d-flex flex-column align-items-center">
@@ -412,7 +428,56 @@
                     </div>
                 </div>
             </div>
-
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Play Page</div>
+                <div>
+                    <div class="w_fit_s mx-auto h4">Chooes Play Type</div>
+                    <div class="border d-flex flex-wrap p-3 m-2 gap-5 justify-content-around">
+                        <div class="border p-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="h5">Play Without Time</span>
+                                <i class="material-icons h5">timer_off</i>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <span>English to Georgia</span>
+                                <div class="btn btn-primary">Eng-Geo</div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <span>Georgia to English</span>
+                                <div class="btn btn-primary">Geo-Eng</div>
+                            </div>
+                        </div>
+                        <div class="border p-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="h5">Play On Time</span>
+                                <i class="material-icons h5">timer_off</i>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <span>English to Georgia</span>
+                                <div class="btn btn-primary">Eng-Geo</div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <span>Georgia to English</span>
+                                <div class="btn btn-primary">Geo-Eng</div>
+                            </div>
+                        </div>
+                        <div class="border p-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="h5">Take A Quiz</span>
+                                <i class="material-icons h5">quiz</i>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <span>English to Georgia</span>
+                                <div class="btn btn-primary">Eng-Geo</div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <span>Georgia to English</span>
+                                <div class="btn btn-primary">Geo-Eng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
