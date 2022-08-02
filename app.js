@@ -471,6 +471,12 @@ $(document).ready(function() {
         }
     })
 
+    $(".reg_username_input>input, .reg_password_input>input").keydown(function(e) {
+        if (e.which == 13) {
+            $(".reg_btn").click();
+        }
+    })
+
     $(".reg_page").hide();
 
     $(".register_btn").click(function() {
@@ -497,9 +503,10 @@ $(document).ready(function() {
             },
             success: function(data) {
                 if (data == "111") {
-                    alert("Registration Was Successful \n Go To Login Page To Log In");
+                    alert("Registration Was Successful");
                     $(".reg_username_input>input").val("");
                     $(".reg_password_input>input").val("");
+                    $(".login_here_btn").click();
                 } else {
                     if (data != 0) {
                         alert(data);
@@ -542,9 +549,7 @@ $(document).ready(function() {
                 logout: true
             },
             success: function(data) {
-                if (data = "111") {
-                    window.location.href = "index.php";
-                }
+                window.location.href = "index.php";
             }
         })
     })
@@ -903,6 +908,8 @@ $(document).ready(function() {
         })
     })
 
+
+    /**delete account */
     $(".delete_account_btn").click(function() {
         if (confirm("Are You Sure You Want To Permanently Delete Your Account ?")) {
             $.ajax({
@@ -918,6 +925,43 @@ $(document).ready(function() {
         }
     })
 
+    /**change username */
+    $(".change_username_btn").click(function() {
+        if (confirm("You Sure You Want To Change Username ?")) {
+            var newUsername = $(".change_username_input>input").val().trim();
+            $.ajax({
+                url: "change.php",
+                type: "post",
+                data: {
+                    changeBtn: "change_username",
+                    newUsername: newUsername
+                },
+                success: function() {
+                    alert("Username Has Changed \n Log In Again");
+                    window.location.href = "./index.php";
+                }
+            })
+        }
+    })
+
+    /**change password */
+    $(".change_password_btn").click(function() {
+        if (confirm("You Sure You Want To Change Password ?")) {
+            var newPassword = $(".change_password_input>input").val().trim();
+            $.ajax({
+                url: "change.php",
+                type: "post",
+                data: {
+                    changeBtn: "change_password",
+                    newPassword: newPassword
+                },
+                success: function() {
+                    alert("Password Has Changed \n Log In Again");
+                    window.location.href = "./index.php";
+                }
+            })
+        }
+    })
 
 
 

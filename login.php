@@ -23,6 +23,7 @@ if(isset($_POST['loginInitials'])){
 		if($usersArray[$i]['username'] == $user and $usersArray[$i]['password'] == $password){
             session_start();
 			$_SESSION['user'] = $user;
+            $_SESSION['password'] = $password;
 			echo "111";
             mysqli_close($conn);
 			exit();	
