@@ -358,6 +358,8 @@
                 </div>
 
             </div>
+
+            <!-- friends page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Friends page</div>
                 <div class="update_btn update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Friends Page</div>
@@ -385,16 +387,24 @@
                     <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2"></div>
                 </div>
             </div>
+
+            <!-- events Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Events Page</div>
                 <div class="update_btn update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Events Page</div>
             </div>
+
+            <!-- contacts Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Contacts Page</div>
             </div>
+
+            <!-- donation Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Donation Page</div>
             </div>
+
+            <!-- profile page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Profile Page</div>
                 <div class="d-flex flex-column align-items-center p-2 gap-5">
@@ -428,9 +438,11 @@
                     </div>
                 </div>
             </div>
+
+            <!-- play page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Play Page</div>
-                <div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Play Page</div>
                     <div class="w_fit_s mx-auto h4">Chooes Play Type</div>
                     <div class="border d-flex flex-wrap p-3 m-2 gap-5 justify-content-around">
                         <div class="border p-2">
@@ -440,11 +452,11 @@
                             </div>
                             <div class="d-flex align-items-center gap-2 mt-3">
                                 <span>English to Georgia</span>
-                                <div class="btn btn-primary">Eng-Geo</div>
+                                <div class="play_type_btn btn btn-primary">Eng-Geo</div>
                             </div>
                             <div class="d-flex align-items-center gap-2 mt-3">
                                 <span>Georgia to English</span>
-                                <div class="btn btn-primary">Geo-Eng</div>
+                                <div class="play_type_btn btn btn-primary">Geo-Eng</div>
                             </div>
                         </div>
                         <div class="border p-2">
@@ -454,11 +466,11 @@
                             </div>
                             <div class="d-flex align-items-center gap-2 mt-3">
                                 <span>English to Georgia</span>
-                                <div class="btn btn-primary">Eng-Geo</div>
+                                <div class="play_type_btn btn btn-primary">Eng-Geo</div>
                             </div>
                             <div class="d-flex align-items-center gap-2 mt-3">
                                 <span>Georgia to English</span>
-                                <div class="btn btn-primary">Geo-Eng</div>
+                                <div class="play_type_btn btn btn-primary">Geo-Eng</div>
                             </div>
                         </div>
                         <div class="border p-2">
@@ -468,15 +480,59 @@
                             </div>
                             <div class="d-flex align-items-center gap-2 mt-3">
                                 <span>English to Georgia</span>
-                                <div class="btn btn-primary">Eng-Geo</div>
+                                <div class="play_type_btn btn btn-primary">Eng-Geo</div>
                             </div>
                             <div class="d-flex align-items-center gap-2 mt-3">
                                 <span>Georgia to English</span>
-                                <div class="btn btn-primary">Geo-Eng</div>
+                                <div class="play_type_btn btn btn-primary">Geo-Eng</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo Without Time</div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="h4 d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
+                            <div class="p-2 rounded h2" style="color: #71fcf0; letter-spacing: 2px;">Word</div>
+                        </div>
+
+                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                    </div>
+
+                </div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng Without Time</div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div class="h4"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
+                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                    </div>
+                </div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo With Time</div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                    </div>
+                </div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng With Time</div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                    </div>
+                </div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo quiz</div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                    </div>
+                </div>
+                <div class="play_page">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng quiz</div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                    </div>
+                </div>
+
             </div>
 
 

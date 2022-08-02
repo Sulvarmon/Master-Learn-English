@@ -970,6 +970,28 @@ $(document).ready(function() {
         }
     })
 
-    // $(".play_btn").click();
+    $(".play_btn").click();
+
+    function displayPlayPage(index) {
+        $(".play_page").hide();
+        $(`.play_page:eq(${index})`).show();
+    }
+
+    function playPageBtnClicks(index) {
+        $(`.play_type_btn:eq(${index})`).click(function() {
+            displayPlayPage(index + 1);
+        })
+    }
+
+    displayPlayPage(0);
+
+    for (var i = 0; i < $(".play_type_btn").length; i++) {
+        playPageBtnClicks(i);
+
+    }
+
+    $(".change_play_type_btn").click(function() {
+        displayPlayPage(0);
+    })
 
 })
