@@ -493,43 +493,96 @@
                     <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo Without Time</div>
                     <div class="d-flex flex-column align-items-center gap-3">
                         <div class="d-flex flex-column align-items-center">
-                            <div class="h4 d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
-                            <div class="p-2 rounded h2" style="color: #71fcf0; letter-spacing: 2px;">Word</div>
+                            <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
+                            <div class="p-2 rounded h2 text-info">Word</div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <div>Probable Answers</div>
+                            <div class="d-flex flex-wrap gap-3 p-3 border">
+                                <div class="prob_answer_e_g_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 1</div>
+                                <div class="prob_answer_e_g_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 2</div>
+                                <div class="prob_answer_e_g_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 3</div>
+                                <div class="prob_answer_e_g_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 4</div>
+                                <div class="prob_answer_e_g_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 5</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 mt-3 align-items-center">
+                            <div class=" d-flex flex-column align-items-center gap-3 ">
+                                <div><input class="asnwer_input_e_g_no_time p-2" type="text "></div>
+                                <div class="d-flex gap-2 ">
+                                    <div class="update_btn btn btn-light ">Check</div>
+                                    <div class="update_btn btn btn-light ">Nex Word</div>
+                                </div>
+                            </div>
+                            <div class="asd"><i class="material-icons text-warning" style="font-size: 40px">question_mark</i></div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center mt-3 ">
+                            <div>Points Collected In this Play Type</div>
+                            <div class="text-warning h4 rounded ">999</div>
                         </div>
 
-                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                        <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
 
                 </div>
                 <div class="play_page">
                     <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng Without Time</div>
                     <div class="d-flex flex-column align-items-center gap-3">
-                        <div class="h4"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
-                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
+                            <div class="p-2 rounded h2 text-info">Word</div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <div>Probable Answers</div>
+                            <div class="d-flex flex-wrap gap-3 p-3 border">
+                                <div class="prob_answer_g_e_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 1</div>
+                                <div class="prob_answer_g_e_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 2</div>
+                                <div class="prob_answer_g_e_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 3</div>
+                                <div class="prob_answer_g_e_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 4</div>
+                                <div class="prob_answer_g_e_no_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 5</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 mt-3 align-items-center">
+                            <div class=" d-flex flex-column align-items-center gap-3 ">
+                                <div><input class="asnwer_input_g_e_no_time p-2 " type="text "></div>
+                                <div class="d-flex gap-2 ">
+                                    <div class="update_btn btn btn-light ">Check</div>
+                                    <div class="update_btn btn btn-light ">Nex Word</div>
+                                </div>
+                            </div>
+                            <div class="asd"><i class="material-icons text-warning" style="font-size: 40px">question_mark</i></div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center mt-3 ">
+                            <div>Points Collected In this Play Type</div>
+                            <div class="text-warning h4 rounded ">999</div>
+                        </div>
+
+                        <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
+                    </div>
+
+                </div>
+                <div class="play_page ">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Eng To Geo With Time</div>
+                    <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
-                <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo With Time</div>
-                    <div class="d-flex flex-column align-items-center gap-3">
-                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                <div class="play_page ">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Geo To Eng With Time</div>
+                    <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
-                <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng With Time</div>
-                    <div class="d-flex flex-column align-items-center gap-3">
-                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                <div class="play_page ">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Eng To Geo quiz</div>
+                    <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
-                <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo quiz</div>
-                    <div class="d-flex flex-column align-items-center gap-3">
-                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
-                    </div>
-                </div>
-                <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng quiz</div>
-                    <div class="d-flex flex-column align-items-center gap-3">
-                        <div class="change_play_type_btn btn btn-primary">Change Play Type</div>
+                <div class="play_page ">
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Geo To Eng quiz</div>
+                    <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
 

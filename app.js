@@ -444,6 +444,16 @@ $(document).ready(function() {
         })
     }
 
+    function displayPlayPage(index) {
+        $(".play_page").hide();
+        $(`.play_page:eq(${index})`).show();
+    }
+
+    function playPageBtnClicks(index) {
+        $(`.play_type_btn:eq(${index})`).click(function() {
+            displayPlayPage(index + 1);
+        })
+    }
 
     /** */
 
@@ -646,12 +656,12 @@ $(document).ready(function() {
 
     /**update button animation */
     $(".update_btn").mousedown(function() {
-        $(".update_btn").css("transform", "scale(0.8)");
+        $(this).css("transform", "scale(0.8)");
     })
 
     $(".update_btn").mouseup(function(e) {
         e.stopPropagation(); // not quit neccessery but anyway
-        $(".update_btn").css("transform", "scale(1)");
+        $(this).css("transform", "scale(1)");
     })
 
     /** */
@@ -970,28 +980,25 @@ $(document).ready(function() {
         }
     })
 
-    $(".play_btn").click();
-
-    function displayPlayPage(index) {
-        $(".play_page").hide();
-        $(`.play_page:eq(${index})`).show();
-    }
-
-    function playPageBtnClicks(index) {
-        $(`.play_type_btn:eq(${index})`).click(function() {
-            displayPlayPage(index + 1);
-        })
-    }
-
     displayPlayPage(0);
 
     for (var i = 0; i < $(".play_type_btn").length; i++) {
         playPageBtnClicks(i);
-
     }
 
     $(".change_play_type_btn").click(function() {
         displayPlayPage(0);
     })
+
+    function probAnswerClicks(clickedEl, input) {
+        $(`.${clickedEl}`).click(function() {
+            $(`.${input}`).val(`${$(this).text()}`)
+        })
+    }
+
+    probAnswerClicks("prob_answer_e_g_no_time", "asnwer_input_e_g_no_time");
+    probAnswerClicks("prob_answer_g_e_no_time", "asnwer_input_g_e_no_time");
+
+    $(".play_btn").click();
 
 })
