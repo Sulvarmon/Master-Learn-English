@@ -8,6 +8,7 @@ $(document).ready(function() {
     var dictionary = [];
     var checkBtnEGNoTimeState = true;
     var checkBtnGENoTimeState = true;
+    var checkBtnEGWithTimeState = true;
     var timeControl = 999;
 
     /** */
@@ -468,7 +469,7 @@ $(document).ready(function() {
         $(`.play_page:eq(${index})`).show();
     }
 
-    function getPlayPagesPoints(index) {
+    function getPlayPagesPoints(index, time = 999) {
         switch (index) {
             case 1:
                 $.ajax({
@@ -508,7 +509,134 @@ $(document).ready(function() {
                     }
                 })
                 break;
+            case 3:
+                switch (time) {
+                    case 0:
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "users_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].username) {
+                                        $(".points_e_g_with_time").text(`${data[i].e_g_points_5min}`);
+                                    }
 
+                                }
+
+                            }
+                        })
+                        break;
+                    case 1:
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "users_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].username) {
+                                        $(".points_e_g_with_time").text(`${data[i].e_g_points_3min}`);
+                                    }
+
+                                }
+
+                            }
+                        })
+                        break;
+                    case 2:
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "users_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].username) {
+                                        $(".points_e_g_with_time").text(`${data[i].e_g_points_1min}`);
+                                    }
+
+                                }
+
+                            }
+                        })
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                switch (time) {
+                    case 0:
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "users_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].username) {
+                                        $(".points_g_e_with_time").text(`${data[i].g_e_points_5min}`);
+                                    }
+
+                                }
+
+                            }
+                        })
+                        break;
+                    case 1:
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "users_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].username) {
+                                        $(".points_g_e_with_time").text(`${data[i].g_e_points_3min}`);
+                                    }
+
+                                }
+
+                            }
+                        })
+                        break;
+                    case 2:
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "users_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (user == data[i].username) {
+                                        $(".points_g_e_with_time").text(`${data[i].g_e_points_1min}`);
+                                    }
+
+                                }
+
+                            }
+                        })
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
             default:
                 break;
         }
@@ -576,7 +704,35 @@ $(document).ready(function() {
                 $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-warning");
                 $(".check_visual_g_e_no_time").text("question_mark");
                 break;
+            case 3:
+                var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
+                var randomWord = dictionary[randomNumfromDic].eng_word;
+                var answer = dictionary[randomNumfromDic].geo_word
+                $(".random_word_e_g_with_time").text(`${randomWord}`);
+                var filteredDicArray = dictionary.filter(function(value, index) {
+                    return value.eng_word != $(".random_word_e_g_with_time").text();
+                })
+                var randomIndexs = [];
+                while (randomIndexs.length < 5) {
+                    var r = Math.floor(Math.random() * filteredDicArray.length);
+                    if (randomIndexs.indexOf(r) == -1) {
+                        randomIndexs.push(r);
+                    }
+                }
+                for (var i = 0; i < 5; i++) {
+                    $(`.prob_answer_e_g_with_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].geo_word}`);
+                }
+                var randomNumFrom5 = Math.floor(Math.random() * 5);
+                $(`.prob_answer_e_g_with_time:eq(${randomNumFrom5})`).text(`${answer}`);
 
+                checkBtnEGWithTimeState = true;
+                $(".asnwer_input_e_g_with_time").val("");
+                $(".check_btn_e_g_with_time").removeClass("disabled");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-success");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-danger");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").addClass("text-warning");
+                $(".check_visual_e_g_with_time").text("question_mark");
+                break;
             default:
                 break;
         }
@@ -598,15 +754,19 @@ $(document).ready(function() {
                     break;
                 case 2:
                     displayPlayPage(3);
+                    setPlayPages(3);
                     break;
                 case 3:
                     displayPlayPage(4);
+                    setPlayPages(4);
                     break;
                 case 4:
                     displayPlayPage(5);
+                    setPlayPages(5);
                     break;
                 case 5:
                     displayPlayPage(6);
+                    setPlayPages(6);
                     break;
                 default:
                     break;
@@ -1118,7 +1278,15 @@ $(document).ready(function() {
         }
     })
 
+    /**From here starts play pages*/
     displayPlayPage(0);
+
+    $(".choose_time_e_g").click(function() {
+        $(".choose_time_e_g").prop("checked", false);
+        $(this).prop("checked", true);
+        timeControl = $(".choose_time_e_g").index(this); //index 0 is 5min index 1 is 3min and index 2 is 1 min
+        getPlayPagesPoints(3, timeControl);
+    })
 
     for (var i = 0; i < $(".play_type_btn").length; i++) {
         playPageBtnClicks(i);
@@ -1140,12 +1308,27 @@ $(document).ready(function() {
 
     probAnswerClicks("prob_answer_e_g_no_time", "asnwer_input_e_g_no_time");
     probAnswerClicks("prob_answer_g_e_no_time", "asnwer_input_g_e_no_time");
+    probAnswerClicks("prob_answer_e_g_with_time", "asnwer_input_e_g_with_time");
 
     $(".next_btn_e_g_no_time").click(function() {
         setPlayPages(1);
     })
     $(".next_btn_g_e_no_time").click(function() {
         setPlayPages(2);
+    })
+    $(".next_btn_e_g_with_time").click(function() {
+        setPlayPages(3);
+    })
+
+    $(".after_choosing_time_e_g_cont").hide();
+
+    $(".start_e_g_with_time_btn").click(function() {
+        if (timeControl == 999) {
+            alert("Choose Time Control");
+        } else {
+            $(".choose_time_e_g_cont").hide();
+            $(".after_choosing_time_e_g_cont").show();
+        }
     })
 
     /**e-g no time check button click */
@@ -1272,24 +1455,73 @@ $(document).ready(function() {
         }
     })
 
-    $(".after_choosing_time_e_g_cont").hide();
+    /**e-g with time check button click */
+    $(".check_btn_e_g_with_time").click(function() {
+        if (checkBtnEGWithTimeState) {
+            var randomWord = $(".random_word_e_g_with_time").text();
+            var userAnswered = $(".asnwer_input_e_g_with_time").val();
+            var points = $(".points_e_g_with_time").text();
+            var answer;
+            /**i have this var because if answer is wrong i want to do something only once by being out of the each loop.
+             * i think this will enhance performance
+             */
+            var passedTest = false;
+            $.each(dictionary, function(i, e) {
+                if (randomWord == e.eng_word) {
+                    answer = e.geo_word;
+                }
+                if ($(".asnwer_input_e_g_with_time").val() == answer) {
+                    passedTest = true;
+                    return false;
+                }
+            })
 
-    $(".choose_time_e_g").click(function() {
-        $(".choose_time_e_g").prop("checked", false);
-        $(this).prop("checked", true);
-        timeControl = $(".choose_time_e_g").index(this);
-    })
-
-    $(".start_e_g_with_time_btn").click(function() {
-        if (timeControl == 999) {
-            alert("Choose Time Control");
-        } else {
-            $(".choose_time_e_g_cont").hide();
-            $(".after_choosing_time_e_g_cont").show();
+            if (passedTest && userAnswered != "") { //if answer is correct  
+                checkBtnEGWithTimeState = false;
+                points++;
+                $(".points_e_g_with_time").text(`${points}`);
+                $(".check_btn_e_g_with_time").addClass("disabled");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-warning");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-danger");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").addClass("text-success");
+                $(".check_visual_e_g_with_time").text("check");
+                $.ajax({
+                    url: "points.php",
+                    type: "post",
+                    data: {
+                        pointsBtn: "e_g_with_time",
+                        point: points,
+                        user: user,
+                        timeControl,
+                        timeControl
+                    }
+                })
+            }
+            if (!passedTest && userAnswered != "") { //if answer is wrong 
+                points--;
+                if (points != -1) {
+                    $(".points_e_g_with_time").text(`${points}`);
+                    $.ajax({
+                        url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "e_g_with_time",
+                            point: points,
+                            user: user,
+                            timeControl,
+                            timeControl
+                        }
+                    })
+                }
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-warning");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-success");
+                $(".check_visual_e_g_with_time, .points_e_g_with_time").addClass("text-danger");
+                $(".check_visual_e_g_with_time").text("close");
+            }
         }
-
     })
 
+    /**Here is the end of play page*/
 
     $(".play_btn").click();
 

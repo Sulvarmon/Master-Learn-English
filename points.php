@@ -22,7 +22,53 @@ if(isset($_POST['pointsBtn'])){
             mysqli_query($conn, $sql);
             mysqli_close($conn);
             break;
-            
+        case 'e_g_with_time':
+            $timeControl = $_POST['timeControl'];
+            switch ($timeControl) {
+                case 0:
+                    $sql = "UPDATE user SET e_g_points_5min = '$point' WHERE username = '$user'";
+                    mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    break;
+                case 1:
+                    $sql = "UPDATE user SET e_g_points_3min = '$point' WHERE username = '$user'";
+                    mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    break;
+                case 2:
+                    $sql = "UPDATE user SET e_g_points_1min = '$point' WHERE username = '$user'";
+                    mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    break;
+                default:
+                    # code...
+                    break;
+            }            
+            break;
+        case 'g_e_with_time':
+            $timeControl = $_POST['timeControl'];
+            switch ($timeControl) {
+                case 0:
+                    $sql = "UPDATE user SET g_e_points_5min = '$point' WHERE username = '$user'";
+                    mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    break;
+                case 1:
+                    $sql = "UPDATE user SET g_e_points_3min = '$point' WHERE username = '$user'";
+                    mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    break;
+                case 2:
+                    $sql = "UPDATE user SET g_e_points_1min = '$point' WHERE username = '$user'";
+                    mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    break;
+                default:
+                    # code...
+                    break;
+            }            
+            break;
+                  
         default:
             # code...
             break;

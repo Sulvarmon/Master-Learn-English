@@ -44,7 +44,7 @@
             <h1>Log In Here</h1>
             <div class="login_username_input"><input class="p-2" type="text" placeholder="username"></div>
             <div class="login_password_input"><input class="p-2" type="password" placeholder="password"></div>
-            <div class="login_show_hide_password"><input type="checkbox"><span class="ms-2 form-check-input">Show Password</span></div>
+            <div class="login_show_hide_password"><input type="checkbox" class="form-check-input"><span class="ms-2">Show Password</span></div>
             <div class="login_btn btn btn-primary">Log In</div>
             <div class="mt-5">Not Register ?</div>
             <div class="register_btn btn btn-primary">Register Here</div>
@@ -56,7 +56,7 @@
             <h1>Registration</h1>
             <div class="reg_username_input"><input class="p-2" type="text" placeholder="username"></div>
             <div class="reg_password_input"><input class="p-2" type="password" placeholder="password"></div>
-            <div class="reg_show_hide_password"><input type="checkbox"><span class="ms-2 form-check-input">Show Password</span></div>
+            <div class="reg_show_hide_password"><input type="checkbox" class="form-check-input"><span class="ms-2">Show Password</span></div>
             <div class="reg_btn btn btn-primary">Register</div>
             <div class="mt-5 h5 text-warning">Go Here To Log In</div>
             <div class="login_here_btn btn btn-primary ">Log In Here</div>
