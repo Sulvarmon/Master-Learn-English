@@ -8,6 +8,7 @@ $(document).ready(function() {
     var dictionary = [];
     var checkBtnEGNoTimeState = true;
     var checkBtnGENoTimeState = true;
+    var timeControl = 999;
 
     /** */
 
@@ -1125,6 +1126,10 @@ $(document).ready(function() {
 
     $(".change_play_type_btn").click(function() {
         displayPlayPage(0);
+        $(".choose_time_e_g_cont").show();
+        $(".after_choosing_time_e_g_cont").hide();
+        timeControl = 999;
+        $(".choose_time_e_g").prop("checked", false);
     })
 
     function probAnswerClicks(clickedEl, input) {
@@ -1267,14 +1272,27 @@ $(document).ready(function() {
         }
     })
 
-
-
-    $(".play_btn").click();
-    $(".play_type_btn:eq(2)").click();
+    $(".after_choosing_time_e_g_cont").hide();
 
     $(".choose_time_e_g").click(function() {
         $(".choose_time_e_g").prop("checked", false);
         $(this).prop("checked", true);
+        timeControl = $(".choose_time_e_g").index(this);
     })
+
+    $(".start_e_g_with_time_btn").click(function() {
+        if (timeControl == 999) {
+            alert("Choose Time Control");
+        } else {
+            $(".choose_time_e_g_cont").hide();
+            $(".after_choosing_time_e_g_cont").show();
+        }
+
+    })
+
+
+    $(".play_btn").click();
+
+
 
 })
