@@ -134,7 +134,7 @@ $(document).ready(function() {
         })
     }
 
-    function getRaitingsData() {
+    function updateTables() {
         $.ajax({
             url: "arrays.php",
             type: "post",
@@ -517,9 +517,9 @@ $(document).ready(function() {
                 checkBtnEGNoTimeState = true;
                 $(".asnwer_input_e_g_no_time").val("");
                 $(".check_btn_e_g_no_time").removeClass("disabled");
-                $(".check_visual_e_g_no_time").removeClass("text-success");
-                $(".check_visual_e_g_no_time").removeClass("text-danger");
-                $(".check_visual_e_g_no_time").addClass("text-warning");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-success");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-danger");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-warning");
                 $(".check_visual_e_g_no_time").text("question_mark");
                 break;
 
@@ -583,7 +583,7 @@ $(document).ready(function() {
     /** */
 
     /**set raitings and my results pages data and images */
-    getRaitingsData();
+    updateTables();
     getQuizData();
     /** */
 
@@ -758,15 +758,9 @@ $(document).ready(function() {
         $(".play_btn_wrapper").hide();
     })
 
-    /**update raitings data and images by clicking the button */
+    /**update all data and images by clicking the button */
     $(".update_tables_btn").click(function() {
-        getRaitingsData();
-        setUserImgs();
-    })
-
-    /**update my results data */
-    $(".update_my_results_btn").click(function() {
-        getRaitingsData();
+        updateTables();
         getQuizData();
         setUserImgs();
     })
@@ -778,23 +772,6 @@ $(document).ready(function() {
         getFriendsArray();
         getReqsSentArray();
         getReqsRecArray();
-    })
-
-    /**update button animation */
-    $(".update_btn").mousedown(function() {
-        $(this).css("transform", "scale(0.8)");
-    })
-
-    $(".update_btn").mouseup(function(e) {
-        e.stopPropagation(); // not quit neccessery but anyway
-        $(this).css("transform", "scale(1)");
-    })
-
-    /** */
-
-    /**mouse up on document anywhere will reset update btn's transform prop */
-    $(document).on("mouseup", function() {
-        $(".update_btn").css("transform", "scale(1)");
     })
 
     /**unfriend */
@@ -1153,20 +1130,36 @@ $(document).ready(function() {
                 points++;
                 $(".points_e_g_no_time").text(`${points}`);
                 $(".check_btn_e_g_no_time").addClass("disabled");
-                $(".check_visual_e_g_no_time").removeClass("text-warning");
-                $(".check_visual_e_g_no_time").removeClass("text-danger");
-                $(".check_visual_e_g_no_time").addClass("text-success");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-warning");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-danger");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-success");
                 $(".check_visual_e_g_no_time").text("check");
-
+                $.ajax({
+                    url: "points.php",
+                    type: "post",
+                    data: {
+                        pointsBtn: "e_g_no_time",
+                        point: points,
+                        user: user
+                    }
+                })
             }
             if (!passedTest && userAnswered != "") { //if answer is wrong 
                 points--;
                 if (points != -1) {
                     $(".points_e_g_no_time").text(`${points}`);
+                    $.ajax({
+                        url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "e_g_no_time",
+                            point: points
+                        }
+                    })
                 }
-                $(".check_visual_e_g_no_time").removeClass("text-warning");
-                $(".check_visual_e_g_no_time").removeClass("text-success");
-                $(".check_visual_e_g_no_time").addClass("text-danger");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-warning");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-success");
+                $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-danger");
                 $(".check_visual_e_g_no_time").text("close");
             }
         }

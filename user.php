@@ -128,7 +128,7 @@
             <!-- raitings page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="h1 w_fit_s mx-auto m-5 text-warning">Raitings Page</div>
-                <div class="update_tables_btn w_fit_s update_btn d-block btn btn-primary mx-auto">Update Raitings Page</div>
+                <div class="update_tables_btn w_fit_s d-block btn btn-primary mx-auto">Update Tables</div>
                 <div class="d-flex flex-wrap justify-content-around mt-5">
                     <!-- top 10 eng to geo raitings no time -->
                     <div>
@@ -285,7 +285,7 @@
             <!-- my results page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">My Results Page</div>
-                <div class="update_btn update_my_results_btn d-block btn btn-primary w_fit_s mx-auto">Update My Results Page</div>
+                <div class="update_tables_btn d-block btn btn-primary w_fit_s mx-auto">Update Tables</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                     <div><img class="results_user_img" src="./Img/user_default_avatar.png" width="250" height="250"></div>
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
@@ -362,7 +362,7 @@
             <!-- friends page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Friends page</div>
-                <div class="update_btn update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Friends Page</div>
+                <div class="update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Friends Page</div>
                 <!-- contents are appended in js file -->
                 <div class="friends_cont container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Friends</div>
@@ -391,7 +391,7 @@
             <!-- events Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Events Page</div>
-                <div class="update_btn update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Events Page</div>
+                <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Events Page</div>
             </div>
 
             <!-- contacts Page -->
@@ -511,15 +511,15 @@
                             <div class=" d-flex flex-column align-items-center gap-3 ">
                                 <div><input class="asnwer_input_e_g_no_time p-2" type="text "></div>
                                 <div class="d-flex gap-2 ">
-                                    <div class="check_btn_e_g_no_time update_btn btn btn-light ">Check</div>
-                                    <div class="next_btn_e_g_no_time update_btn btn btn-light ">Nex Word</div>
+                                    <div class="check_btn_e_g_no_time btn btn-light ">Check</div>
+                                    <div class="next_btn_e_g_no_time btn btn-light ">Nex Word</div>
                                 </div>
                             </div>
                             <div><i class="check_visual_e_g_no_time material-icons text-warning user-select-none" style="font-size: 40px">question_mark</i></div>
                         </div>
                         <div class="d-flex flex-column align-items-center mt-3 ">
                             <div>Points Collected In this Play Type</div>
-                            <div class="points_e_g_no_time text-warning h4 rounded ">999</div>
+                            <div class="points_e_g_no_time text-warning rounded " style="font-size: 40px;">999</div>
                         </div>
 
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
@@ -548,8 +548,8 @@
                             <div class=" d-flex flex-column align-items-center gap-3 ">
                                 <div><input class="asnwer_input_g_e_no_time p-2 " type="text "></div>
                                 <div class="d-flex gap-2 ">
-                                    <div class="update_btn btn btn-light ">Check</div>
-                                    <div class="update_btn btn btn-light ">Nex Word</div>
+                                    <div class="btn btn-light ">Check</div>
+                                    <div class="btn btn-light ">Nex Word</div>
                                 </div>
                             </div>
                             <div><i class="user-select-none material-icons text-warning" style="font-size: 40px">question_mark</i></div>
