@@ -489,12 +489,13 @@
                         </div>
                     </div>
                 </div>
+                <!-- e-g no time -->
                 <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Eng To Geo Without Time</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5"><span>Eng To Geo Without Time</span><i class="material-icons ms-2">timer_off</i></div>
                     <div class="d-flex flex-column align-items-center gap-3">
                         <div class="d-flex flex-column align-items-center">
                             <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
-                            <div class="p-2 rounded h2 text-info">Word</div>
+                            <div class="random_word_e_g_no_time p-2 rounded h2 text-info">Word</div>
                         </div>
                         <div class="d-flex flex-column align-items-center gap-2">
                             <div>Probable Answers</div>
@@ -510,27 +511,28 @@
                             <div class=" d-flex flex-column align-items-center gap-3 ">
                                 <div><input class="asnwer_input_e_g_no_time p-2" type="text "></div>
                                 <div class="d-flex gap-2 ">
-                                    <div class="update_btn btn btn-light ">Check</div>
-                                    <div class="update_btn btn btn-light ">Nex Word</div>
+                                    <div class="check_btn_e_g_no_time update_btn btn btn-light ">Check</div>
+                                    <div class="next_btn_e_g_no_time update_btn btn btn-light ">Nex Word</div>
                                 </div>
                             </div>
-                            <div class="asd"><i class="material-icons text-warning" style="font-size: 40px">question_mark</i></div>
+                            <div><i class="check_visual_e_g_no_time material-icons text-warning user-select-none" style="font-size: 40px">question_mark</i></div>
                         </div>
                         <div class="d-flex flex-column align-items-center mt-3 ">
                             <div>Points Collected In this Play Type</div>
-                            <div class="text-warning h4 rounded ">999</div>
+                            <div class="points_e_g_no_time text-warning h4 rounded ">999</div>
                         </div>
 
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
 
                 </div>
+                <!-- g-e no time -->
                 <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Geo To Eng Without Time</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5"><span>Geo To Eng Without Time</span><i class="material-icons ms-2">timer_off</i></div>
                     <div class="d-flex flex-column align-items-center gap-3">
                         <div class="d-flex flex-column align-items-center">
                             <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
-                            <div class="p-2 rounded h2 text-info">Word</div>
+                            <div class="random_word_g_e_no_time p-2 rounded h2 text-info">Word</div>
                         </div>
                         <div class="d-flex flex-column align-items-center gap-2">
                             <div>Probable Answers</div>
@@ -550,7 +552,7 @@
                                     <div class="update_btn btn btn-light ">Nex Word</div>
                                 </div>
                             </div>
-                            <div class="asd"><i class="material-icons text-warning" style="font-size: 40px">question_mark</i></div>
+                            <div><i class="user-select-none material-icons text-warning" style="font-size: 40px">question_mark</i></div>
                         </div>
                         <div class="d-flex flex-column align-items-center mt-3 ">
                             <div>Points Collected In this Play Type</div>
@@ -561,26 +563,30 @@
                     </div>
 
                 </div>
+                <!-- e-g with time -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Eng To Geo With Time</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Eng To Geo With Time</span><i class="material-icons ms-2">timer</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
+                <!-- g-e with time -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Geo To Eng With Time</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng With Time</span><i class="material-icons ms-2">timer</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
+                <!-- e-g quiz -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Eng To Geo quiz</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Eng To Geo quiz</span><i class="material-icons ms-2">quiz</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
+                <!-- g-e quiz -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 ">Geo To Eng quiz</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng quiz</span><i class="material-icons ms-2">quiz</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
