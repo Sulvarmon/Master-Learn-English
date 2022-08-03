@@ -421,7 +421,7 @@
                             <div class="change_password_input"><input class="p-2" type="password" placeholder="type new username"></div>
                             <div class="change_password_btn btn btn-primary">Change Password</div>
                         </div>
-                        <div class="change_pass_show_hide d-flex gap-2"><input class="p-2" type="checkbox"><span>Show Pass</span></div>
+                        <div class="change_pass_show_hide d-flex gap-2"><input class="p-2 form-check-input" type="checkbox"><span>Show Pass</span></div>
                     </div>
                     <div class="p-3 border d-flex flex-column align-items-center">
                         <div class="h5 m-2">Upload Image</div>
@@ -491,7 +491,7 @@
                 </div>
                 <!-- e-g no time -->
                 <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5"><span>Eng To Geo Without Time</span><i class="material-icons ms-2">timer_off</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 text-center"><span>Eng To Geo Without Time</span><i class="material-icons ms-2">timer_off</i></div>
                     <div class="d-flex flex-column align-items-center gap-3">
                         <div class="d-flex flex-column align-items-center">
                             <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
@@ -528,7 +528,7 @@
                 </div>
                 <!-- g-e no time -->
                 <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5"><span>Geo To Eng Without Time</span><i class="material-icons ms-2">timer_off</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 text-center"><span>Geo To Eng Without Time</span><i class="material-icons ms-2">timer_off</i></div>
                     <div class="d-flex flex-column align-items-center gap-3">
                         <div class="d-flex flex-column align-items-center">
                             <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
@@ -546,17 +546,17 @@
                         </div>
                         <div class="d-flex gap-3 mt-3 align-items-center">
                             <div class=" d-flex flex-column align-items-center gap-3 ">
-                                <div><input class="asnwer_input_g_e_no_time p-2 " type="text "></div>
+                                <div><input class="asnwer_input_g_e_no_time p-2" type="text "></div>
                                 <div class="d-flex gap-2 ">
-                                    <div class="btn btn-light ">Check</div>
-                                    <div class="btn btn-light ">Nex Word</div>
+                                    <div class="check_btn_g_e_no_time btn btn-light ">Check</div>
+                                    <div class="next_btn_g_e_no_time btn btn-light ">Nex Word</div>
                                 </div>
                             </div>
-                            <div><i class="user-select-none material-icons text-warning" style="font-size: 40px">question_mark</i></div>
+                            <div><i class="check_visual_g_e_no_time material-icons text-warning user-select-none" style="font-size: 40px">question_mark</i></div>
                         </div>
                         <div class="d-flex flex-column align-items-center mt-3 ">
                             <div>Points Collected In this Play Type</div>
-                            <div class="text-warning h4 rounded ">999</div>
+                            <div class="points_g_e_no_time text-warning rounded " style="font-size: 40px;">999</div>
                         </div>
 
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
@@ -565,28 +565,37 @@
                 </div>
                 <!-- e-g with time -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Eng To Geo With Time</span><i class="material-icons ms-2">timer</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 text-center"><span>Eng To Geo With Time</span><i class=" material-icons ms-2 ">timer</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="d-flex flex-column gap-4 h5 align-items-center ">
+                            <div class="d-flex align-items-center gap-2 "><span>Choose</span><i class=" material-icons ">arrow_downward</i></div>
+                            <div class="d-flex gap-4 flex-wrap justify-content-center ">
+                                <div><input type="radio" class="choose_time_e_g form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">5 Min(300 Sec)</span></div>
+                                <div><input type="radio" class="choose_time_e_g form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">3 Min(180 Sec)</span></div>
+                                <div><input type="radio" class="choose_time_e_g form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">1 Min(60 Sec)</span></div>
+                            </div>
+                            <div class="btn btn-primary ">Start</div>
+                        </div>
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
                 <!-- g-e with time -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng With Time</span><i class="material-icons ms-2">timer</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng With Time</span><i class="material-icons ms-2 ">timer</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
                 <!-- e-g quiz -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Eng To Geo quiz</span><i class="material-icons ms-2">quiz</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Eng To Geo quiz</span><i class="material-icons ms-2 ">quiz</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
                 <!-- g-e quiz -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng quiz</span><i class="material-icons ms-2">quiz</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng quiz</span><i class="material-icons ms-2 ">quiz</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>

@@ -1,10 +1,13 @@
 $(document).ready(function() {
 
+    $("body").css("display", "block");
+
     /**variables */
     var userSettingState = true;
     var user = $(".username").text().trim();
     var dictionary = [];
     var checkBtnEGNoTimeState = true;
+    var checkBtnGENoTimeState = true;
 
     /** */
 
@@ -309,6 +312,7 @@ $(document).ready(function() {
                 }
             }
         })
+        setUserImgs();
     }
 
     function getQuizData() {
@@ -484,6 +488,25 @@ $(document).ready(function() {
                     }
                 })
                 break;
+            case 2:
+                $.ajax({
+                    url: "arrays.php",
+                    type: "post",
+                    data: {
+                        arraysBtn: "users_array"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (user == data[i].username) {
+                                $(".points_g_e_no_time").text(`${data[i].g_e_points}`);
+                            }
+
+                        }
+
+                    }
+                })
+                break;
 
             default:
                 break;
@@ -522,6 +545,36 @@ $(document).ready(function() {
                 $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-warning");
                 $(".check_visual_e_g_no_time").text("question_mark");
                 break;
+            case 2:
+                var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
+                var randomWord = dictionary[randomNumfromDic].geo_word;
+                var answer = dictionary[randomNumfromDic].eng_word
+                $(".random_word_g_e_no_time").text(`${randomWord}`);
+                var filteredDicArray = dictionary.filter(function(value, index) {
+                    return value.geo_word != $(".random_word_g_e_no_time").text();
+                })
+                var randomIndexs = [];
+                while (randomIndexs.length < 5) {
+                    var r = Math.floor(Math.random() * filteredDicArray.length);
+                    if (randomIndexs.indexOf(r) == -1) {
+                        randomIndexs.push(r);
+                    }
+                }
+                for (var i = 0; i < 5; i++) {
+                    $(`.prob_answer_g_e_no_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].eng_word}`);
+                }
+                var randomNumFrom5 = Math.floor(Math.random() * 5);
+                $(`.prob_answer_g_e_no_time:eq(${randomNumFrom5})`).text(`${answer}`);
+
+
+                checkBtnGENoTimeState = true;
+                $(".asnwer_input_g_e_no_time").val("");
+                $(".check_btn_g_e_no_time").removeClass("disabled");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-success");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-danger");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-warning");
+                $(".check_visual_g_e_no_time").text("question_mark");
+                break;
 
             default:
                 break;
@@ -539,25 +592,8 @@ $(document).ready(function() {
                     break;
                 case 1:
                     displayPlayPage(2);
-                    var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
-                    var randomWord = dictionary[randomNumfromDic].geo_word;
-                    var answer = dictionary[randomNumfromDic].eng_word;
-                    $(".random_word_g_e_no_time").text(`${randomWord}`);
-                    var filteredDicArray = dictionary.filter(function(value, index) {
-                        return value.geo_word != $(".random_word_g_e_no_time").text();
-                    })
-                    var randomIndexs = [];
-                    while (randomIndexs.length < 5) {
-                        var r = Math.floor(Math.random() * filteredDicArray.length);
-                        if (randomIndexs.indexOf(r) == -1) {
-                            randomIndexs.push(r);
-                        }
-                    }
-                    for (var i = 0; i < 5; i++) {
-                        $(`.prob_answer_g_e_no_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].eng_word}`);
-                    }
-                    var randomNumFrom5 = Math.floor(Math.random() * 5);
-                    $(`.prob_answer_g_e_no_time:eq(${randomNumFrom5})`).text(`${answer}`);
+                    setPlayPages(2);
+                    getPlayPagesPoints(2);
                     break;
                 case 2:
                     displayPlayPage(3);
@@ -594,7 +630,7 @@ $(document).ready(function() {
     /** */
 
     /**set user imgs */
-    setUserImgs();
+
 
     showHidePassword("login_show_hide_password>input", "login_password_input>input");
     showHidePassword("reg_show_hide_password>input", "reg_password_input>input");
@@ -762,7 +798,6 @@ $(document).ready(function() {
     $(".update_tables_btn").click(function() {
         updateTables();
         getQuizData();
-        setUserImgs();
     })
 
     $(".update_my_friends_btn").click(function() {
@@ -1104,7 +1139,11 @@ $(document).ready(function() {
     $(".next_btn_e_g_no_time").click(function() {
         setPlayPages(1);
     })
+    $(".next_btn_g_e_no_time").click(function() {
+        setPlayPages(2);
+    })
 
+    /**e-g no time check button click */
     $(".check_btn_e_g_no_time").click(function() {
         if (checkBtnEGNoTimeState) {
             var randomWord = $(".random_word_e_g_no_time").text();
@@ -1153,7 +1192,8 @@ $(document).ready(function() {
                         type: "post",
                         data: {
                             pointsBtn: "e_g_no_time",
-                            point: points
+                            point: points,
+                            user: user
                         }
                     })
                 }
@@ -1165,8 +1205,76 @@ $(document).ready(function() {
         }
     })
 
+    /**g-e no time check button click */
+    $(".check_btn_g_e_no_time").click(function() {
+        if (checkBtnGENoTimeState) {
+            var randomWord = $(".random_word_g_e_no_time").text();
+            var userAnswered = $(".asnwer_input_g_e_no_time").val();
+            var points = $(".points_g_e_no_time").text();
+            var answer;
+            /**i have this var because if answer is wrong i want to do something only once by being out of the each loop.
+             * i think this will enhance performance
+             */
+            var passedTest = false;
+            $.each(dictionary, function(i, e) {
+                if (randomWord == e.geo_word) {
+                    answer = e.eng_word;
+                }
+                if ($(".asnwer_input_g_e_no_time").val() == answer) {
+                    passedTest = true;
+                    return false;
+                }
+            })
+
+            if (passedTest && userAnswered != "") { //if answer is correct  
+                checkBtnGENoTimeState = false;
+                points++;
+                $(".points_g_e_no_time").text(`${points}`);
+                $(".check_btn_g_e_no_time").addClass("disabled");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-warning");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-danger");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-success");
+                $(".check_visual_g_e_no_time").text("check");
+                $.ajax({
+                    url: "points.php",
+                    type: "post",
+                    data: {
+                        pointsBtn: "g_e_no_time",
+                        point: points,
+                        user: user
+                    }
+                })
+            }
+            if (!passedTest && userAnswered != "") { //if answer is wrong 
+                points--;
+                if (points != -1) {
+                    $(".points_g_e_no_time").text(`${points}`);
+                    $.ajax({
+                        url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "g_e_no_time",
+                            point: points,
+                            user: user
+                        }
+                    })
+                }
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-warning");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-success");
+                $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-danger");
+                $(".check_visual_g_e_no_time").text("close");
+            }
+        }
+    })
+
 
 
     $(".play_btn").click();
+    $(".play_type_btn:eq(2)").click();
+
+    $(".choose_time_e_g").click(function() {
+        $(".choose_time_e_g").prop("checked", false);
+        $(this).prop("checked", true);
+    })
 
 })

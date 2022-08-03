@@ -17,7 +17,12 @@ if(isset($_POST['pointsBtn'])){
             mysqli_query($conn, $sql);
             mysqli_close($conn);
             break;
-        
+        case 'g_e_no_time':
+            $sql = "UPDATE user SET g_e_points = '$point' WHERE username = '$user'";
+            mysqli_query($conn, $sql);
+            mysqli_close($conn);
+            break;
+            
         default:
             # code...
             break;
