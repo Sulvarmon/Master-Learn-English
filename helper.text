@@ -16,7 +16,7 @@ $.ajax({
 
 
 
-$array
+ $array = array();
 
 $sql = "SELECT * FROM user";
 $query = mysqli_query($conn, $sql);
@@ -26,3 +26,8 @@ if(mysqli_num_rows($query) > 0){
         array_push($array, $row);
     }
 }
+
+change_play_type_btn
+
+$(".choose_time_e_g_cont").hide();
+            $(".after_choosing_time_e_g_cont").show();

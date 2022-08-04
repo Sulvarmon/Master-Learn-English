@@ -579,46 +579,118 @@
                             </div>
                         </div>
                         <div class="after_choosing_time_e_g_cont">
-                            <div class="d-flex flex-column gap-2 align-items-center">
-                                <div class="text-center">Time Remaining</div>
-                                <div class="time_remining_e_g"></div>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
-                                <div class="random_word_e_g_with_time p-2 rounded h2 text-info">Word</div>
-                            </div>
-                            <div class="d-flex flex-column align-items-center gap-2">
-                                <div>Probable Answers</div>
-                                <div class="d-flex flex-wrap gap-3 p-3 border">
-                                    <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 1</div>
-                                    <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 2</div>
-                                    <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 3</div>
-                                    <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 4</div>
-                                    <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 5</div>
+                            <div class="d-flex flex-column gap-4 h5 align-items-center ">
+                                <div class="d-flex gap-2 align-items-center mb-3">
+                                    <div class="text-center">Time Remaining</div>
+                                    <div class="time_remining_e_g h3 text-danger"></div>
                                 </div>
-                            </div>
-                            <div class="d-flex gap-3 mt-3 align-items-center justify-content-center">
-                                <div class="d-flex flex-column align-items-center gap-3 ">
-                                    <div><input class="asnwer_input_e_g_with_time p-2" type="text "></div>
-                                    <div class="d-flex gap-2 ">
-                                        <div class="check_btn_e_g_with_time btn btn-light ">Check</div>
-                                        <div class="next_btn_e_g_with_time btn btn-light ">Nex Word</div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
+                                    <div class="random_word_e_g_with_time p-2 rounded h2 text-info">Word</div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center gap-2">
+                                    <div>Probable Answers</div>
+                                    <div class="d-flex flex-wrap gap-3 p-3 border">
+                                        <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 1</div>
+                                        <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 2</div>
+                                        <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 3</div>
+                                        <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 4</div>
+                                        <div class="prob_answer_e_g_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 5</div>
                                     </div>
                                 </div>
-                                <div><i class="check_visual_e_g_with_time material-icons text-warning user-select-none" style="font-size: 40px">question_mark</i></div>
+                                <div class="check_answer_e_g_with_time_cont">
+                                    <div class="d-flex gap-3 mt-3 align-items-center">
+                                        <div class="d-flex flex-column align-items-center gap-3 ">
+                                            <div><input class="asnwer_input_e_g_with_time p-2" type="text "></div>
+                                            <div class="d-flex gap-2 ">
+                                                <div class="check_btn_e_g_with_time btn btn-light ">Check</div>
+                                                <div class="next_btn_e_g_with_time btn btn-light ">Nex Word</div>
+                                            </div>
+                                        </div>
+                                        <div><i class="check_visual_e_g_with_time material-icons text-warning user-select-none" style="font-size: 40px">question_mark</i></div>
+                                    </div>
+                                </div>
+                                <div class="timeout_e_g_cont" style="display: none;">
+                                    <div class="d-flex flex-column flex-md-row gap-3 align-items-center">
+                                        <div class="text-danger" style="font-size: 40px;">Time Is Out</div>
+                                        <div class="restart_e_g_with_time_btn_cont" style="display: none;">
+                                            <div class="restart_e_g_with_time_btn btn btn-primary" style="transition: 1s;opacity: 0;">Restart</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center mt-3 ">
+                                    <div>Points Collected</div>
+                                    <div class="points_e_g_with_time text-warning rounded " style="font-size: 40px;">999</div>
+                                </div>
                             </div>
-                            <div class="d-flex flex-column align-items-center mt-3 ">
-                                <div>Points Collected In this Play Type</div>
-                                <div class="points_e_g_with_time text-warning rounded " style="font-size: 40px;">999</div>
-                            </div>
+
                         </div>
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>
+
                 <!-- g-e with time -->
                 <div class="play_page ">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5 "><span>Geo To Eng With Time</span><i class="material-icons ms-2 ">timer</i></div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5 text-center"><span>Geo To Eng With Time</span><i class=" material-icons ms-2 ">timer</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="choose_time_g_e_cont">
+                            <div class="d-flex flex-column gap-4 h5 align-items-center ">
+                                <div class="d-flex align-items-center gap-2 "><span>Choose</span><i class=" material-icons ">arrow_downward</i></div>
+                                <div class="d-flex gap-4 flex-wrap justify-content-center ">
+                                    <div><input type="radio" class="choose_time_g_e form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">5 Min(300 Sec)</span></div>
+                                    <div><input type="radio" class="choose_time_g_e form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">3 Min(180 Sec)</span></div>
+                                    <div><input type="radio" class="choose_time_g_e form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">1 Min(60 Sec)</span></div>
+                                </div>
+                                <div class="start_g_e_with_time_btn btn btn-primary ">Start</div>
+                            </div>
+                        </div>
+                        <div class="after_choosing_time_g_e_cont">
+                            <div class="d-flex flex-column gap-4 h5 align-items-center ">
+                                <div class="d-flex gap-2 align-items-center mb-3">
+                                    <div class="text-center">Time Remaining</div>
+                                    <div class="time_remining_g_e h3 text-danger"></div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="d-flex align-items-center"><span>Translate This Word</span><i class="material-icons ms-2">arrow_downward</i></div>
+                                    <div class="random_word_g_e_with_time p-2 rounded h2 text-info">Word</div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center gap-2">
+                                    <div>Probable Answers</div>
+                                    <div class="d-flex flex-wrap gap-3 p-3 border">
+                                        <div class="prob_answer_g_e_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 1</div>
+                                        <div class="prob_answer_g_e_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 2</div>
+                                        <div class="prob_answer_g_e_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 3</div>
+                                        <div class="prob_answer_g_e_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 4</div>
+                                        <div class="prob_answer_g_e_with_time prob_answer_s p-2 border h5 cursor_pointer_s">answer 5</div>
+                                    </div>
+                                </div>
+                                <div class="check_answer_g_e_with_time_cont">
+                                    <div class="d-flex gap-3 mt-3 align-items-center">
+                                        <div class="d-flex flex-column align-items-center gap-3 ">
+                                            <div><input class="asnwer_input_g_e_with_time p-2" type="text "></div>
+                                            <div class="d-flex gap-2 ">
+                                                <div class="check_btn_g_e_with_time btn btn-light ">Check</div>
+                                                <div class="next_btn_g_e_with_time btn btn-light ">Nex Word</div>
+                                            </div>
+                                        </div>
+                                        <div><i class="check_visual_g_e_with_time material-icons text-warning user-select-none" style="font-size: 40px">question_mark</i></div>
+                                    </div>
+                                </div>
+                                <div class="timeout_g_e_cont" style="display: none;">
+                                    <div class="d-flex flex-column flex-md-row gap-3 align-items-center">
+                                        <div class="text-danger" style="font-size: 40px;">Time Is Out</div>
+                                        <div class="restart_g_e_with_time_btn_cont" style="display: none;">
+                                            <div class="restart_g_e_with_time_btn btn btn-primary" style="transition: 1s;opacity: 0;">Restart</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center mt-3 ">
+                                    <div>Points Collected</div>
+                                    <div class="points_g_e_with_time text-warning rounded " style="font-size: 40px;">999</div>
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
                     </div>
                 </div>

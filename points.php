@@ -26,17 +26,17 @@ if(isset($_POST['pointsBtn'])){
             $timeControl = $_POST['timeControl'];
             switch ($timeControl) {
                 case 0:
-                    $sql = "UPDATE user SET e_g_points_5min = '$point' WHERE username = '$user'";
+                    $sql = "UPDATE user SET e_g_points_5min = '$point' WHERE username = '$user' AND  e_g_points_5min < $point ";
                     mysqli_query($conn, $sql);
                     mysqli_close($conn);
                     break;
                 case 1:
-                    $sql = "UPDATE user SET e_g_points_3min = '$point' WHERE username = '$user'";
+                    $sql = "UPDATE user SET e_g_points_3min = '$point' WHERE username = '$user' AND  e_g_points_3min < $point ";
                     mysqli_query($conn, $sql);
                     mysqli_close($conn);
                     break;
                 case 2:
-                    $sql = "UPDATE user SET e_g_points_1min = '$point' WHERE username = '$user'";
+                    $sql = "UPDATE user SET e_g_points_1min = '$point' WHERE username = '$user' AND  e_g_points_1min < $point ";
                     mysqli_query($conn, $sql);
                     mysqli_close($conn);
                     break;
@@ -49,17 +49,17 @@ if(isset($_POST['pointsBtn'])){
             $timeControl = $_POST['timeControl'];
             switch ($timeControl) {
                 case 0:
-                    $sql = "UPDATE user SET g_e_points_5min = '$point' WHERE username = '$user'";
+                    $sql = "UPDATE user SET g_e_points_5min = '$point' WHERE username = '$user' AND  g_e_points_5min < $point";
                     mysqli_query($conn, $sql);
                     mysqli_close($conn);
                     break;
                 case 1:
-                    $sql = "UPDATE user SET g_e_points_3min = '$point' WHERE username = '$user'";
+                    $sql = "UPDATE user SET g_e_points_3min = '$point' WHERE username = '$user' AND  g_e_points_3min < $point";
                     mysqli_query($conn, $sql);
                     mysqli_close($conn);
                     break;
                 case 2:
-                    $sql = "UPDATE user SET g_e_points_1min = '$point' WHERE username = '$user'";
+                    $sql = "UPDATE user SET g_e_points_1min = '$point' WHERE username = '$user' AND  g_e_points_1min < $point";
                     mysqli_query($conn, $sql);
                     mysqli_close($conn);
                     break;
