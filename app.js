@@ -6,10 +6,8 @@ $(document).ready(function() {
     var userSettingState = true;
     var user = $(".username").text().trim();
     var dictionary = [];
-    var checkBtnEGNoTimeState = true;
-    var checkBtnGENoTimeState = true;
-    var checkBtnEGWithTimeState = true;
-    var checkBtnGEWithTimeState = true;
+    var checkBtnState = true;
+    var playType = "";
     var timeControl = 999;
     var playTimer;
     /** */
@@ -465,11 +463,6 @@ $(document).ready(function() {
         })
     }
 
-    function displayPlayPage(index) {
-        $(".play_page").hide();
-        $(`.play_page:eq(${index})`).show();
-    }
-
     function getPlayPagesPoints(index, time = 999) {
         switch (index) {
             case 1:
@@ -483,7 +476,7 @@ $(document).ready(function() {
                     success: function(data) {
                         for (var i = 0; i < data.length; i++) {
                             if (user == data[i].username) {
-                                $(".points_e_g_no_time").text(`${data[i].e_g_points}`);
+                                $(".points").text(`${data[i].e_g_points}`);
                             }
 
                         }
@@ -502,7 +495,7 @@ $(document).ready(function() {
                     success: function(data) {
                         for (var i = 0; i < data.length; i++) {
                             if (user == data[i].username) {
-                                $(".points_g_e_no_time").text(`${data[i].g_e_points}`);
+                                $(".points").text(`${data[i].g_e_points}`);
                             }
 
                         }
@@ -515,15 +508,20 @@ $(document).ready(function() {
         }
     }
 
-    function setPlayPages(index) {
+    function setPlayTypeTestPages(index) {
         switch (index) {
             case 1:
+                $(".play_type_test_title").text("Eng To Geo No Time");
+                $(".play_type_test_icon").text("timer_off");
+                $(".choose_time_cont, .time_remining_cont").hide();
+                $(".after_choosing_time_cont").show();
+
                 var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
                 var randomWord = dictionary[randomNumfromDic].eng_word;
                 var answer = dictionary[randomNumfromDic].geo_word
-                $(".random_word_e_g_no_time").text(`${randomWord}`);
+                $(".random_word").text(`${randomWord}`);
                 var filteredDicArray = dictionary.filter(function(value, index) {
-                    return value.eng_word != $(".random_word_e_g_no_time").text();
+                    return value.eng_word != $(".random_word").text();
                 })
                 var randomIndexs = [];
                 while (randomIndexs.length < 5) {
@@ -533,107 +531,38 @@ $(document).ready(function() {
                     }
                 }
                 for (var i = 0; i < 5; i++) {
-                    $(`.prob_answer_e_g_no_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].geo_word}`);
+                    $(`.prob_answer:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].geo_word}`);
                 }
                 var randomNumFrom5 = Math.floor(Math.random() * 5);
-                $(`.prob_answer_e_g_no_time:eq(${randomNumFrom5})`).text(`${answer}`);
+                $(`.prob_answer:eq(${randomNumFrom5})`).text(`${answer}`);
 
 
-                checkBtnEGNoTimeState = true;
-                $(".asnwer_input_e_g_no_time").val("");
-                $(".check_btn_e_g_no_time").removeClass("disabled");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-success");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-danger");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-warning");
-                $(".check_visual_e_g_no_time").text("question_mark");
+                checkBtnState = true;
+                $(".asnwer_input").val("");
+                $(".check_btn").removeClass("disabled");
+                $(".check_visual, .points").removeClass("text-success");
+                $(".check_visual, .points").removeClass("text-danger");
+                $(".check_visual, .points").addClass("text-warning");
+                $(".check_visual").text("question_mark");
                 break;
             case 2:
-                var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
-                var randomWord = dictionary[randomNumfromDic].geo_word;
-                var answer = dictionary[randomNumfromDic].eng_word
-                $(".random_word_g_e_no_time").text(`${randomWord}`);
-                var filteredDicArray = dictionary.filter(function(value, index) {
-                    return value.geo_word != $(".random_word_g_e_no_time").text();
-                })
-                var randomIndexs = [];
-                while (randomIndexs.length < 5) {
-                    var r = Math.floor(Math.random() * filteredDicArray.length);
-                    if (randomIndexs.indexOf(r) == -1) {
-                        randomIndexs.push(r);
-                    }
-                }
-                for (var i = 0; i < 5; i++) {
-                    $(`.prob_answer_g_e_no_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].eng_word}`);
-                }
-                var randomNumFrom5 = Math.floor(Math.random() * 5);
-                $(`.prob_answer_g_e_no_time:eq(${randomNumFrom5})`).text(`${answer}`);
-
-
-                checkBtnGENoTimeState = true;
-                $(".asnwer_input_g_e_no_time").val("");
-                $(".check_btn_g_e_no_time").removeClass("disabled");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-success");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-danger");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-warning");
-                $(".check_visual_g_e_no_time").text("question_mark");
+                $(".play_type_test_title").text("Geo To Eng No Time");
+                $(".play_type_test_icon").text("timer_off");
+                $(".choose_time_cont, .time_remining_cont").hide();
+                $(".after_choosing_time_cont").show();
                 break;
             case 3:
-                var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
-                var randomWord = dictionary[randomNumfromDic].eng_word;
-                var answer = dictionary[randomNumfromDic].geo_word
-                $(".random_word_e_g_with_time").text(`${randomWord}`);
-                var filteredDicArray = dictionary.filter(function(value, index) {
-                    return value.eng_word != $(".random_word_e_g_with_time").text();
-                })
-                var randomIndexs = [];
-                while (randomIndexs.length < 5) {
-                    var r = Math.floor(Math.random() * filteredDicArray.length);
-                    if (randomIndexs.indexOf(r) == -1) {
-                        randomIndexs.push(r);
-                    }
-                }
-                for (var i = 0; i < 5; i++) {
-                    $(`.prob_answer_e_g_with_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].geo_word}`);
-                }
-                var randomNumFrom5 = Math.floor(Math.random() * 5);
-                $(`.prob_answer_e_g_with_time:eq(${randomNumFrom5})`).text(`${answer}`);
+                $(".play_type_test_title").text("Eng To Geo With Time");
+                $(".play_type_test_icon").text("timer");
+                $(".after_choosing_time_cont").hide();
+                $(".choose_time_cont, .time_remining_cont").show();
 
-                checkBtnEGWithTimeState = true;
-                $(".asnwer_input_e_g_with_time").val("");
-                $(".check_btn_e_g_with_time").removeClass("disabled");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-success");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-danger");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").addClass("text-warning");
-                $(".check_visual_e_g_with_time").text("question_mark");
                 break;
             case 4:
-                var randomNumfromDic = Math.floor(Math.random() * dictionary.length);
-                var randomWord = dictionary[randomNumfromDic].geo_word;
-                var answer = dictionary[randomNumfromDic].eng_word
-                $(".random_word_g_e_with_time").text(`${randomWord}`);
-                var filteredDicArray = dictionary.filter(function(value, index) {
-                    return value.geo_word != $(".random_word_g_e_with_time").text();
-                })
-                var randomIndexs = [];
-                while (randomIndexs.length < 5) {
-                    var r = Math.floor(Math.random() * filteredDicArray.length);
-                    if (randomIndexs.indexOf(r) == -1) {
-                        randomIndexs.push(r);
-                    }
-                }
-                for (var i = 0; i < 5; i++) {
-                    $(`.prob_answer_g_e_with_time:eq(${i})`).text(`${filteredDicArray[randomIndexs[i]].eng_word}`);
-                }
-                var randomNumFrom5 = Math.floor(Math.random() * 5);
-                $(`.prob_answer_g_e_with_time:eq(${randomNumFrom5})`).text(`${answer}`);
-
-                checkBtnGEWithTimeState = true;
-                $(".asnwer_input_g_e_with_time").val("");
-                $(".check_btn_g_e_with_time").removeClass("disabled");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").removeClass("text-success");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").removeClass("text-danger");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").addClass("text-warning");
-                $(".check_visual_g_e_with_time").text("question_mark");
+                $(".play_type_test_title").text("Geo To Eng With Time");
+                $(".play_type_test_icon").text("timer");
+                $(".after_choosing_time_cont").hide();
+                $(".choose_time_cont, .time_remining_cont").show();
                 break;
             default:
                 break;
@@ -641,40 +570,64 @@ $(document).ready(function() {
 
     }
 
-    function playPageBtnClicks(index) {
+    function setPlayTypeQuizPages(index) {
+        switch (index) {
+            case 0:
+                $(".play_type_quiz_title").text("Eng To Geo Quiz");
+                $(".play_type_quiz_icon").text("quiz");
+                break;
+            case 1:
+                $(".play_type_quiz_title").text("Geo To Eng Quiz");
+                $(".play_type_quiz_icon").text("quiz");
+                break;
+            default:
+                break;
+        }
+    }
+
+    function determinePlayType(index) {
         $(`.play_type_btn:eq(${index})`).click(function() {
+            $(".play_page").hide();
             switch (index) {
                 case 0:
-                    displayPlayPage(1);
-                    setPlayPages(1);
+                    $(".play_page:eq(1)").show()
+                    playType = "e_g_no_time";
+                    setPlayTypeTestPages(1);
                     getPlayPagesPoints(1);
                     break;
                 case 1:
-                    displayPlayPage(2);
-                    setPlayPages(2);
+                    $(".play_page:eq(1)").show()
+                    playType = "g_e_no_time";
+                    setPlayTypeTestPages(2);
                     getPlayPagesPoints(2);
                     break;
                 case 2:
-                    displayPlayPage(3);
-                    setPlayPages(3);
+                    $(".play_page:eq(1)").show()
+                    playType = "e_g_with_time";
+                    setPlayTypeTestPages(3);
                     break;
                 case 3:
-                    displayPlayPage(4);
-                    setPlayPages(4);
+                    $(".play_page:eq(1)").show()
+                    playType = "g_e_with_time";
+                    setPlayTypeTestPages(4);
                     break;
                 case 4:
-                    displayPlayPage(5);
-                    setPlayPages(5);
+                    $(".play_page:eq(2)").show()
+                    playType = "e_g_quiz";
+                    setPlayTypeQuizPages(0);
                     break;
                 case 5:
-                    displayPlayPage(6);
-                    setPlayPages(6);
+                    $(".play_page:eq(2)").show()
+                    playType = "g_e_quiz";
+                    setPlayTypeQuizPages(1);
                     break;
                 default:
                     break;
             }
         })
     }
+
+
 
     function probAnswerClicks(clickedEl, input) {
         $(`.${clickedEl}`).click(function() {
@@ -1185,11 +1138,11 @@ $(document).ready(function() {
     })
 
     /**From here starts play pages code*/
-
-    displayPlayPage(0);
+    $(".play_page").hide();
+    $(".play_page:eq(0)").show();
 
     for (var i = 0; i < $(".play_type_btn").length; i++) {
-        playPageBtnClicks(i);
+        determinePlayType(i);
     }
 
     $(".choose_time_e_g").click(function() {
@@ -1281,117 +1234,31 @@ $(document).ready(function() {
         }
     })
 
-    $(".start_g_e_with_time_btn").click(function() {
-        if (timeControl == 999) {
-            alert("Choose Time Control");
-        } else {
-            $(".choose_time_g_e_cont").hide();
-            $(".after_choosing_time_g_e_cont").show();
-            switch (timeControl) {
-                case 0:
-                    $(".time_remining_g_e").text(300);
-                    break;
-                case 1:
-                    $(".time_remining_g_e").text(180);
-                    break;
-                case 2:
-                    $(".time_remining_g_e").text(60);
-                    break;
-                default:
-                    break;
-            }
-            playTimer = setInterval(function() {
-                timeRemining = $(".time_remining_g_e").text();
-                var point = $(".points_g_e_with_time").text();
-                if (timeRemining == 1) {
-                    $(".time_remining_g_e").text(0);
-                    clearInterval(playTimer);
-                    $(".check_answer_g_e_with_time_cont").hide();
-                    $(".timeout_g_e_cont").show();
-                    setTimeout(function() {
-                        $(".restart_g_e_with_time_btn_cont").show();
-                        $(".restart_g_e_with_time_btn").css("opacity", "1");
-                    }, 1000)
-                    $.ajax({
-                        url: "points.php",
-                        type: "post",
-                        data: {
-                            pointsBtn: "g_e_with_time",
-                            point: point,
-                            user: user,
-                            timeControl,
-                            timeControl
-                        }
-                    })
-                    $(".restart_g_e_with_time_btn").click(function() {
-                        switch (timeControl) {
-                            case 0:
-                                $(".change_play_type_btn").click();
-                                $(".play_type_btn:eq(3)").click();
-                                $(".choose_time_g_e:eq(0)").click();
-                                $(".start_g_e_with_time_btn").click();
-                                break;
-                            case 1:
-                                $(".change_play_type_btn").click();
-                                $(".play_type_btn:eq(3)").click();
-                                $(".choose_time_g_e:eq(1)").click();
-                                $(".start_g_e_with_time_btn").click();
-                                break;
-                            case 2:
-                                $(".change_play_type_btn").click();
-                                $(".play_type_btn:eq(3)").click();
-                                $(".choose_time_g_e:eq(2)").click();
-                                $(".start_g_e_with_time_btn").click();
-                                break;
-                            default:
-                                break;
-                        }
-                    })
-                } else {
-                    timeRemining--;
-                    $(".time_remining_g_e").text(timeRemining);
-                }
-            }, 1000)
-        }
-    })
 
     $(".change_play_type_btn").click(function() {
-        displayPlayPage(0);
         clearInterval(playTimer);
-        $(".choose_time_e_g_cont, .check_answer_e_g_with_time_cont, .choose_time_g_e_cont, .check_answer_g_e_with_time_cont").show();
-        $(".after_choosing_time_e_g_cont, .timeout_e_g_cont, .restart_e_g_with_time_btn_cont, .after_choosing_time_g_e_cont, .timeout_g_e_cont, .restart_g_e_with_time_btn_cont").hide();
+        $(".play_page, .after_choosing_time_cont, .timeout_cont, .restart_btn_cont").hide();
+        $(".play_page:eq(0), .choose_time_cont, .check_answer_cont").show();
+
         timeControl = 999;
-        $(".choose_time_e_g, choose_time_g_e").prop("checked", false);
-        $(".restart_e_g_with_time_btn, restart_g_e_with_time_btn").css("opacity", "0");
+        $(".choose_time").prop("checked", false);
+        $(".restart_btn").css("opacity", "0");
     })
 
-    probAnswerClicks("prob_answer_e_g_no_time", "asnwer_input_e_g_no_time");
-    probAnswerClicks("prob_answer_g_e_no_time", "asnwer_input_g_e_no_time");
-    probAnswerClicks("prob_answer_e_g_with_time", "asnwer_input_e_g_with_time");
-    probAnswerClicks("prob_answer_g_e_with_time", "asnwer_input_g_e_with_time");
+    probAnswerClicks("prob_answer", "asnwer_input");
 
-    $(".next_btn_e_g_no_time").click(function() {
-        setPlayPages(1);
-    })
-    $(".next_btn_g_e_no_time").click(function() {
-        setPlayPages(2);
-    })
-    $(".next_btn_e_g_with_time").click(function() {
-        setPlayPages(3);
-    })
-    $(".next_btn_g_e_with_time").click(function() {
-        setPlayPages(4);
+    $(".next_btn").click(function() {
+        setPlayTypeTestPages(1);
     })
 
-    $(".after_choosing_time_e_g_cont").hide();
-    $(".after_choosing_time_g_e_cont").hide();
+    $(".after_choosing_cont").hide();
 
-    /**e-g no time check button click */
-    $(".check_btn_e_g_no_time").click(function() {
-        if (checkBtnEGNoTimeState) {
-            var randomWord = $(".random_word_e_g_no_time").text();
-            var userAnswered = $(".asnwer_input_e_g_no_time").val();
-            var points = $(".points_e_g_no_time").text();
+    /** check button click */
+    $(".check_btn").click(function() {
+        if (checkBtnState) {
+            var randomWord = $(".random_word").text();
+            var userAnswered = $(".asnwer_input").val();
+            var points = $(".points").text();
             var answer;
             /**i have this var because if answer is wrong i want to do something only once by being out of the each loop.
              * i think this will enhance performance
@@ -1401,199 +1268,49 @@ $(document).ready(function() {
                 if (randomWord == e.eng_word) {
                     answer = e.geo_word;
                 }
-                if ($(".asnwer_input_e_g_no_time").val() == answer) {
+                if ($(".asnwer_input").val() == answer) {
                     passedTest = true;
                     return false;
                 }
             })
 
             if (passedTest && userAnswered != "") { //if answer is correct  
-                checkBtnEGNoTimeState = false;
+                checkBtnState = false;
                 points++;
-                $(".points_e_g_no_time").text(`${points}`);
-                $(".check_btn_e_g_no_time").addClass("disabled");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-warning");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-danger");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-success");
-                $(".check_visual_e_g_no_time").text("check");
-                $.ajax({
-                    url: "points.php",
-                    type: "post",
-                    data: {
-                        pointsBtn: "e_g_no_time",
-                        point: points,
-                        user: user
-                    }
-                })
+                $(".points").text(`${points}`);
+                $(".check_btn").addClass("disabled");
+                $(".check_visual, .points").removeClass("text-warning");
+                $(".check_visual, .points").removeClass("text-danger");
+                $(".check_visual, .points").addClass("text-success");
+                $(".check_visual").text("check");
+                // $.ajax({
+                //     url: "points.php",
+                //     type: "post",
+                //     data: {
+                //         pointsBtn: "e_g_no_time",
+                //         point: points,
+                //         user: user
+                //     }
+                // })
             }
             if (!passedTest && userAnswered != "") { //if answer is wrong 
                 points--;
                 if (points != -1) {
-                    $(".points_e_g_no_time").text(`${points}`);
-                    $.ajax({
-                        url: "points.php",
-                        type: "post",
-                        data: {
-                            pointsBtn: "e_g_no_time",
-                            point: points,
-                            user: user
-                        }
-                    })
+                    $(".points").text(`${points}`);
+                    // $.ajax({
+                    //     url: "points.php",
+                    //     type: "post",
+                    //     data: {
+                    //         pointsBtn: "e_g_no_time",
+                    //         point: points,
+                    //         user: user
+                    //     }
+                    // })
                 }
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-warning");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").removeClass("text-success");
-                $(".check_visual_e_g_no_time, .points_e_g_no_time").addClass("text-danger");
-                $(".check_visual_e_g_no_time").text("close");
-            }
-        }
-    })
-
-    /**g-e no time check button click */
-    $(".check_btn_g_e_no_time").click(function() {
-        if (checkBtnGENoTimeState) {
-            var randomWord = $(".random_word_g_e_no_time").text();
-            var userAnswered = $(".asnwer_input_g_e_no_time").val();
-            var points = $(".points_g_e_no_time").text();
-            var answer;
-            /**i have this var because if answer is wrong i want to do something only once by being out of the each loop.
-             * i think this will enhance performance
-             */
-            var passedTest = false;
-            $.each(dictionary, function(i, e) {
-                if (randomWord == e.geo_word) {
-                    answer = e.eng_word;
-                }
-                if ($(".asnwer_input_g_e_no_time").val() == answer) {
-                    passedTest = true;
-                    return false;
-                }
-            })
-
-            if (passedTest && userAnswered != "") { //if answer is correct  
-                checkBtnGENoTimeState = false;
-                points++;
-                $(".points_g_e_no_time").text(`${points}`);
-                $(".check_btn_g_e_no_time").addClass("disabled");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-warning");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-danger");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-success");
-                $(".check_visual_g_e_no_time").text("check");
-                $.ajax({
-                    url: "points.php",
-                    type: "post",
-                    data: {
-                        pointsBtn: "g_e_no_time",
-                        point: points,
-                        user: user
-                    }
-                })
-            }
-            if (!passedTest && userAnswered != "") { //if answer is wrong 
-                points--;
-                if (points != -1) {
-                    $(".points_g_e_no_time").text(`${points}`);
-                    $.ajax({
-                        url: "points.php",
-                        type: "post",
-                        data: {
-                            pointsBtn: "g_e_no_time",
-                            point: points,
-                            user: user
-                        }
-                    })
-                }
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-warning");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").removeClass("text-success");
-                $(".check_visual_g_e_no_time, .points_g_e_no_time").addClass("text-danger");
-                $(".check_visual_g_e_no_time").text("close");
-            }
-        }
-    })
-
-    /**e-g with time check button click */
-    $(".check_btn_e_g_with_time").click(function() {
-        if (checkBtnEGWithTimeState) {
-            var randomWord = $(".random_word_e_g_with_time").text();
-            var userAnswered = $(".asnwer_input_e_g_with_time").val();
-            var points = $(".points_e_g_with_time").text();
-            var answer;
-            /**i have this var because if answer is wrong i want to do something only once by being out of the each loop.
-             * i think this will enhance performance
-             */
-            var passedTest = false;
-            $.each(dictionary, function(i, e) {
-                if (randomWord == e.eng_word) {
-                    answer = e.geo_word;
-                }
-                if ($(".asnwer_input_e_g_with_time").val() == answer) {
-                    passedTest = true;
-                    return false;
-                }
-            })
-
-            if (passedTest && userAnswered != "") { //if answer is correct  
-                checkBtnEGWithTimeState = false;
-                points++;
-                $(".points_e_g_with_time").text(`${points}`);
-                $(".check_btn_e_g_with_time").addClass("disabled");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-warning");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-danger");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").addClass("text-success");
-                $(".check_visual_e_g_with_time").text("check");
-            }
-            if (!passedTest && userAnswered != "") { //if answer is wrong 
-                points--;
-                if (points != -1) {
-                    $(".points_e_g_with_time").text(`${points}`);
-                }
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-warning");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").removeClass("text-success");
-                $(".check_visual_e_g_with_time, .points_e_g_with_time").addClass("text-danger");
-                $(".check_visual_e_g_with_time").text("close");
-            }
-        }
-    })
-
-    /**g-e with time check button click */
-    $(".check_btn_g_e_with_time").click(function() {
-        if (checkBtnGEWithTimeState) {
-            var randomWord = $(".random_word_g_e_with_time").text();
-            var userAnswered = $(".asnwer_input_g_e_with_time").val();
-            var points = $(".points_g_e_with_time").text();
-            var answer;
-            /**i have this var because if answer is wrong i want to do something only once by being out of the each loop.
-             * i think this will enhance performance
-             */
-            var passedTest = false;
-            $.each(dictionary, function(i, e) {
-                if (randomWord == e.geo_word) {
-                    answer = e.eng_word;
-                }
-                if ($(".asnwer_input_g_e_with_time").val() == answer) {
-                    passedTest = true;
-                    return false;
-                }
-            })
-
-            if (passedTest && userAnswered != "") { //if answer is correct  
-                checkBtnGEWithTimeState = false;
-                points++;
-                $(".points_g_e_with_time").text(`${points}`);
-                $(".check_btn_g_e_with_time").addClass("disabled");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").removeClass("text-warning");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").removeClass("text-danger");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").addClass("text-success");
-                $(".check_visual_g_e_with_time").text("check");
-            }
-            if (!passedTest && userAnswered != "") { //if answer is wrong 
-                points--;
-                if (points != -1) {
-                    $(".points_g_e_with_time").text(`${points}`);
-                }
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").removeClass("text-warning");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").removeClass("text-success");
-                $(".check_visual_g_e_with_time, .points_g_e_with_time").addClass("text-danger");
-                $(".check_visual_g_e_with_time").text("close");
+                $(".check_visual, .points").removeClass("text-warning");
+                $(".check_visual, .points").removeClass("text-success");
+                $(".check_visual, .points").addClass("text-danger");
+                $(".check_visual").text("close");
             }
         }
     })
