@@ -1193,13 +1193,13 @@ $(document).ready(function() {
             $(".after_choosing_time_cont").show();
             switch (timeControl) {
                 case 0:
-                    $(".time_remining").text(300);
+                    $(".time_remining").text(9);
                     break;
                 case 1:
-                    $(".time_remining").text(180);
+                    $(".time_remining").text(8);
                     break;
                 case 2:
-                    $(".time_remining").text(60);
+                    $(".time_remining").text(7);
                     break;
                 default:
                     break;
@@ -1213,20 +1213,36 @@ $(document).ready(function() {
                     $(".check_answer_cont").hide();
                     $(".timeout_cont").show();
                     setTimeout(function() {
-                            $(".restart_btn_cont").show();
-                            $(".restart_btn").css("opacity", "1");
-                        }, 1000)
-                        // $.ajax({
-                        //     url: "points.php",
-                        //     type: "post",
-                        //     data: {
-                        //         pointsBtn: "e_g_with_time",
-                        //         point: point,
-                        //         user: user,
-                        //         timeControl,
-                        //         timeControl
-                        //     }
-                        // })
+                        $(".restart_btn_cont").show();
+                        $(".restart_btn").css("opacity", "1");
+                    }, 1000)
+                    if (playType == "e_g_with_time") {
+                        $.ajax({
+                            url: "points.php",
+                            type: "post",
+                            data: {
+                                pointsBtn: "e_g_with_time",
+                                point: point,
+                                user: user,
+                                timeControl,
+                                timeControl
+                            }
+                        })
+                    }
+                    if (playType == "g_e_with_time") {
+                        $.ajax({
+                            url: "points.php",
+                            type: "post",
+                            data: {
+                                pointsBtn: "g_e_with_time",
+                                point: point,
+                                user: user,
+                                timeControl,
+                                timeControl
+                            }
+                        })
+                    }
+
                     $(".restart_btn").click(function() {
                         switch (timeControl) {
                             case 0:
@@ -1340,29 +1356,56 @@ $(document).ready(function() {
                 $(".check_visual, .points").removeClass("text-danger");
                 $(".check_visual, .points").addClass("text-success");
                 $(".check_visual").text("check");
-                // $.ajax({
-                //     url: "points.php",
-                //     type: "post",
-                //     data: {
-                //         pointsBtn: "e_g_no_time",
-                //         point: points,
-                //         user: user
-                //     }
-                // })
+                if (playType == "e_g_no_time") {
+                    $.ajax({
+                        url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "e_g_no_time",
+                            point: points,
+                            user: user
+                        }
+                    })
+                }
+                if (playType == "g_e_no_time") {
+                    $.ajax({
+                        url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "g_e_no_time",
+                            point: points,
+                            user: user
+                        }
+                    })
+                }
+
             }
             if (!passedTest && userAnswered != "") { //if answer is wrong 
                 points--;
                 if (points != -1) {
                     $(".points").text(`${points}`);
-                    // $.ajax({
-                    //     url: "points.php",
-                    //     type: "post",
-                    //     data: {
-                    //         pointsBtn: "e_g_no_time",
-                    //         point: points,
-                    //         user: user
-                    //     }
-                    // })
+                    if (playType == "e_g_no_time") {
+                        $.ajax({
+                            url: "points.php",
+                            type: "post",
+                            data: {
+                                pointsBtn: "e_g_no_time",
+                                point: points,
+                                user: user
+                            }
+                        })
+                    }
+                    if (playType == "g_e_no_time") {
+                        $.ajax({
+                            url: "points.php",
+                            type: "post",
+                            data: {
+                                pointsBtn: "g_e_no_time",
+                                point: points,
+                                user: user
+                            }
+                        })
+                    }
                 }
                 $(".check_visual, .points").removeClass("text-warning");
                 $(".check_visual, .points").removeClass("text-success");
