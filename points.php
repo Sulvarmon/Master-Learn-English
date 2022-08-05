@@ -68,7 +68,20 @@ if(isset($_POST['pointsBtn'])){
                     break;
             }            
             break;
-                  
+        case 'e_g_quiz':
+            $point = $_POST["point"];
+            $user = $_POST["user"];
+            $sql = "UPDATE quiz_points SET e_g_points = '$point' WHERE user = '$user'";
+            mysqli_query($conn, $sql);
+            mysqli_close($conn);
+            break;
+        case 'g_e_quiz':
+            $point = $_POST["point"];
+            $user = $_POST["user"];
+            $sql = "UPDATE quiz_points SET g_e_points = '$point' WHERE user = '$user'";
+            mysqli_query($conn, $sql);
+            mysqli_close($conn);
+            break;
         default:
             # code...
             break;

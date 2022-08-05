@@ -623,7 +623,22 @@ $(document).ready(function() {
                 for (var i = 0; i < 10; i++) {
                     $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
                 }
-
+                $.ajax({
+                    url: "arrays.php",
+                        type: "post",
+                        data: {
+                            arraysBtn: "quizEG"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            for (var i = 0; i < data.length; i++) {
+                                if(user == data[i].user){
+                                    $(".total_quiz_points").text(`${data[i].e_g_points} `)
+                                    break;
+                                }
+                            }
+                        }
+                    })
                 break;
             case 1:
                 $(".play_type_quiz_title").text("Geo To Eng Quiz");
@@ -644,6 +659,22 @@ $(document).ready(function() {
                 for (var i = 0; i < 10; i++) {
                     $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
                 }
+                $.ajax({
+                    url: "arrays.php",
+                        type: "post",
+                        data: {
+                            arraysBtn: "quizGE"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            for (var i = 0; i < data.length; i++) {
+                                if(user == data[i].user){
+                                    $(".total_quiz_points").text(`${data[i].g_e_points} `)
+                                    break;
+                                }
+                            }
+                        }
+                    })
                 break;
             default:
                 break;
@@ -1309,7 +1340,7 @@ $(document).ready(function() {
 
     $(".change_play_type_btn").click(function() {
         clearInterval(playTimer);
-        $(".play_page, .after_choosing_time_cont, .timeout_cont, .restart_btn_cont").hide();
+        $(".play_page, .after_choosing_time_cont, .timeout_cont, .restart_btn_cont, .after_quiz_cont").hide();
         $(".play_page:eq(0), .choose_time_cont, .check_answer_cont").show();
 
         timeControl = 999;
@@ -1475,7 +1506,7 @@ $(document).ready(function() {
                         }
                     })
                         
-                }
+                }                           
                 break;
             case "g_e_quiz":
                 for (var j = 0; j < 10; j++) {
@@ -1490,8 +1521,6 @@ $(document).ready(function() {
             default:
                 break;
         }
-
-        
 
 
         for (var i = 0; i < 10; i++) {
@@ -1512,6 +1541,39 @@ $(document).ready(function() {
                 $(`.gain_or_lose_points:eq(${i})`).addClass("text-danger");
             }
         }
+
+        var currentPoints =  parseInt($(".total_quiz_points").text());
+        var totalPoints = currentPoints + pointsCollected
+        $(".total_quiz_points").text(`${totalPoints}`);
+
+        switch(playType){
+            case "e_g_quiz":
+                $.ajax({
+                    url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "e_g_quiz",
+                            user: user,
+                            point: totalPoints
+                        }
+                    })
+                break;
+            case "g_e_quiz":
+                $.ajax({
+                    url: "points.php",
+                        type: "post",
+                        data: {
+                            pointsBtn: "g_e_quiz",
+                            user: user,
+                            point: totalPoints
+                        }
+                    })
+                break;
+            default:
+                break;
+        }
+                    
+
 
         $(".points_collected").text(`${pointsCollected}`);
     })
