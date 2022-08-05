@@ -563,7 +563,47 @@
                 <div class="play_page ">
                     <div class="w_fit_s mx-auto h1 text-warning m-5 "><span class="play_type_quiz_title">Title</span><i class="play_type_quiz_icon material-icons ms-2 ">'icon'</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
+                        <div class="text-center mb-3">Translate all 10 words and click finish button to see result</div>
+                        <div class="container-fluid d-flex flex-column gap-3 align-items-center">
+
+                            <?php
+                                for ($i=0; $i <10 ; $i++) { 
+                                        echo '<div class="d-flex flex-column gap-1 p-2">'; 
+                                            echo '<div class="p-2">';
+                                                echo '<div>' . '#' . ($i + 1) . '</div>';
+                                                echo '<div class="d-flex flex-column align-items-center">';
+                                                    echo '<div class="quiz_random_word text-info h5">' . 'Word' . '</div>';
+                                                    echo '<div>' . '<input type="text" class="p-2 quiz_answer_input">' . '</div>';
+                                                echo '</div>'; 
+                                            echo '</div>';
+                                            echo '<div class="answers_cont" style="display: none;">';
+                                                echo '<div class="d-flex flex-column align-items-center">';
+                                                    echo '<div class="correct_or_wrong h5" style="font-weight: bold;">' . 'answer is ?' . '</div>';
+                                                    echo '<div class="gain_or_lose_points h5" style="font-weight: bold;">' . '+1 or -1' . '</div>';
+                                                echo '</div>';
+                                            echo '</div>';
+                                        echo '</div>';
+                                }
+                            ?>
+
+                                <div class="after_quiz_cont" style="display:none">
+                                    <div class="d-flex flex-column gap-2 mt-3 align-items-center">
+                                        <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
+                                            <div class="text-center">Total Points Collected In This Quiz</div>
+                                            <div class="points_collected text-success h4">999</div>
+                                        </div>
+                                        <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
+                                            <div class="text-center">Your Total Points In This Type Of Quiz</div>
+                                            <div class="total_quiz_points text-success h4">999</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz_finish_btn btn btn-primary">Finish</div>
+                                <div class="quiz_restart_btn btn btn-primary">Restart</div>
+                        </div>
                         <div class="change_play_type_btn btn btn-primary mt-5 ">Change Play Type</div>
+
+
                     </div>
                 </div>
 

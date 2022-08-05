@@ -607,10 +607,43 @@ $(document).ready(function() {
             case 0:
                 $(".play_type_quiz_title").text("Eng To Geo Quiz");
                 $(".play_type_quiz_icon").text("quiz");
+
+                var randomIndexs = [];
+                while (randomIndexs.length < 10) {
+                    var r = Math.floor(Math.random() * dictionary.length);
+                    if (randomIndexs.indexOf(r) == -1) {
+                        randomIndexs.push(r);
+                    }
+                }
+                var dicRandom10Words = [];
+                for (var i = 0; i < randomIndexs.length; i++) {
+                    dicRandom10Words.push(dictionary[randomIndexs[i]].eng_word);
+                }
+
+                for (var i = 0; i < 10; i++) {
+                    $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
+                }
+
                 break;
             case 1:
                 $(".play_type_quiz_title").text("Geo To Eng Quiz");
                 $(".play_type_quiz_icon").text("quiz");
+
+                var randomIndexs = [];
+                while (randomIndexs.length < 10) {
+                    var r = Math.floor(Math.random() * dictionary.length);
+                    if (randomIndexs.indexOf(r) == -1) {
+                        randomIndexs.push(r);
+                    }
+                }
+                var dicRandom10Words = [];
+                for (var i = 0; i < randomIndexs.length; i++) {
+                    dicRandom10Words.push(dictionary[randomIndexs[i]].geo_word);
+                }
+
+                for (var i = 0; i < 10; i++) {
+                    $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
+                }
                 break;
             default:
                 break;
@@ -658,8 +691,6 @@ $(document).ready(function() {
             }
         })
     }
-
-
 
     function probAnswerClicks(clickedEl, input) {
         $(`.${clickedEl}`).click(function() {
@@ -1193,13 +1224,13 @@ $(document).ready(function() {
             $(".after_choosing_time_cont").show();
             switch (timeControl) {
                 case 0:
-                    $(".time_remining").text(9);
+                    $(".time_remining").text(300);
                     break;
                 case 1:
-                    $(".time_remining").text(8);
+                    $(".time_remining").text(180);
                     break;
                 case 2:
-                    $(".time_remining").text(7);
+                    $(".time_remining").text(60);
                     break;
                 default:
                     break;
@@ -1284,6 +1315,14 @@ $(document).ready(function() {
         timeControl = 999;
         $(".choose_time").prop("checked", false);
         $(".restart_btn").css("opacity", "0");
+
+        $(".quiz_finish_btn").removeClass("disabled");
+        $(".answers_cont").hide();
+        $(".correct_or_wrong").text("answer is ?");
+        $(".gain_or_lose_points").text("+1 or -1");
+        $(".quiz_answer_input").val("");
+        $(".points_collected").text("0");
+
     })
 
     probAnswerClicks("prob_answer", "asnwer_input");
@@ -1415,9 +1454,92 @@ $(document).ready(function() {
         }
     })
 
+    $(".quiz_finish_btn").click(function(){
+        $(".quiz_finish_btn").addClass("disabled");
+        $(".answers_cont, .after_quiz_cont").show();
+        var questions = [];
+        var userAnswers = [];
+        var correctAnswers = [];
+        var pointsCollected = 0;
+        for (var i = 0; i < 10; i++) {
+            questions.push($(`.quiz_random_word:eq(${i})`).text());  
+            userAnswers.push($(`.quiz_answer_input:eq(${i})`).val());            
+        }
+        
+        switch(playType){
+            case "e_g_quiz":
+                for (var j = 0; j < 10; j++) {
+                    $.each(dictionary,function(i,e){
+                        if(e.eng_word == questions[j]){
+                            correctAnswers.push(e.geo_word);
+                        }
+                    })
+                        
+                }
+                break;
+            case "g_e_quiz":
+                for (var j = 0; j < 10; j++) {
+                    $.each(dictionary,function(i,e){
+                        if(e.geo_word == questions[j]){
+                            correctAnswers.push(e.eng_word);
+                        }
+                    })
+                        
+                }
+                break;
+            default:
+                break;
+        }
+
+        
+
+
+        for (var i = 0; i < 10; i++) {
+            if(userAnswers[i] == correctAnswers[i]){
+                pointsCollected++;
+                $(`.correct_or_wrong:eq(${i})`).text(`Correct`);
+                $(`.correct_or_wrong:eq(${i})`).removeClass("text-danger");
+                $(`.correct_or_wrong:eq(${i})`).addClass("text-success");
+                $(`.gain_or_lose_points:eq(${i})`).text(`+1`);
+                $(`.gain_or_lose_points:eq(${i})`).removeClass("text-danger");
+                $(`.gain_or_lose_points:eq(${i})`).addClass("text-success");
+            }else{
+                $(`.correct_or_wrong:eq(${i})`).text(`${correctAnswers[i]}`);
+                $(`.correct_or_wrong:eq(${i})`).removeClass("text-success");
+                $(`.correct_or_wrong:eq(${i})`).addClass("text-danger");
+                $(`.gain_or_lose_points:eq(${i})`).text(`-1`);
+                $(`.gain_or_lose_points:eq(${i})`).removeClass("text-success");
+                $(`.gain_or_lose_points:eq(${i})`).addClass("text-danger");
+            }
+        }
+
+        $(".points_collected").text(`${pointsCollected}`);
+    })
+    
+    $(".quiz_restart_btn").click(function(){
+        $(".quiz_finish_btn").removeClass("disabled");
+        $(".answers_cont, .after_quiz_cont").hide();
+        $(".correct_or_wrong").text("answer is ?");
+        $(".gain_or_lose_points").text("+1 or -1");
+        $(".quiz_answer_input").val("");
+        $(".points_collected").text("0");
+        switch(playType){
+            case "e_g_quiz":
+                setPlayTypeQuizPages(0);
+                break;
+            case "g_e_quiz":
+                setPlayTypeQuizPages(1);
+                break;
+            default:
+                break;
+        }
+    })
+    
+
     /**Here is the end of play page*/
 
-    $(".play_btn").click();
+    // $(".play_btn").click();
+    // $(".play_type_btn:eq(4)").click();
 
 
 
