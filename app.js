@@ -370,7 +370,7 @@ $(document).ready(function() {
                         $(".friends_cont_inner").append("<div class='firends_cont_item p-2 border d-flex flex-column gap-2 align-items-center'></div>")
                     }
                     for (var i = 0; i < $(".firends_cont_item").length; i++) {
-                        $(`.firends_cont_item:eq(${i})`).append("<div class='firends_cont_item_img_and_username d-flex gap-2 align-items-center'></div>");
+                        $(`.firends_cont_item:eq(${i})`).append("<div class='firends_cont_item_img_and_username user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
                         $(`.firends_cont_item:eq(${i})`).append("<div class='unfriend_btn btn btn-danger'>Unfriend</div>");
                     }
                     for (var i = 0; i < $(".firends_cont_item_img_and_username").length; i++) {
@@ -402,7 +402,7 @@ $(document).ready(function() {
                         $(".req_sent_inner").append("<div class='req_sent_item p-2 border d-flex flex-column gap-2 align-items-center'></div>")
                     }
                     for (var i = 0; i < $(".req_sent_item").length; i++) {
-                        $(`.req_sent_item:eq(${i})`).append("<div class='req_sent_item_img_and_username d-flex gap-2 align-items-center'></div>");
+                        $(`.req_sent_item:eq(${i})`).append("<div class='req_sent_item_img_and_username user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
                         $(`.req_sent_item:eq(${i})`).append("<div class='unsend_btn btn btn-danger'>Unsend</div>");
                     }
                     for (var i = 0; i < $(".req_sent_item_img_and_username").length; i++) {
@@ -434,7 +434,7 @@ $(document).ready(function() {
                         $(".req_rec_inner").append("<div class='req_rec_item p-2 border d-flex flex-column gap-2 align-items-center'></div>")
                     }
                     for (var i = 0; i < $(".req_rec_item").length; i++) {
-                        $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_item_img_and_username d-flex gap-2 align-items-center'></div>");
+                        $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_item_img_and_username user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
                         $(`.req_rec_item:eq(${i})`).append("<div class='req_rec_btns_cont d-flex gap-2'></div>");
                     }
                     for (var i = 0; i < $(".req_rec_btns_cont").length; i++) {
@@ -729,6 +729,71 @@ $(document).ready(function() {
         })
     }
 
+
+    function setOtherUserPage(username){
+         $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "user_imgs_array"
+            },
+            dataType: "json",
+            success: function(data) {
+                $(".results_other_user_img").attr("src", `./Img/user_default_avatar.png`);
+                    for (var i = 0; i < data.length; i++) {                       
+                        /**results page */
+                        if (username == data[i]["user"]) {
+                            $(".results_other_user_img").attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            break;
+                        }
+                       
+                    }
+            }
+        })
+
+         $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "users_array"
+            },
+            dataType: "json",
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    if(username == data[i].username){
+                        $(".other_user_results_e_g_no_time").text(`${data[i].e_g_points}`);
+                        $(".other_user_results_g_e_no_time").text(`${data[i].g_e_points}`);
+                        $(".other_user_results_e_g_with_time5min").text(`${data[i].g_e_points_5min}`);
+                        $(".other_user_results_e_g_with_time3min").text(`${data[i].g_e_points_3min}`);
+                        $(".other_user_results_e_g_with_time1min").text(`${data[i].g_e_points_1min}`);
+                        $(".other_user_results_g_e_with_time5min").text(`${data[i].g_e_points_5min}`);
+                        $(".other_user_results_g_e_with_time3min").text(`${data[i].g_e_points_3min}`);
+                        $(".other_user_results_g_e_with_time1min").text(`${data[i].g_e_points_1min}`);
+                        break;
+                    }
+                    
+                }
+            }
+        })
+
+         $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "quizEG"
+            },
+            dataType: "json",
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    if(username == data[i].user){
+                        $(".other_user_results_e_g_quiz").text(`${data[i].e_g_points}`);
+                        $(".other_user_results_g_e_quiz").text(`${data[i].g_e_points}`);
+                    }
+                }
+               
+            }
+        })
+    }
 
     /** */
 
@@ -1600,9 +1665,23 @@ $(document).ready(function() {
 
     /**Here is the end of play page*/
 
-    // $(".play_btn").click();
-    // $(".play_type_btn:eq(4)").click();
+    $(document).on("click", ".user_img_and_username", function(){
+        var otherUser = $(this).children().eq(1).text().trim();
 
+        if(otherUser == user){
+            $(".home").click();
+            $(".home_grid_item:eq(1)").click();
+        }else{
+            setOtherUserPage(otherUser);
+            $(".other_user_results_page_title").text(`${otherUser} 's Results`);
+            displayPage(9)
+        }
+        
+    })
 
+    $(".user_img, .username").click(function(){
+        $(".home").click();
+        $(".home_grid_item:eq(1)").click();
+    })
 
-})
+})  

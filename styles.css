@@ -122,3 +122,8 @@ body {
 .prob_answer_s:hover {
     transform: scale(1.1);
 }
+
+.user_img_and_username_s:hover{
+    cursor: pointer;
+    color: #ffc107 !important;
+}

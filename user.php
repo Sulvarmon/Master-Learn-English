@@ -56,14 +56,15 @@
         <div class="user_cont_s">
             <!-- header -->
             <div class="container-md page_bg_color_s p-2 position-relative d-flex justify-content-between align-items-center">
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 align-items-center">
                     <div class="d-flex flex-column align-items-center justify-content-center gap-2">
                         <div class="text-white">Hello</div>
-                        <div class="home username link_s text-white"> <b><?php echo $user ?></b> </div>
+                        <div class="username link_s text-white"> <b><?php echo $user ?></b> </div>
                     </div>
-                    <img src="./Img/user_default_avatar.png" width="90" height="90" class="user_img rounded-circle border border-2">
+                    <img src="./Img/user_default_avatar.png" width="90" height="90" class="user_img rounded-circle border border-2 cursor_pointer_s">
+                    <div class="home btn btn-warning p-21">Home</div>
                 </div>
-                <div class="play_btn_wrapper">
+                <div class="play_btn_wrapper position-absolute top-50 start-50 border translate-middle">
                     <div class="text-white play_btn_cont align-items-center justify-content-center gap-3 d-none d-md-flex p-1 ps-5 pe-5 rounded">
                         <span>Go Here To Start</span>
                         <i class="material-icons">arrow_forward</i>
@@ -127,8 +128,8 @@
 
             <!-- raitings page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="h1 w_fit_s mx-auto m-5 text-warning">Raitings Page</div>
-                <div class="update_tables_btn w_fit_s d-block btn btn-primary mx-auto">Update Tables</div>
+                <div class="h1 w_fit_s mx-auto m-5 text-warning">Raitings</div>
+                <div class="update_tables_btn w_fit_s d-block btn btn-primary mx-auto">Update Data</div>
                 <div class="d-flex flex-wrap justify-content-around mt-5">
                     <!-- top 10 eng to geo raitings no time -->
                     <div>
@@ -151,7 +152,7 @@
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_no_time_img rounded-circle'>" . "<span class='top10_e_g_no_time_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_no_time_img rounded-circle'>" . "<span class='top10_e_g_no_time_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_e_g_no_time_point'>" . "999" . "</td>";
                                                 echo "</tr>";
                                             }
@@ -181,7 +182,7 @@
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_no_time_img rounded-circle'>" . "<span class='top10_g_e_no_time_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_no_time_img rounded-circle'>" . "<span class='top10_g_e_no_time_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_g_e_no_time_point'>" . "999" . "</td>";
                                                 echo "</tr>";
                                             }
@@ -221,11 +222,11 @@
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th>" . ($i+1) . "</th>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time5min_img rounded-circle'>" . "<span class='top10_e_g_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time5min_img rounded-circle'>" . "<span class='top10_e_g_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_e_g_with_time5min_point'>" . "999" . "</td>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time3min_img rounded-circle'>" . "<span class='top10_e_g_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time3min_img rounded-circle'>" . "<span class='top10_e_g_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_e_g_with_time3min_point'>" . "999" . "</td>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time1min_img rounded-circle'>" . "<span class='top10_e_g_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time1min_img rounded-circle'>" . "<span class='top10_e_g_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_e_g_with_time1min_point'>" . "999" . "</td>";
                                                 echo "</tr>";
                                             }
@@ -265,11 +266,11 @@
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th>" . ($i+1) . "</th>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time5min_img rounded-circle'>" . "<span class='top10_g_e_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time5min_img rounded-circle'>" . "<span class='top10_g_e_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_g_e_with_time5min_point'>" . "999" . "</td>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time3min_img rounded-circle'>" . "<span class='top10_g_e_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time3min_img rounded-circle'>" . "<span class='top10_g_e_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_g_e_with_time3min_point'>" . "999" . "</td>";
-                                                    echo "<td class='d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time1min_img rounded-circle'>" . "<span class='top10_g_e_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time1min_img rounded-circle'>" . "<span class='top10_g_e_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_g_e_with_time1min_point'>" . "999" . "</td>";
                                                 echo "</tr>";
                                             }
@@ -284,8 +285,8 @@
 
             <!-- my results page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">My Results Page</div>
-                <div class="update_tables_btn d-block btn btn-primary w_fit_s mx-auto">Update Tables</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">My Results</div>
+                <div class="update_tables_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                     <div><img class="results_user_img" src="./Img/user_default_avatar.png" width="250" height="250"></div>
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
@@ -361,8 +362,8 @@
 
             <!-- friends page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Friends page</div>
-                <div class="update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Friends Page</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Friends</div>
+                <div class="update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <!-- contents are appended in js file -->
                 <div class="friends_cont container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Friends</div>
@@ -390,23 +391,23 @@
 
             <!-- events Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Events Page</div>
-                <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Events Page</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Events</div>
+                <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
             </div>
 
             <!-- contacts Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Contacts Page</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Contacts</div>
             </div>
 
             <!-- donation Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Donation Page</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Donation</div>
             </div>
 
             <!-- profile page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Profile Page</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Profile</div>
                 <div class="d-flex flex-column align-items-center p-2 gap-5">
                     <div class="p-3 border d-flex flex-column align-items-center">
                         <div class="h5 m-2">Change Username</div>
@@ -442,7 +443,7 @@
             <!-- play page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="play_page">
-                    <div class="w_fit_s mx-auto h1 text-warning m-5">Play Page</div>
+                    <div class="w_fit_s mx-auto h1 text-warning m-5">Play</div>
                     <div class="w_fit_s mx-auto h4">Chooes Play Type</div>
                     <div class="border d-flex flex-wrap p-3 m-2 gap-5 justify-content-around">
                         <div class="border p-2">
@@ -605,6 +606,84 @@
 
 
                     </div>
+                </div>
+
+            </div>
+
+            <!-- other user's page -->
+
+            <div class="page_bg_color_s page other_user_results_page container-md text-white mt-5 p-3">
+                <div class="other_user_results_page_title w_fit_s mx-auto h1 text-warning m-5">User Results</div>
+                <div class="update_other_user_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
+                <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                    <div><img class="results_other_user_img" src="./Img/user_default_avatar.png" width="250" height="250"></div>
+                    <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
+                        <thead>
+                            <tr>
+                                <th colspan="2"> <span>User Results Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Eng to Geo points</th>
+                                <th>Geo to Eng points</th>
+                            </tr>
+                            <tr>
+                                <td class="other_user_results_e_g_no_time">999</td>
+                                <td class="other_user_results_g_e_no_time">999</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
+                        <thead>
+                            <tr>
+                                <th colspan="2"> <span>User Quiz Results</span> <i class="material-icons align-middle">quiz</i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Eng to Geo points</th>
+                                <th>Geo to Eng points</th>
+                            </tr>
+                            <tr>
+                                <td class="other_user_results_e_g_quiz">999</td>
+                                <td class="other_user_results_g_e_quiz">999</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
+                        <thead>
+                            <tr>
+                                <th colspan="6"> <span>User Results With Time</span> <i class="material-icons align-middle">timer</i></th>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Eng to Geo points</th>
+                                <th colspan="3">Geo to Eng points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>5min</th>
+                                <th>3min</th>
+                                <th>1min</th>
+                                <th>5min</th>
+                                <th>3min</th>
+                                <th>1min</th>
+                            </tr>
+                            <tr>
+                                <th class="other_user_results_e_g_with_time5min">999</th>
+                                <th class="other_user_results_e_g_with_time3min">999</th>
+                                <th class="other_user_results_e_g_with_time1min">999</th>
+                                <th class="other_user_results_g_e_with_time5min">999</th>
+                                <th class="other_user_results_g_e_with_time3min">999</th>
+                                <th class="other_user_results_g_e_with_time1min">999</th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
                 </div>
 
             </div>
