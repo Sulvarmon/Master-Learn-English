@@ -292,7 +292,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="2"> <span>Your Results Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
+                                <th colspan="2"> <span>Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -309,7 +309,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="2"> <span>Your Quiz Results</span> <i class="material-icons align-middle">quiz</i></th>
+                                <th colspan="2"> <span>Quiz</span> <i class="material-icons align-middle">quiz</i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -326,7 +326,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="6"> <span>Your Results With Time</span> <i class="material-icons align-middle">timer</i></th>
+                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i></th>
                             </tr>
                             <tr>
                                 <th colspan="3">Eng to Geo points</th>
@@ -565,6 +565,19 @@
                     <div class="w_fit_s mx-auto h1 text-warning m-5 "><span class="play_type_quiz_title">Title</span><i class="play_type_quiz_icon material-icons ms-2 ">'icon'</i></div>
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="text-center mb-3">Translate all 10 words and click finish button to see result</div>
+                        <div class="after_quiz_cont" style="display:none">
+                            <div class="d-flex flex-column gap-2 mt-3 align-items-center">
+                                <div>Quiz Results</div>
+                                <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
+                                    <div class="text-center">Total Points Collected In This Quiz</div>
+                                    <div class="points_collected text-success h4">999</div>
+                                </div>
+                                <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
+                                    <div class="text-center">Your Total Points In This Type Of Quiz</div>
+                                    <div class="total_quiz_points text-success h4">999</div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="container-fluid d-flex flex-column gap-3 align-items-center">
 
                             <?php
@@ -587,18 +600,7 @@
                                 }
                             ?>
 
-                                <div class="after_quiz_cont" style="display:none">
-                                    <div class="d-flex flex-column gap-2 mt-3 align-items-center">
-                                        <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
-                                            <div class="text-center">Total Points Collected In This Quiz</div>
-                                            <div class="points_collected text-success h4">999</div>
-                                        </div>
-                                        <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
-                                            <div class="text-center">Your Total Points In This Type Of Quiz</div>
-                                            <div class="total_quiz_points text-success h4">999</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="quiz_finish_btn btn btn-primary">Finish</div>
                                 <div class="quiz_restart_btn btn btn-primary">Restart</div>
                         </div>
@@ -612,7 +614,11 @@
 
             <!-- other user's page -->
 
-            <div class="page_bg_color_s page other_user_results_page container-md text-white mt-5 p-3">
+            <div class="page_bg_color_s page other_user_results_page container-md text-white mt-5 p-3 position-relative">
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                    <i class="material-icons">arrow_back</i>
+                    <span>Go Back</span>
+                 </div>
                 <div class="other_user_results_page_title w_fit_s mx-auto h1 text-warning m-5">User Results</div>
                 <div class="update_other_user_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
@@ -620,7 +626,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="2"> <span>User Results Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
+                                <th colspan="2"> <span>Without Time</span><i class="material-icons align-middle">timer_off</i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -637,7 +643,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="2"> <span>User Quiz Results</span> <i class="material-icons align-middle">quiz</i></th>
+                                <th colspan="2"> <span>Quiz</span> <i class="material-icons align-middle">quiz</i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -654,7 +660,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="6"> <span>User Results With Time</span> <i class="material-icons align-middle">timer</i></th>
+                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i></th>
                             </tr>
                             <tr>
                                 <th colspan="3">Eng to Geo points</th>

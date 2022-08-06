@@ -10,6 +10,11 @@ $(document).ready(function() {
     var playType = "";
     var timeControl = 999;
     var playTimer;
+    var scrollPos = 0;
+    var pageIndex = {
+        oldValue: 0,
+        newValue: 0
+    };
     /** */
 
     $.ajax({
@@ -26,9 +31,16 @@ $(document).ready(function() {
     })
 
     /**functions */
+    function winScr(value) {
+        $(window).scrollTop(value);
+    }
+
     function displayPage(i) {
         $(".page").hide();
         $(`.page:eq(${i})`).show();
+        pageIndex.oldValue = pageIndex.newValue;
+        pageIndex.newValue = i;
+
     }
 
     function gridClicks(i) {
@@ -815,6 +827,8 @@ $(document).ready(function() {
     showHidePassword("reg_show_hide_password>input", "reg_password_input>input");
     showHidePassword("change_pass_show_hide>input", "change_password_input>input");
 
+    winScr(0);
+
     $(".login_username_input>input, .login_password_input>input").keydown(function(e) {
         if (e.which == 13) {
             $(".login_btn").click();
@@ -1551,6 +1565,7 @@ $(document).ready(function() {
     })
 
     $(".quiz_finish_btn").click(function(){
+        winScr(0);
         $(".quiz_finish_btn").addClass("disabled");
         $(".answers_cont, .after_quiz_cont").show();
         var questions = [];
@@ -1644,6 +1659,7 @@ $(document).ready(function() {
     })
     
     $(".quiz_restart_btn").click(function(){
+        winScr(0);
         $(".quiz_finish_btn").removeClass("disabled");
         $(".answers_cont, .after_quiz_cont").hide();
         $(".correct_or_wrong").text("answer is ?");
@@ -1662,15 +1678,16 @@ $(document).ready(function() {
         }
     })
     
-
     /**Here is the end of play page*/
 
     $(document).on("click", ".user_img_and_username", function(){
+        winScr(0);
         var otherUser = $(this).children().eq(1).text().trim();
-
+        scrollPos = $(window).scrollTop();
         if(otherUser == user){
-            $(".home").click();
-            $(".home_grid_item:eq(1)").click();
+            setOtherUserPage(otherUser);
+            $(".other_user_results_page_title").text(`My Results`);
+            displayPage(9)
         }else{
             setOtherUserPage(otherUser);
             $(".other_user_results_page_title").text(`${otherUser} 's Results`);
@@ -1683,5 +1700,24 @@ $(document).ready(function() {
         $(".home").click();
         $(".home_grid_item:eq(1)").click();
     })
+
+    $(".back_btn").click(function(){
+        setTimeout(function(){
+            winScr(scrollPos);
+        },1);
+        displayPage(pageIndex.oldValue);
+    })
+
+
+
+
+
+
+
+
+
+
+
+
 
 })  
