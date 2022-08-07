@@ -1750,16 +1750,66 @@ $(document).ready(function() {
     })
 
     $(".back_btn").click(function(){
-        setTimeout(function(){
-            winScr(scrollPos);
-        },1);
-        displayPage(pageIndex.oldValue);
+        function withOrWithoutScroll(index){
+            switch(index){
+                case 1:
+                    setTimeout(function(){
+                        winScr(scrollPos);
+                    },1); 
+                    displayPage(pageIndex.oldValue);
+                    break;
+                case 0:
+                    displayPage(pageIndex.oldValue);
+                    break;
+                default:
+                    break;
+            }
+        }
+        if(pageIndex.oldValue == 1 && pageIndex.newValue == 9){
+           withOrWithoutScroll(1);
+        }
+        if(pageIndex.oldValue == 3 && pageIndex.newValue == 9){
+            withOrWithoutScroll(1);
+        }
+        if(pageIndex.oldValue == 4 && pageIndex.newValue == 10){
+           withOrWithoutScroll(0);
+        }
+               
     })
 
     
+    $(".home_grid_item:eq(3)").click();
 
+    $.ajax({
+        url: "events.php",
+        type: "post",
+        data: {
+            eventBtn: "get_events"
+        },
+        dataType: "json",
+        success: function(data) {
+            $.each(data, function(i,e){
+                $(".events_cont").append('<div class="events_item btn btn-primary border p-2 d-flex flex-column align-items-center"></div>');
+            })
 
+            for (var i = 0; i < $(".events_item").length; i++) {
+                $(`.events_item:eq(${i})`).append(`<div>${data[i].name}</div>`);
+                $(`.events_item:eq(${i})`).append(`<div>starts at : ${data[i].sDate}</div>`);
+                $(`.events_item:eq(${i})`).append(`<div>ends at : ${data[i].sDate}</div>`);
+            }
 
+            $(document).on("click", ".events_item", function(){
+                displayPage(10);
+                var event = {};
+                event.name = $(this).children().eq(0).text();
+                event.sDate = $(this).children().eq(1).text();
+                event.eDate = $(this).children().eq(2).text();
+                $(".event_name").text(`${event.name}`);
+                $(".event_s_date").text(`${event.sDate}`);
+                $(".event_e_date").text(`${event.eDate}`);
+            })
+        }
+    })
 
 
 
