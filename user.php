@@ -132,7 +132,7 @@
                 <div class="update_tables_btn w_fit_s d-block btn btn-primary mx-auto">Update Data</div>
                 <div class="d-flex flex-wrap justify-content-around mt-5">
                     <!-- top 10 eng to geo raitings no time -->
-                    <div>
+                    <div class="mt-5">
                         <div class="d-flex gap-1 justify-content-center align-items-center">
                             <div class="h3 text-center">Top 10 Eng-Geo No Time</div>
                             <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">timer_off</i></div>
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                     <!-- top 10 geo to eng raitings no time -->
-                    <div>
+                    <div class="mt-5">
                         <div class="d-flex gap-1 justify-content-center align-items-center">
                             <div class="h3 text-center">Top 10 Geo-Eng No Time</div>
                             <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">timer_off</i></div>
@@ -272,6 +272,68 @@
                                                     echo "<td class='top10_g_e_with_time3min_point'>" . "999" . "</td>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time1min_img rounded-circle'>" . "<span class='top10_g_e_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
                                                     echo "<td class='top10_g_e_with_time1min_point'>" . "999" . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- top 10 eng-geo quiz -->
+                    <div class="mt-5">
+                        <div class="d-flex gap-1 justify-content-center align-items-center">
+                            <div class="h3 text-center">Top 10 Eng-Geo Quiz</div>
+                            <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">quiz</i></div>
+                        </div>
+
+                        <div class="container d-flex flex-wrap">
+                            <table class="table table-hover table-dark mt-2 text-center align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                            for ($i=0; $i <10 ; $i++) { 
+                                                echo "<tr>";
+                                                    echo "<th scope='row'>" . ($i+1) . "</th>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_quiz_img rounded-circle'>" . "<span class='top10_e_g_quiz_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_e_g_quiz_point'>" . "999" . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- top 10 geo-eng quiz -->
+                    <div class="mt-5">
+                        <div class="d-flex gap-1 justify-content-center align-items-center">
+                            <div class="h3 text-center">Top 10 Geo-Eng Quiz</div>
+                            <div class="d-flex align-items-center" style="transform: translateY(-4px);"><i class="material-icons">quiz</i></div>
+                        </div>
+
+                        <div class="container d-flex flex-wrap">
+                            <table class="table table-hover table-dark mt-2 text-center align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                            for ($i=0; $i <10 ; $i++) { 
+                                                echo "<tr>";
+                                                    echo "<th scope='row'>" . ($i+1) . "</th>";
+                                                    echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_quiz_img rounded-circle'>" . "<span class='top10_g_e_quiz_user ms-2'>" . "username" . "</span>" . "</td>";
+                                                    echo "<td class='top10_g_e_quiz_point'>" . "999" . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -393,6 +455,7 @@
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Events</div>
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
+                
             </div>
 
             <!-- contacts Page -->
@@ -566,17 +629,21 @@
                     <div class="d-flex flex-column align-items-center gap-3 ">
                         <div class="text-center mb-3">Translate all 10 words and click finish button to see result</div>
                         <div class="after_quiz_cont" style="display:none">
-                            <div class="d-flex flex-column gap-2 mt-3 align-items-center">
-                                <div>Quiz Results</div>
-                                <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
-                                    <div class="text-center">Total Points Collected In This Quiz</div>
-                                    <div class="points_collected text-success h4">999</div>
+                            <div class="d-flex gap-2 align-items-center">
+                                <div class="d-flex flex-column gap-2 mt-3 align-items-center">
+                                    <div>Quiz Results</div>
+                                    <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
+                                        <div class="text-center">Total Points Collected In This Quiz</div>
+                                        <div class="points_collected text-success h4">999</div>
+                                    </div>
+                                    <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
+                                        <div class="text-center">Your Total Points In This Type Of Quiz</div>
+                                        <div class="total_quiz_points text-success h4">999</div>
+                                    </div>
                                 </div>
-                                <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
-                                    <div class="text-center">Your Total Points In This Type Of Quiz</div>
-                                    <div class="total_quiz_points text-success h4">999</div>
-                                </div>
+                                <div class="quiz_restart_btn btn btn-primary">Restart</div>
                             </div>
+                            
                         </div>
                         <div class="container-fluid d-flex flex-column gap-3 align-items-center">
 
@@ -626,7 +693,7 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="2"> <span>Without Time</span><i class="material-icons align-middle">timer_off</i></th>
+                                <th colspan="2"> <span>Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
                             </tr>
                         </thead>
                         <tbody>

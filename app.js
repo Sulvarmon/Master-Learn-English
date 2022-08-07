@@ -110,6 +110,20 @@ $(document).ready(function() {
                             }
                         }
 
+                        /**eng to geo quiz*/
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_e_g_quiz_user:eq(${j})`).text()) {
+                                $(`.top10_e_g_quiz_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }                      
+                        
+                        /**geo to eng quiz*/
+                        for (var j = 0; j < 10; j++) {
+                            if (data[i].user == $(`.top10_g_e_quiz_user:eq(${j})`).text()) {
+                                $(`.top10_g_e_quiz_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
+                            }
+                        }
+
                         /** */
 
                         /**results page */
@@ -321,6 +335,40 @@ $(document).ready(function() {
                         if (user == data[i].username) {
                             $(".my_results_g_e_with_time1min").text(`${data[i].g_e_points_1min}`)
                         }
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "quizEG"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_e_g_quiz_user:eq(${i})`).text(`${data[i].user}`);
+                        $(`.top10_e_g_quiz_point:eq(${i})`).text(`${data[i].e_g_points}`);
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "quizGE"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data != 0) {
+                    for (var i = 0; i < 10; i++) {
+                        $(`.top10_g_e_quiz_user:eq(${i})`).text(`${data[i].user}`);
+                        $(`.top10_g_e_quiz_point:eq(${i})`).text(`${data[i].g_e_points}`);
                     }
                 }
             }
@@ -1708,11 +1756,7 @@ $(document).ready(function() {
         displayPage(pageIndex.oldValue);
     })
 
-
-
-
-
-
+    
 
 
 
