@@ -1765,20 +1765,15 @@ $(document).ready(function() {
                     break;
             }
         }
-        if(pageIndex.oldValue == 1 && pageIndex.newValue == 9){
+        if(
+            pageIndex.oldValue == 1 && pageIndex.newValue == 9 ||
+            pageIndex.oldValue == 3 && pageIndex.newValue == 9
+        ){
            withOrWithoutScroll(1);
-        }
-        if(pageIndex.oldValue == 3 && pageIndex.newValue == 9){
-            withOrWithoutScroll(1);
-        }
-        if(pageIndex.oldValue == 4 && pageIndex.newValue == 10){
-           withOrWithoutScroll(0);
-        }
-               
+        }else{
+            withOrWithoutScroll(0);
+        }      
     })
-
-    
-    $(".home_grid_item:eq(3)").click();
 
     $.ajax({
         url: "events.php",
@@ -1794,16 +1789,33 @@ $(document).ready(function() {
 
             for (var i = 0; i < $(".events_item").length; i++) {
                 $(`.events_item:eq(${i})`).append(`<div>${data[i].name}</div>`);
-                $(`.events_item:eq(${i})`).append(`<div>starts at : ${data[i].sDate}</div>`);
-                $(`.events_item:eq(${i})`).append(`<div>ends at : ${data[i].sDate}</div>`);
+                $(`.events_item:eq(${i})`).append(`<div>Start Date : ${data[i].sDate}</div>`);
+                $(`.events_item:eq(${i})`).append(`<div>End Date : ${data[i].sDate}</div>`);
             }
 
             $(document).on("click", ".events_item", function(){
-                displayPage(10);
                 var event = {};
                 event.name = $(this).children().eq(0).text();
                 event.sDate = $(this).children().eq(1).text();
                 event.eDate = $(this).children().eq(2).text();
+                switch(event.name){
+                    case 'Event1':
+                        displayPage(10);
+                        break;
+                    case 'Event2':
+                        displayPage(11);
+                        break;
+                    case 'Event3':
+                        displayPage(12);
+                        break;
+                    case 'Event4':
+                        displayPage(13);
+                        break;
+                    default:
+                        break;
+                }
+               
+                
                 $(".event_name").text(`${event.name}`);
                 $(".event_s_date").text(`${event.sDate}`);
                 $(".event_e_date").text(`${event.eDate}`);
@@ -1811,7 +1823,7 @@ $(document).ready(function() {
         }
     })
 
-
+    $(".home_grid_item:eq(3)").click();
 
 
 })  

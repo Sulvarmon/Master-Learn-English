@@ -755,14 +755,11 @@
 
                         </tbody>
                     </table>
-
-
-
                 </div>
 
             </div>
 
-             <!-- events Page Content Page -->
+            <!-- first event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
                     <i class="material-icons">arrow_back</i>
@@ -770,16 +767,69 @@
                  </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
-                    <div class="event_s_date text-info h5">Event Starts At</div>
-                    <div class="event_e_date text-info h5">Event Ends At</div>
+                    <div class="event_s_date text-info h5">Start Date</div>
+                    <div class="event_e_date text-info h5">End Date</div>
                 </div>
                 
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                <div class="event_content_cont">
-                        
-                </div>  
+                    <div class="event1_content_cont">
+                        This is event 1
+                    </div>
             </div>
 
+            <!-- second event page -->
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                    <i class="material-icons">arrow_back</i>
+                    <span>Go Back</span>
+                 </div>
+                <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
+                    <div class="event_name text-warning h1">A Particulat Event</div>
+                    <div class="event_s_date text-info h5">Start Date</div>
+                    <div class="event_e_date text-info h5">End Date</div>
+                </div>
+                
+                <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
+                    <div class="event1_content_cont">
+                        This is event 2
+                    </div>
+            </div>
+
+            <!-- third event page -->
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                    <i class="material-icons">arrow_back</i>
+                    <span>Go Back</span>
+                 </div>
+                <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
+                    <div class="event_name text-warning h1">A Particulat Event</div>
+                    <div class="event_s_date text-info h5">Start Date</div>
+                    <div class="event_e_date text-info h5">End Date</div>
+                </div>
+                
+                <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
+                    <div class="event1_content_cont">
+                        This is event 3
+                    </div>
+            </div>
+
+            <!-- forth event page -->
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                    <i class="material-icons">arrow_back</i>
+                    <span>Go Back</span>
+                 </div>
+                <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
+                    <div class="event_name text-warning h1">A Particulat Event</div>
+                    <div class="event_s_date text-info h5">Start Date</div>
+                    <div class="event_e_date text-info h5">End Date</div>
+                </div>
+                
+                <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
+                    <div class="event1_content_cont">
+                        This is event 4
+                    </div>
+            </div>
 
 
 
