@@ -772,8 +772,38 @@
                 </div>
                 
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="event1_content_cont">
-                        This is event 1
+                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                        <div class="d-flex flex-column gap-2 align-items-center">
+                            <div class="border p-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="h5">Take A Quiz And Collect Points</span>                                    
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <span>English to Georgia</span>
+                                    <div class="event1_quiz_btn_e_g btn btn-primary">Eng-Geo</div>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <span>Georgia to English</span>
+                                    <div class="event1_quiz_btn_g_e btn btn-primary">Geo-Eng</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border p-2">
+                            <table class="table table-hover table-dark text-center align-middle">
+                                <tr>
+                                    <th colspan="2">Your Results In Event1</th>
+                                </tr>
+                                
+                                <tr>
+                                    <th>Eng To Geo Points</th>
+                                    <th>Geo To Eng Points</th>
+                                </tr>
+                                <tr>
+                                   <td class="event1_e_g_point">0</td>
+                                   <td class="event1_g_e_point">0</td> 
+                                </tr>
+                            </table>
+                        </div>
                     </div>
             </div>
 
@@ -790,7 +820,7 @@
                 </div>
                 
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="event1_content_cont">
+                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                         This is event 2
                     </div>
             </div>
@@ -808,7 +838,7 @@
                 </div>
                 
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="event1_content_cont">
+                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                         This is event 3
                     </div>
             </div>
@@ -826,7 +856,7 @@
                 </div>
                 
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="event1_content_cont">
+                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                         This is event 4
                     </div>
             </div>

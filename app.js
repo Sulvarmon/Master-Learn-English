@@ -8,6 +8,7 @@ $(document).ready(function() {
     var dictionary = [];
     var checkBtnState = true;
     var playType = "";
+    var eventVar = "";
     var timeControl = 999;
     var playTimer;
     var scrollPos = 0;
@@ -665,7 +666,7 @@ $(document).ready(function() {
     function setPlayTypeQuizPages(index) {
         switch (index) {
             case 0:
-                $(".play_type_quiz_title").text("Eng To Geo Quiz");
+                $(".play_type_quiz_title").text(`${eventVar == "event1_e_g" ? "Event1 Eng To Geo Quiz" : "Eng To Geo Training Quiz"}`);
                 $(".play_type_quiz_icon").text("quiz");
 
                 var randomIndexs = [];
@@ -683,22 +684,45 @@ $(document).ready(function() {
                 for (var i = 0; i < 10; i++) {
                     $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
                 }
-                $.ajax({
-                    url: "arrays.php",
-                        type: "post",
-                        data: {
-                            arraysBtn: "quizEG"
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            for (var i = 0; i < data.length; i++) {
-                                if(user == data[i].user){
-                                    $(".total_quiz_points").text(`${data[i].e_g_points} `)
-                                    break;
+
+                switch(eventVar){
+                    case "event1_e_g" :
+                        $.ajax({
+                        url: "events.php",
+                            type: "post",
+                            data: {
+                                eventBtn: "get_event1_results"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if(user == data[i].user){
+                                        $(".total_quiz_points").text(`${data[i].event1_e_g} `)
+                                        break;
+                                    }
                                 }
                             }
-                        }
-                    })
+                        })
+                        break;
+                    default:
+                        $.ajax({
+                        url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "quizEG"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if(user == data[i].user){
+                                        $(".total_quiz_points").text(`${data[i].e_g_points} `)
+                                        break;
+                                    }
+                                }
+                            }
+                        })
+                        break;
+                }                
                 break;
             case 1:
                 $(".play_type_quiz_title").text("Geo To Eng Quiz");
@@ -855,6 +879,29 @@ $(document).ready(function() {
         })
     }
 
+     function getEvent1Data(){
+        $.ajax({
+            url: "events.php",
+            type: "post",
+            data: {
+                eventBtn: "get_event1_results"
+            },
+            dataType: "json",
+            success: function(data) {
+                for (var i = 0; i < data.length; i++) {
+
+                    if(user == data[i].user){
+                        $(".event1_e_g_point").text(`${data[i].event1_e_g}`);
+                        $(".event1_g_e_point").text(`${data[i].event1_g_e}`);
+                    }
+                }
+                
+            }
+        })   
+    }
+    
+
+
     /** */
 
     /**set raitings and my results pages data and images */
@@ -869,11 +916,11 @@ $(document).ready(function() {
     /** */
 
     /**set user imgs */
-
-
     showHidePassword("login_show_hide_password>input", "login_password_input>input");
     showHidePassword("reg_show_hide_password>input", "reg_password_input>input");
     showHidePassword("change_pass_show_hide>input", "change_password_input>input");
+
+    getEvent1Data();
 
     winScr(0);
 
@@ -1481,6 +1528,8 @@ $(document).ready(function() {
         $(".quiz_answer_input").val("");
         $(".points_collected").text("0");
 
+        eventVar = "";
+
     })
 
     probAnswerClicks("prob_answer", "asnwer_input");
@@ -1676,15 +1725,31 @@ $(document).ready(function() {
 
         switch(playType){
             case "e_g_quiz":
-                $.ajax({
-                    url: "points.php",
-                        type: "post",
-                        data: {
-                            pointsBtn: "e_g_quiz",
-                            user: user,
-                            point: totalPoints
-                        }
-                    })
+
+                switch(eventVar){
+                    case "event1_e_g":
+                        $.ajax({
+                        url: "events.php",
+                            type: "post",
+                            data: {
+                                eventBtn: "set_event1_e_g_points",
+                                user: user,
+                                point: totalPoints
+                            }
+                        }) 
+                        break;
+                    default:
+                        $.ajax({
+                        url: "points.php",
+                            type: "post",
+                            data: {
+                                pointsBtn: "e_g_quiz",
+                                user: user,
+                                point: totalPoints
+                            }
+                        })  
+                        break;
+                }               
                 break;
             case "g_e_quiz":
                 $.ajax({
@@ -1703,7 +1768,7 @@ $(document).ready(function() {
                     
 
 
-        $(".points_collected").text(`${pointsCollected}`);
+        $(".points_collected").text(`${pointsCollected}`);        
     })
     
     $(".quiz_restart_btn").click(function(){
@@ -1813,14 +1878,25 @@ $(document).ready(function() {
                         break;
                     default:
                         break;
-                }
-               
+                }               
                 
                 $(".event_name").text(`${event.name}`);
                 $(".event_s_date").text(`${event.sDate}`);
                 $(".event_e_date").text(`${event.eDate}`);
             })
         }
+    })
+
+    $(".update_events_btn").click(function(){
+        getEvent1Data();
+    })
+
+    $(".event1_quiz_btn_e_g").click(function(){
+        eventVar = "event1_e_g";
+        $(".home").click();
+        $(".play_btn").click();
+        $(".play_type_btn:eq(4)").click();
+        $(".quiz_restart_btn").click();
     })
 
     $(".home_grid_item:eq(3)").click();
