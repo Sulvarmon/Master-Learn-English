@@ -666,7 +666,7 @@ $(document).ready(function() {
     function setPlayTypeQuizPages(index) {
         switch (index) {
             case 0:
-                $(".play_type_quiz_title").text(`${eventVar == "event1_e_g" ? "Event1 Eng To Geo Quiz" : "Eng To Geo Training Quiz"}`);
+                $(".play_type_quiz_title").text(`${eventVar == "event1" ? "Event1 Eng To Geo Quiz" : "Eng To Geo Training Quiz"}`);
                 $(".play_type_quiz_icon").text("quiz");
 
                 var randomIndexs = [];
@@ -686,7 +686,7 @@ $(document).ready(function() {
                 }
 
                 switch(eventVar){
-                    case "event1_e_g" :
+                    case "event1" :
                         $.ajax({
                         url: "events.php",
                             type: "post",
@@ -725,7 +725,7 @@ $(document).ready(function() {
                 }                
                 break;
             case 1:
-                $(".play_type_quiz_title").text("Geo To Eng Quiz");
+                $(".play_type_quiz_title").text(`${eventVar == "event1" ? "Event1 Geo To Eng Quiz" : "Geo To Eng Training Quiz"}`);
                 $(".play_type_quiz_icon").text("quiz");
 
                 var randomIndexs = [];
@@ -743,22 +743,45 @@ $(document).ready(function() {
                 for (var i = 0; i < 10; i++) {
                     $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
                 }
-                $.ajax({
-                    url: "arrays.php",
-                        type: "post",
-                        data: {
-                            arraysBtn: "quizGE"
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            for (var i = 0; i < data.length; i++) {
-                                if(user == data[i].user){
-                                    $(".total_quiz_points").text(`${data[i].g_e_points} `)
-                                    break;
+
+                switch(eventVar){
+                    case "event1" :
+                        $.ajax({
+                        url: "events.php",
+                            type: "post",
+                            data: {
+                                eventBtn: "get_event1_results"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if(user == data[i].user){
+                                        $(".total_quiz_points").text(`${data[i].event1_g_e} `)
+                                        break;
+                                    }
                                 }
                             }
-                        }
-                    })
+                        })
+                        break;
+                    default:
+                        $.ajax({
+                        url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "quizGE"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if(user == data[i].user){
+                                        $(".total_quiz_points").text(`${data[i].g_e_points} `)
+                                        break;
+                                    }
+                                }
+                            }
+                        })
+                        break;
+                } 
                 break;
             default:
                 break;
@@ -1727,7 +1750,7 @@ $(document).ready(function() {
             case "e_g_quiz":
 
                 switch(eventVar){
-                    case "event1_e_g":
+                    case "event1":
                         $.ajax({
                         url: "events.php",
                             type: "post",
@@ -1752,21 +1775,34 @@ $(document).ready(function() {
                 }               
                 break;
             case "g_e_quiz":
-                $.ajax({
-                    url: "points.php",
-                        type: "post",
-                        data: {
-                            pointsBtn: "g_e_quiz",
-                            user: user,
-                            point: totalPoints
-                        }
-                    })
+                switch(eventVar){
+                    case "event1":
+                        $.ajax({
+                        url: "events.php",
+                            type: "post",
+                            data: {
+                                eventBtn: "set_event1_g_e_points",
+                                user: user,
+                                point: totalPoints
+                            }
+                        }) 
+                        break;
+                    default:
+                        $.ajax({
+                        url: "points.php",
+                            type: "post",
+                            data: {
+                                pointsBtn: "g_e_quiz",
+                                user: user,
+                                point: totalPoints
+                            }
+                        }) 
+                        break;
+                }
                 break;
             default:
                 break;
-        }
-                    
-
+        }                
 
         $(".points_collected").text(`${pointsCollected}`);        
     })
@@ -1892,10 +1928,18 @@ $(document).ready(function() {
     })
 
     $(".event1_quiz_btn_e_g").click(function(){
-        eventVar = "event1_e_g";
+        eventVar = "event1";
         $(".home").click();
         $(".play_btn").click();
         $(".play_type_btn:eq(4)").click();
+        $(".quiz_restart_btn").click();
+    })
+
+    $(".event1_quiz_btn_g_e").click(function(){
+        eventVar = "event1";
+        $(".home").click();
+        $(".play_btn").click();
+        $(".play_type_btn:eq(5)").click();
         $(".quiz_restart_btn").click();
     })
 
