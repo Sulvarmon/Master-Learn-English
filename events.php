@@ -4,13 +4,13 @@
 if(isset($_POST['eventBtn'])){
 	$event = $_POST['eventBtn'];
 	switch ($event) {
-		case 'get_events':
-		
+		case 'get_events':		
 			$eventsArray = array(
 							array(
 								"name"=>"Event1",
 			 					"sDate"=>date('M/d/Y h:i', strtotime('08/20/2022 22:00')),
 			  					"eDate"=>date('M/d/Y h:i', strtotime('09/20/2022 22:00')),
+								"showDailyTable"=>1
 		  					),
 							array(
 								"name"=>"Event2",

@@ -41,7 +41,6 @@ $(document).ready(function() {
         $(`.page:eq(${i})`).show();
         pageIndex.oldValue = pageIndex.newValue;
         pageIndex.newValue = i;
-
     }
 
     function gridClicks(i) {
@@ -116,8 +115,8 @@ $(document).ready(function() {
                             if (data[i].user == $(`.top10_e_g_quiz_user:eq(${j})`).text()) {
                                 $(`.top10_e_g_quiz_img:eq(${j})`).attr("src", `./Img/profile_imgs/${data[i].img}`)
                             }
-                        }                      
-                        
+                        }
+
                         /**geo to eng quiz*/
                         for (var j = 0; j < 10; j++) {
                             if (data[i].user == $(`.top10_g_e_quiz_user:eq(${j})`).text()) {
@@ -685,10 +684,10 @@ $(document).ready(function() {
                     $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
                 }
 
-                switch(eventVar){
-                    case "event1" :
+                switch (eventVar) {
+                    case "event1":
                         $.ajax({
-                        url: "events.php",
+                            url: "events.php",
                             type: "post",
                             data: {
                                 eventBtn: "get_event1_results"
@@ -696,7 +695,7 @@ $(document).ready(function() {
                             dataType: "json",
                             success: function(data) {
                                 for (var i = 0; i < data.length; i++) {
-                                    if(user == data[i].user){
+                                    if (user == data[i].user) {
                                         $(".total_quiz_points").text(`${data[i].event1_e_g} `)
                                         break;
                                     }
@@ -706,7 +705,7 @@ $(document).ready(function() {
                         break;
                     default:
                         $.ajax({
-                        url: "arrays.php",
+                            url: "arrays.php",
                             type: "post",
                             data: {
                                 arraysBtn: "quizEG"
@@ -714,7 +713,7 @@ $(document).ready(function() {
                             dataType: "json",
                             success: function(data) {
                                 for (var i = 0; i < data.length; i++) {
-                                    if(user == data[i].user){
+                                    if (user == data[i].user) {
                                         $(".total_quiz_points").text(`${data[i].e_g_points} `)
                                         break;
                                     }
@@ -722,7 +721,7 @@ $(document).ready(function() {
                             }
                         })
                         break;
-                }                
+                }
                 break;
             case 1:
                 $(".play_type_quiz_title").text(`${eventVar == "event1" ? "Event1 Geo To Eng Quiz" : "Geo To Eng Training Quiz"}`);
@@ -744,10 +743,10 @@ $(document).ready(function() {
                     $(`.quiz_random_word:eq(${i})`).text(`${dicRandom10Words[i]}`);
                 }
 
-                switch(eventVar){
-                    case "event1" :
+                switch (eventVar) {
+                    case "event1":
                         $.ajax({
-                        url: "events.php",
+                            url: "events.php",
                             type: "post",
                             data: {
                                 eventBtn: "get_event1_results"
@@ -755,7 +754,7 @@ $(document).ready(function() {
                             dataType: "json",
                             success: function(data) {
                                 for (var i = 0; i < data.length; i++) {
-                                    if(user == data[i].user){
+                                    if (user == data[i].user) {
                                         $(".total_quiz_points").text(`${data[i].event1_g_e} `)
                                         break;
                                     }
@@ -765,7 +764,7 @@ $(document).ready(function() {
                         break;
                     default:
                         $.ajax({
-                        url: "arrays.php",
+                            url: "arrays.php",
                             type: "post",
                             data: {
                                 arraysBtn: "quizGE"
@@ -773,7 +772,7 @@ $(document).ready(function() {
                             dataType: "json",
                             success: function(data) {
                                 for (var i = 0; i < data.length; i++) {
-                                    if(user == data[i].user){
+                                    if (user == data[i].user) {
                                         $(".total_quiz_points").text(`${data[i].g_e_points} `)
                                         break;
                                     }
@@ -781,7 +780,7 @@ $(document).ready(function() {
                             }
                         })
                         break;
-                } 
+                }
                 break;
             default:
                 break;
@@ -837,8 +836,8 @@ $(document).ready(function() {
     }
 
 
-    function setOtherUserPage(username){
-         $.ajax({
+    function setOtherUserPage(username) {
+        $.ajax({
             url: "arrays.php",
             type: "post",
             data: {
@@ -847,18 +846,18 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 $(".results_other_user_img").attr("src", `./Img/user_default_avatar.png`);
-                    for (var i = 0; i < data.length; i++) {                       
-                        /**results page */
-                        if (username == data[i]["user"]) {
-                            $(".results_other_user_img").attr("src", `./Img/profile_imgs/${data[i].img}`)
-                            break;
-                        }
-                       
+                for (var i = 0; i < data.length; i++) {
+                    /**results page */
+                    if (username == data[i]["user"]) {
+                        $(".results_other_user_img").attr("src", `./Img/profile_imgs/${data[i].img}`)
+                        break;
                     }
+
+                }
             }
         })
 
-         $.ajax({
+        $.ajax({
             url: "arrays.php",
             type: "post",
             data: {
@@ -867,7 +866,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 for (var i = 0; i < data.length; i++) {
-                    if(username == data[i].username){
+                    if (username == data[i].username) {
                         $(".other_user_results_e_g_no_time").text(`${data[i].e_g_points}`);
                         $(".other_user_results_g_e_no_time").text(`${data[i].g_e_points}`);
                         $(".other_user_results_e_g_with_time5min").text(`${data[i].g_e_points_5min}`);
@@ -878,12 +877,12 @@ $(document).ready(function() {
                         $(".other_user_results_g_e_with_time1min").text(`${data[i].g_e_points_1min}`);
                         break;
                     }
-                    
+
                 }
             }
         })
 
-         $.ajax({
+        $.ajax({
             url: "arrays.php",
             type: "post",
             data: {
@@ -892,17 +891,17 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 for (var i = 0; i < data.length; i++) {
-                    if(username == data[i].user){
+                    if (username == data[i].user) {
                         $(".other_user_results_e_g_quiz").text(`${data[i].e_g_points}`);
                         $(".other_user_results_g_e_quiz").text(`${data[i].g_e_points}`);
                     }
                 }
-               
+
             }
         })
     }
 
-     function getEvent1Data(){
+    function getEvent1Data() {
         $.ajax({
             url: "events.php",
             type: "post",
@@ -913,17 +912,90 @@ $(document).ready(function() {
             success: function(data) {
                 for (var i = 0; i < data.length; i++) {
 
-                    if(user == data[i].user){
+                    if (user == data[i].user) {
                         $(".event1_e_g_point").text(`${data[i].event1_e_g}`);
                         $(".event1_g_e_point").text(`${data[i].event1_g_e}`);
                     }
                 }
-                
+
             }
-        })   
+        })
     }
-    
-    function createEvent1Raitings(){
+
+    function updateEvent1EGData() {
+        $.ajax({
+            url: "events.php",
+            type: "post",
+            data: {
+                eventBtn: "get_event1_results_sorted_e_g"
+            },
+            dataType: "json",
+            success: function(data) {
+
+                for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
+                    $(`.event1_raitings_e_g_user_username:eq(${i})`).text(`${data[i].user}`);
+                    $(`.event1_raitings_e_g_user_point:eq(${i})`).text(`${data[i].event1_e_g}`);
+                }
+
+                $.ajax({
+                    url: "arrays.php",
+                    type: "post",
+                    data: {
+                        arraysBtn: "user_imgs_array"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        $(`.event1_raitings_e_g_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
+                        for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
+                            for (var j = 0; j < data.length; j++) {
+                                if ($(`.event1_raitings_e_g_user_username:eq(${i})`).text().trim() == data[j].user) {
+                                    $(`.event1_raitings_e_g_user_username:eq(${i})`).siblings().attr("src", `Img/profile_imgs/${data[j].img}`);
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function updateEvent1GEData() {
+        $.ajax({
+            url: "events.php",
+            type: "post",
+            data: {
+                eventBtn: "get_event1_results_sorted_g_e"
+            },
+            dataType: "json",
+            success: function(data) {
+                for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
+                    $(`.event1_raitings_g_e_user_username:eq(${i})`).text(`${data[i].user}`);
+                    $(`.event1_raitings_g_e_user_point:eq(${i})`).text(`${data[i].event1_g_e}`);
+                }
+                $.ajax({
+                    url: "arrays.php",
+                    type: "post",
+                    data: {
+                        arraysBtn: "user_imgs_array"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        $(`.event1_raitings_g_e_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
+                        for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
+                            for (var j = 0; j < data.length; j++) {
+                                if ($(`.event1_raitings_g_e_user_username:eq(${i})`).text().trim() == data[j].user) {
+                                    $(`.event1_raitings_g_e_user_username:eq(${i})`).siblings().attr("src", `Img/profile_imgs/${data[j].img}`);
+                                }
+                            }
+
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function createEvent1Raitings() {
         $.ajax({
             url: "arrays.php",
             type: "post",
@@ -931,98 +1003,89 @@ $(document).ready(function() {
                 arraysBtn: "users_array"
             },
             dataType: "json",
-            success: function(data) { 
+            success: function(data) {
                 for (var i = 0; i < data.length; i++) {
-                   $(".event1_raitings").append("<tr class='event1_raitings_el'></tr>")
+                    $(".event1_raitings").append("<tr class='event1_raitings_el'></tr>")
                 }
 
                 for (var i = 0; i < $(".event1_raitings_el").length; i++) {
-                   $(`.event1_raitings_el:eq(${i})`).append(`<td>${i+1}</td>`);
-                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_e_g_user event1_raitings_user user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center"></td>`);
-                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_e_g_user_point">0</td>`);
-                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_g_e_user event1_raitings_user user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center"></td>`);
-                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_g_e_user_point">0</td>`);
+                    $(`.event1_raitings_el:eq(${i})`).append(`<td>${i+1}</td>`);
+                    $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_e_g_user event1_raitings_user user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center"></td>`);
+                    $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_e_g_user_point">0</td>`);
+                    $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_g_e_user event1_raitings_user user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center"></td>`);
+                    $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_g_e_user_point">0</td>`);
                 }
 
                 for (var i = 0; i < $(".event1_raitings_e_g_user").length; i++) {
-                   $(`.event1_raitings_e_g_user:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle" class="event1_raitings_e_g_user_img">');
-                   $(`.event1_raitings_e_g_user:eq(${i})`).append('<span class="event1_raitings_e_g_user_username">username</span>');
+                    $(`.event1_raitings_e_g_user:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle" class="event1_raitings_e_g_user_img">');
+                    $(`.event1_raitings_e_g_user:eq(${i})`).append('<span class="event1_raitings_e_g_user_username">username</span>');
                 }
 
                 for (var i = 0; i < $(".event1_raitings_g_e_user").length; i++) {
-                   $(`.event1_raitings_g_e_user:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle" class="event1_raitings_g_e_user_img">');
-                   $(`.event1_raitings_g_e_user:eq(${i})`).append('<span class="event1_raitings_g_e_user_username">username</span>');
+                    $(`.event1_raitings_g_e_user:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle" class="event1_raitings_g_e_user_img">');
+                    $(`.event1_raitings_g_e_user:eq(${i})`).append('<span class="event1_raitings_g_e_user_username">username</span>');
                 }
 
-                $.ajax({
-                    url: "events.php",
-                    type: "post",
-                    data: {
-                        eventBtn: "get_event1_results_sorted_e_g"
-                    },
-                    dataType: "json",
-                    success: function(data) {
+                updateEvent1EGData();
+                updateEvent1GEData();
 
-                        for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
-                               $(`.event1_raitings_e_g_user_username:eq(${i})`).text(`${data[i].user}`);
-                               $(`.event1_raitings_e_g_user_point:eq(${i})`).text(`${data[i].event1_e_g}`);
-                           } 
 
-                        $.ajax({
-                            url: "arrays.php",
-                            type: "post",
-                            data: {
-                                arraysBtn: "user_imgs_array"
-                            },
-                            dataType: "json",
-                            success: function(data) {
-                                        for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
-                                            for (var j = 0; j < data.length; j++) {
-                                                if($(`.event1_raitings_e_g_user_username:eq(${i})`).text().trim() == data[j].user){
-                                                    $(`.event1_raitings_e_g_user_username:eq(${i})`).siblings().attr("src", `Img/profile_imgs/${data[j].img}`);
-                                                }
-                                            }
-                                           
-                                       } 
-                            }
-                        })   
-                    }
+            }
+        })
+    }
+
+
+    function displayEvnetsInfo() {
+        $.ajax({
+            url: "events.php",
+            type: "post",
+            data: {
+                eventBtn: "get_events"
+            },
+            dataType: "json",
+            success: function(data) {
+
+                $(".events_cont").empty();
+                $.each(data, function(i, e) {
+                    $(".events_cont").append('<div class="events_item btn btn-primary border p-2 d-flex flex-column align-items-center"></div>');
                 })
 
-                $.ajax({
-                    url: "events.php",
-                    type: "post",
-                    data: {
-                        eventBtn: "get_event1_results_sorted_g_e"
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
-                               $(`.event1_raitings_g_e_user_username:eq(${i})`).text(`${data[i].user}`);
-                               $(`.event1_raitings_g_e_user_point:eq(${i})`).text(`${data[i].event1_g_e}`);
-                           } 
-                        $.ajax({
-                            url: "arrays.php",
-                            type: "post",
-                            data: {
-                                arraysBtn: "user_imgs_array"
-                            },
-                            dataType: "json",
-                            success: function(data) {
-                                        for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
-                                            for (var j = 0; j < data.length; j++) {
-                                                if($(`.event1_raitings_g_e_user_username:eq(${i})`).text().trim() == data[j].user){
-                                                    $(`.event1_raitings_g_e_user_username:eq(${i})`).siblings().attr("src", `Img/profile_imgs/${data[j].img}`);
-                                                }
-                                            }
-                                           
-                                       } 
-                            }
-                        })   
+                for (var i = 0; i < $(".events_item").length; i++) {
+                    $(`.events_item:eq(${i})`).append(`<div>${data[i].name}</div>`);
+                    $(`.events_item:eq(${i})`).append(`<div>Start Date : ${data[i].sDate}</div>`);
+                    $(`.events_item:eq(${i})`).append(`<div>End Date : ${data[i].sDate}</div>`);
+                }
+
+
+
+                $(document).off().on("click", ".events_item", function() {
+                    var event = {};
+                    event.name = $(this).children().eq(0).text();
+                    event.sDate = $(this).children().eq(1).text();
+                    event.eDate = $(this).children().eq(2).text();
+                    switch (event.name) {
+                        case 'Event1':
+                            displayPage(10);
+                            break;
+                        case 'Event2':
+                            displayPage(11);
+                            break;
+                        case 'Event3':
+                            displayPage(12);
+                            break;
+                        case 'Event4':
+                            displayPage(13);
+                            break;
+                        default:
+                            break;
                     }
+
+                    $(".event_name").text(`${event.name}`);
+                    $(".event_s_date").text(`${event.sDate}`);
+                    $(".event_e_date").text(`${event.eDate}`);
                 })
             }
-        })  
+        })
     }
 
     /** */
@@ -1784,7 +1847,7 @@ $(document).ready(function() {
         }
     })
 
-    $(".quiz_finish_btn").click(function(){
+    $(".quiz_finish_btn").click(function() {
         winScr(0);
         $(".quiz_finish_btn").addClass("disabled");
         $(".answers_cont, .after_quiz_cont").show();
@@ -1793,29 +1856,29 @@ $(document).ready(function() {
         var correctAnswers = [];
         var pointsCollected = 0;
         for (var i = 0; i < 10; i++) {
-            questions.push($(`.quiz_random_word:eq(${i})`).text());  
-            userAnswers.push($(`.quiz_answer_input:eq(${i})`).val());            
+            questions.push($(`.quiz_random_word:eq(${i})`).text());
+            userAnswers.push($(`.quiz_answer_input:eq(${i})`).val());
         }
-        
-        switch(playType){
+
+        switch (playType) {
             case "e_g_quiz":
                 for (var j = 0; j < 10; j++) {
-                    $.each(dictionary,function(i,e){
-                        if(e.eng_word == questions[j]){
+                    $.each(dictionary, function(i, e) {
+                        if (e.eng_word == questions[j]) {
                             correctAnswers.push(e.geo_word);
                         }
                     })
-                        
-                }                           
+
+                }
                 break;
             case "g_e_quiz":
                 for (var j = 0; j < 10; j++) {
-                    $.each(dictionary,function(i,e){
-                        if(e.geo_word == questions[j]){
+                    $.each(dictionary, function(i, e) {
+                        if (e.geo_word == questions[j]) {
                             correctAnswers.push(e.eng_word);
                         }
                     })
-                        
+
                 }
                 break;
             default:
@@ -1824,7 +1887,7 @@ $(document).ready(function() {
 
 
         for (var i = 0; i < 10; i++) {
-            if(userAnswers[i] == correctAnswers[i]){
+            if (userAnswers[i] == correctAnswers[i]) {
                 pointsCollected++;
                 $(`.correct_or_wrong:eq(${i})`).text(`Correct`);
                 $(`.correct_or_wrong:eq(${i})`).removeClass("text-danger");
@@ -1832,7 +1895,7 @@ $(document).ready(function() {
                 $(`.gain_or_lose_points:eq(${i})`).text(`+1`);
                 $(`.gain_or_lose_points:eq(${i})`).removeClass("text-danger");
                 $(`.gain_or_lose_points:eq(${i})`).addClass("text-success");
-            }else{
+            } else {
                 $(`.correct_or_wrong:eq(${i})`).text(`${correctAnswers[i]}`);
                 $(`.correct_or_wrong:eq(${i})`).removeClass("text-success");
                 $(`.correct_or_wrong:eq(${i})`).addClass("text-danger");
@@ -1842,72 +1905,72 @@ $(document).ready(function() {
             }
         }
 
-        var currentPoints =  parseInt($(".total_quiz_points").text());
+        var currentPoints = parseInt($(".total_quiz_points").text());
         var totalPoints = currentPoints + pointsCollected
         $(".total_quiz_points").text(`${totalPoints}`);
 
-        switch(playType){
+        switch (playType) {
             case "e_g_quiz":
 
-                switch(eventVar){
+                switch (eventVar) {
                     case "event1":
                         $.ajax({
-                        url: "events.php",
+                            url: "events.php",
                             type: "post",
                             data: {
                                 eventBtn: "set_event1_e_g_points",
                                 user: user,
                                 point: totalPoints
                             }
-                        }) 
+                        })
                         break;
                     default:
                         $.ajax({
-                        url: "points.php",
+                            url: "points.php",
                             type: "post",
                             data: {
                                 pointsBtn: "e_g_quiz",
                                 user: user,
                                 point: totalPoints
                             }
-                        })  
+                        })
                         break;
-                }               
+                }
                 break;
             case "g_e_quiz":
-                switch(eventVar){
+                switch (eventVar) {
                     case "event1":
                         $.ajax({
-                        url: "events.php",
+                            url: "events.php",
                             type: "post",
                             data: {
                                 eventBtn: "set_event1_g_e_points",
                                 user: user,
                                 point: totalPoints
                             }
-                        }) 
+                        })
                         break;
                     default:
                         $.ajax({
-                        url: "points.php",
+                            url: "points.php",
                             type: "post",
                             data: {
                                 pointsBtn: "g_e_quiz",
                                 user: user,
                                 point: totalPoints
                             }
-                        }) 
+                        })
                         break;
                 }
                 break;
             default:
                 break;
-        }                
+        }
 
-        $(".points_collected").text(`${pointsCollected}`);        
+        $(".points_collected").text(`${pointsCollected}`);
     })
-    
-    $(".quiz_restart_btn").click(function(){
+
+    $(".quiz_restart_btn").click(function() {
         winScr(0);
         $(".quiz_finish_btn").removeClass("disabled");
         $(".answers_cont, .after_quiz_cont").hide();
@@ -1915,7 +1978,7 @@ $(document).ready(function() {
         $(".gain_or_lose_points").text("+1 or -1");
         $(".quiz_answer_input").val("");
         $(".points_collected").text("0");
-        switch(playType){
+        switch (playType) {
             case "e_g_quiz":
                 setPlayTypeQuizPages(0);
                 break;
@@ -1926,37 +1989,37 @@ $(document).ready(function() {
                 break;
         }
     })
-    
+
     /**Here is the end of play page*/
 
-    $(document).on("click", ".user_img_and_username", function(){
+    $(document).on("click", ".user_img_and_username", function() {
         winScr(0);
         var otherUser = $(this).children().eq(1).text().trim();
         scrollPos = $(window).scrollTop();
-        if(otherUser == user){
+        if (otherUser == user) {
             setOtherUserPage(otherUser);
             $(".other_user_results_page_title").text(`My Results`);
             displayPage(9)
-        }else{
+        } else {
             setOtherUserPage(otherUser);
             $(".other_user_results_page_title").text(`${otherUser} 's Results`);
             displayPage(9)
         }
-        
+
     })
 
-    $(".user_img, .username").click(function(){
+    $(".user_img, .username").click(function() {
         $(".home").click();
         $(".home_grid_item:eq(1)").click();
     })
 
-    $(".back_btn").click(function(){
-        function withOrWithoutScroll(index){
-            switch(index){
+    $(".back_btn").click(function() {
+        function withOrWithoutScroll(index) {
+            switch (index) {
                 case 1:
-                    setTimeout(function(){
+                    setTimeout(function() {
                         winScr(scrollPos);
-                    },1); 
+                    }, 1);
                     displayPage(pageIndex.oldValue);
                     break;
                 case 0:
@@ -1966,68 +2029,55 @@ $(document).ready(function() {
                     break;
             }
         }
-        if(
+        if (
             pageIndex.oldValue == 1 && pageIndex.newValue == 9 ||
             pageIndex.oldValue == 3 && pageIndex.newValue == 9
-        ){
-           withOrWithoutScroll(1);
-        }else{
+        ) {
+            withOrWithoutScroll(1);
+        } else {
             withOrWithoutScroll(0);
-        }      
-    })
-
-    $.ajax({
-        url: "events.php",
-        type: "post",
-        data: {
-            eventBtn: "get_events"
-        },
-        dataType: "json",
-        success: function(data) {
-            $.each(data, function(i,e){
-                $(".events_cont").append('<div class="events_item btn btn-primary border p-2 d-flex flex-column align-items-center"></div>');
-            })
-
-            for (var i = 0; i < $(".events_item").length; i++) {
-                $(`.events_item:eq(${i})`).append(`<div>${data[i].name}</div>`);
-                $(`.events_item:eq(${i})`).append(`<div>Start Date : ${data[i].sDate}</div>`);
-                $(`.events_item:eq(${i})`).append(`<div>End Date : ${data[i].sDate}</div>`);
-            }
-
-            $(document).on("click", ".events_item", function(){
-                var event = {};
-                event.name = $(this).children().eq(0).text();
-                event.sDate = $(this).children().eq(1).text();
-                event.eDate = $(this).children().eq(2).text();
-                switch(event.name){
-                    case 'Event1':
-                        displayPage(10);
-                        break;
-                    case 'Event2':
-                        displayPage(11);
-                        break;
-                    case 'Event3':
-                        displayPage(12);
-                        break;
-                    case 'Event4':
-                        displayPage(13);
-                        break;
-                    default:
-                        break;
-                }               
-                
-                $(".event_name").text(`${event.name}`);
-                $(".event_s_date").text(`${event.sDate}`);
-                $(".event_e_date").text(`${event.eDate}`);
-            })
         }
     })
 
-    $(".update_event1_btn").click(function(){
-        getEvent1Data();
+    displayEvnetsInfo();
+
+    $(".update_events_btn").click(function() {
+        displayEvnetsInfo();
     })
 
-    $(".event1_quiz_btn_e_g").click(function(){
+    $(".update_event1_btn").click(function() {
+        getEvent1Data();
+        $.ajax({
+            url: "events.php",
+            type: "post",
+            data: {
+                eventBtn: "get_events"
+            },
+            dataType: "json",
+            success: function(data) {
+                if (data[0].showDailyTable == 1) {
+                    $(".event1_hide_show").show();
+                    updateEvent1EGData();
+                    updateEvent1GEData();
+                } else {
+                    $(".event1_hide_show").hide();
+                    for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
+                        $(`.event1_raitings_e_g_user_username:eq(${i})`).text(`username`);
+                        $(`.event1_raitings_e_g_user_point:eq(${i})`).text(`...`);
+                    }
+                    $(`.event1_raitings_e_g_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
+                    $(`.event1_raitings_g_e_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
+                    for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
+                        $(`.event1_raitings_g_e_user_username:eq(${i})`).text(`username`);
+                        $(`.event1_raitings_g_e_user_point:eq(${i})`).text(`...`);
+                    }
+                }
+            }
+        })
+
+    })
+
+    $(".event1_quiz_btn_e_g").click(function() {
         eventVar = "event1";
         $(".home").click();
         $(".play_btn").click();
@@ -2035,7 +2085,7 @@ $(document).ready(function() {
         $(".quiz_restart_btn").click();
     })
 
-    $(".event1_quiz_btn_g_e").click(function(){
+    $(".event1_quiz_btn_g_e").click(function() {
         eventVar = "event1";
         $(".home").click();
         $(".play_btn").click();
@@ -2043,7 +2093,7 @@ $(document).ready(function() {
         $(".quiz_restart_btn").click();
     })
 
-    createEvent1Raitings();    
+    createEvent1Raitings();
 
     $.ajax({
         url: "arrays.php",
@@ -2053,20 +2103,20 @@ $(document).ready(function() {
         },
         dataType: "json",
         success: function(data) {
-                
-            $(".search_event1_e_g_user_input").keydown(function(e){
-                if (e.which == 13) { 
+
+            $(".search_event1_e_g_user_input").keydown(function(e) {
+                if (e.which == 13) {
                     $('.search_event1_e_g_user_btn').click();
                 }
             })
 
-            $(".search_event1_g_e_user_input").keydown(function(e){
-                if (e.which == 13) { 
+            $(".search_event1_g_e_user_input").keydown(function(e) {
+                if (e.which == 13) {
                     $('.search_event1_g_e_user_btn').click();
                 }
             })
 
-            $(".search_event1_e_g_user_btn").click(function(){
+            $(".search_event1_e_g_user_btn").click(function() {
                 var UserExists = false;
                 var searchuser = $('.search_event1_e_g_user_input').val().trim();
                 for (var i = 0; i < data.length; i++) {
@@ -2082,7 +2132,7 @@ $(document).ready(function() {
                 }
             })
 
-            $(".search_event1_g_e_user_btn").click(function(){
+            $(".search_event1_g_e_user_btn").click(function() {
                 var UserExists = false;
                 var searchuser = $('.search_event1_g_e_user_input').val().trim();
                 for (var i = 0; i < data.length; i++) {
@@ -2097,8 +2147,8 @@ $(document).ready(function() {
                     alert('There is no such user');
                 }
             })
-           
-        }
-    })   
 
-})  
+        }
+    })
+
+})

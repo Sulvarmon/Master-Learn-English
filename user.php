@@ -457,7 +457,7 @@
                 <div class="update_events_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <!-- appended in js -->
                 <div class="events_cont d-flex gap-2 flex-wrap border rounded mt-5 p-3"></div>
-            </div>           
+            </div>
 
             <!-- contacts Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
@@ -644,7 +644,7 @@
                                 </div>
                                 <div class="quiz_restart_btn btn btn-primary">Restart</div>
                             </div>
-                            
+
                         </div>
                         <div class="container-fluid d-flex flex-column gap-3 align-items-center">
 
@@ -668,7 +668,7 @@
                                 }
                             ?>
 
-                                
+
                                 <div class="quiz_finish_btn btn btn-primary">Finish</div>
                                 <div class="quiz_restart_btn btn btn-primary">Restart</div>
                         </div>
@@ -683,10 +683,10 @@
             <!-- other user's page -->
 
             <div class="page_bg_color_s page other_user_results_page container-md text-white mt-5 p-3 position-relative">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
                     <span>Go Back</span>
-                 </div>
+                </div>
                 <div class="other_user_results_page_title w_fit_s mx-auto h1 text-warning m-5">User Results</div>
                 <div class="update_other_user_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
@@ -761,138 +761,147 @@
 
             <!-- first event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
                     <span>Go Back</span>
-                 </div>
+                </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
                     <div class="event_s_date text-info h5">Start Date</div>
                     <div class="event_e_date text-info h5">End Date</div>
                 </div>
-                
+
                 <div class="update_event1_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="d-flex flex-column gap-2 align-items-center">                            
-                        <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
-                            <div class="d-flex flex-column gap-2 align-items-center">
-                                <div class="border p-2">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="h5">Take A Quiz And Collect Points</span>                                    
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 mt-3">
-                                        <span>English to Georgia</span>
-                                        <div class="event1_quiz_btn_e_g btn btn-primary">Eng-Geo</div>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 mt-3">
-                                        <span>Georgia to English</span>
-                                        <div class="event1_quiz_btn_g_e btn btn-primary">Geo-Eng</div>
-                                    </div>
+                <div class="d-flex flex-column gap-2 align-items-center">
+                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                        <div class="d-flex flex-column gap-2 align-items-center">
+                            <div class="border p-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="h5">Take A Quiz And Collect Points</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <span>English to Georgia</span>
+                                    <div class="event1_quiz_btn_e_g btn btn-primary">Eng-Geo</div>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <span>Georgia to English</span>
+                                    <div class="event1_quiz_btn_g_e btn btn-primary">Geo-Eng</div>
                                 </div>
                             </div>
-
-                            <div class="border p-2">
-                                <table class="table table-hover table-dark text-center align-middle">
-                                    <tr>
-                                        <th colspan="2">Your Results In Event1</th>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <th>Eng To Geo Points</th>
-                                        <th>Geo To Eng Points</th>
-                                    </tr>
-                                    <tr>
-                                       <td class="event1_e_g_point">0</td>
-                                       <td class="event1_g_e_point">0</td> 
-                                    </tr>
-                                </table>
-                            </div>
-
                         </div>
 
-                                
-                        <div class="mt-5 h3 text-center">Players Raitings In Event1</div>
-                        <div class="d-flex flex-column gap-2 border p-2 align-items-center"> 
-                            <div>Search User In Eng-Geo Type</div> 
-                            <div class="d-flex gap-2 flex-wrap align-items-center justify-content-center">
-                               <input type="text" class="search_event1_e_g_user_input p-1"> <div class="btn btn-primary search_event1_e_g_user_btn">Search</div>  
-                            </div>                            
+                        <div class="border p-2">
+                            <table class="table table-hover table-dark text-center align-middle">
+                                <tr>
+                                    <th colspan="2">Your Results In Event1</th>
+                                </tr>
+
+                                <tr>
+                                    <th>Eng To Geo Points</th>
+                                    <th>Geo To Eng Points</th>
+                                </tr>
+                                <tr>
+                                    <td class="event1_e_g_point">0</td>
+                                    <td class="event1_g_e_point">0</td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="d-flex flex-column gap-2 border p-2 align-items-center"> 
-                            <div>Search User In Geo-Eng Type</div> 
-                            <div class="d-flex gap-2 flex-wrap align-items-center justify-content-center">
-                               <input type="text" class="search_event1_g_e_user_input p-1"> <div class="btn btn-primary search_event1_g_e_user_btn">Search</div>  
-                            </div>                            
-                        </div>
-                        <div class="event1_raitings_overflow overflow-auto">
-                            <div class="w_fit_s mx-auto">
-                                <table class="event1_raitings table table-hover table-dark text-center align-middle">       
-                                    <tr>
-                                        <th>Place</th>
-                                        <th>User</th>
-                                        <th>Eng-Geo Point</th>
-                                        <th>User</th>
-                                        <th>Geo-Eng Point</th>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        
+
                     </div>
-                    
+
+
+
+                    <div class="event1_hide_show mt-5 h3 text-center">Players Raitings In Event1</div>
+                    <div class="event1_hide_show">
+                        <div class="d-flex flex-column gap-2 border p-2 align-items-center">
+                            <div>Search User In Eng-Geo Type</div>
+                            <div class="d-flex gap-2 flex-wrap align-items-center justify-content-center">
+                                <input type="text" class="search_event1_e_g_user_input p-1">
+                                <div class="btn btn-primary search_event1_e_g_user_btn">Search</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event1_hide_show">
+                        <div class="event1_hide_show d-flex flex-column gap-2 border p-2 align-items-center">
+                            <div>Search User In Geo-Eng Type</div>
+                            <div class="d-flex gap-2 flex-wrap align-items-center justify-content-center">
+                                <input type="text" class="search_event1_g_e_user_input p-1">
+                                <div class="btn btn-primary search_event1_g_e_user_btn">Search</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event1_hide_show event1_raitings_overflow overflow-auto">
+                        <div class="w_fit_s mx-auto">
+                            <table class="event1_raitings table table-hover table-dark text-center align-middle">
+                                <tr>
+                                    <th>Place</th>
+                                    <th>User</th>
+                                    <th>Eng-Geo Point</th>
+                                    <th>User</th>
+                                    <th>Geo-Eng Point</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
             <!-- second event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
                     <span>Go Back</span>
-                 </div>
+                </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
                     <div class="event_s_date text-info h5">Start Date</div>
                     <div class="event_e_date text-info h5">End Date</div>
                 </div>
-                
+
                 <div class="update_event2_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
-                        This is event 2
-                    </div>
+                <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                    This is event 2
+                </div>
             </div>
 
             <!-- third event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
                     <span>Go Back</span>
-                 </div>
+                </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
                     <div class="event_s_date text-info h5">Start Date</div>
                     <div class="event_e_date text-info h5">End Date</div>
                 </div>
-                
+
                 <div class="update_event3_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
-                        This is event 3
-                    </div>
+                <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                    This is event 3
+                </div>
             </div>
 
             <!-- forth event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning"> 
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
                     <span>Go Back</span>
-                 </div>
+                </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
                     <div class="event_s_date text-info h5">Start Date</div>
                     <div class="event_e_date text-info h5">End Date</div>
                 </div>
-                
+
                 <div class="update_event4_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
-                        This is event 4
-                    </div>
+                <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                    This is event 4
+                </div>
             </div>
 
 
