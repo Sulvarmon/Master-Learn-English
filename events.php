@@ -47,6 +47,40 @@ if(isset($_POST['eventBtn'])){
 			echo json_encode($array);
 			mysqli_close($conn);
 			break;
+		case 'get_event1_results_sorted_e_g':
+			define("conn", true);
+			include("./conn.php");
+
+		 	$array = array();
+
+			$sql = "SELECT * FROM event_points ORDER BY event1_e_g DESC";
+			$query = mysqli_query($conn, $sql);
+
+			if(mysqli_num_rows($query) > 0){
+			    while($row = mysqli_fetch_assoc($query)){
+			        array_push($array, $row);
+			    }
+			}
+			echo json_encode($array);
+			mysqli_close($conn);
+			break;
+		case 'get_event1_results_sorted_g_e':
+			define("conn", true);
+			include("./conn.php");
+
+		 	$array = array();
+
+			$sql = "SELECT * FROM event_points ORDER BY event1_g_e DESC";
+			$query = mysqli_query($conn, $sql);
+
+			if(mysqli_num_rows($query) > 0){
+			    while($row = mysqli_fetch_assoc($query)){
+			        array_push($array, $row);
+			    }
+			}
+			echo json_encode($array);
+			mysqli_close($conn);
+			break;
 		case 'set_event1_e_g_points':
 			define("conn", true);
 			include("./conn.php");

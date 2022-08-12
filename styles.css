@@ -126,3 +126,14 @@ body {
     cursor: pointer;
     color: #ffc107 !important;
 }
+
+.event1_raitings_overflow{
+    width: 100%;
+    height: 310px;
+}
+
+@media(min-width: 580px) {
+    .event1_raitings_overflow {
+        width: fit-content;
+    }
+}

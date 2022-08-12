@@ -25,7 +25,12 @@ if(mysqli_num_rows($query) > 0){
     }
 }
 
-change_play_type_btn
+update_events_btn 
 
-$(".choose_time_e_g_cont").hide();
-            $(".after_choosing_time_e_g_cont").show();
+/* creating event1 raitings frame without data in it */
+    
+    /* set usernames and points of e-g play type of evnet1 */
+    
+    /* set usernames and points of g-e play type of evnet1 */
+    
+    /* set images of users of evnet1 */

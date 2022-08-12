@@ -923,7 +923,107 @@ $(document).ready(function() {
         })   
     }
     
+    function createEvent1Raitings(){
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "users_array"
+            },
+            dataType: "json",
+            success: function(data) { 
+                for (var i = 0; i < data.length; i++) {
+                   $(".event1_raitings").append("<tr class='event1_raitings_el'></tr>")
+                }
 
+                for (var i = 0; i < $(".event1_raitings_el").length; i++) {
+                   $(`.event1_raitings_el:eq(${i})`).append(`<td>${i+1}</td>`);
+                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_e_g_user event1_raitings_user user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center"></td>`);
+                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_e_g_user_point">0</td>`);
+                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_g_e_user event1_raitings_user user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center"></td>`);
+                   $(`.event1_raitings_el:eq(${i})`).append(`<td class="event1_raitings_g_e_user_point">0</td>`);
+                }
+
+                for (var i = 0; i < $(".event1_raitings_e_g_user").length; i++) {
+                   $(`.event1_raitings_e_g_user:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle" class="event1_raitings_e_g_user_img">');
+                   $(`.event1_raitings_e_g_user:eq(${i})`).append('<span class="event1_raitings_e_g_user_username">username</span>');
+                }
+
+                for (var i = 0; i < $(".event1_raitings_g_e_user").length; i++) {
+                   $(`.event1_raitings_g_e_user:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle" class="event1_raitings_g_e_user_img">');
+                   $(`.event1_raitings_g_e_user:eq(${i})`).append('<span class="event1_raitings_g_e_user_username">username</span>');
+                }
+
+                $.ajax({
+                    url: "events.php",
+                    type: "post",
+                    data: {
+                        eventBtn: "get_event1_results_sorted_e_g"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+
+                        for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
+                               $(`.event1_raitings_e_g_user_username:eq(${i})`).text(`${data[i].user}`);
+                               $(`.event1_raitings_e_g_user_point:eq(${i})`).text(`${data[i].event1_e_g}`);
+                           } 
+
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "user_imgs_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                        for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
+                                            for (var j = 0; j < data.length; j++) {
+                                                if($(`.event1_raitings_e_g_user_username:eq(${i})`).text().trim() == data[j].user){
+                                                    $(`.event1_raitings_e_g_user_username:eq(${i})`).siblings().attr("src", `Img/profile_imgs/${data[j].img}`);
+                                                }
+                                            }
+                                           
+                                       } 
+                            }
+                        })   
+                    }
+                })
+
+                $.ajax({
+                    url: "events.php",
+                    type: "post",
+                    data: {
+                        eventBtn: "get_event1_results_sorted_g_e"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
+                               $(`.event1_raitings_g_e_user_username:eq(${i})`).text(`${data[i].user}`);
+                               $(`.event1_raitings_g_e_user_point:eq(${i})`).text(`${data[i].event1_g_e}`);
+                           } 
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "user_imgs_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                        for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
+                                            for (var j = 0; j < data.length; j++) {
+                                                if($(`.event1_raitings_g_e_user_username:eq(${i})`).text().trim() == data[j].user){
+                                                    $(`.event1_raitings_g_e_user_username:eq(${i})`).siblings().attr("src", `Img/profile_imgs/${data[j].img}`);
+                                                }
+                                            }
+                                           
+                                       } 
+                            }
+                        })   
+                    }
+                })
+            }
+        })  
+    }
 
     /** */
 
@@ -1923,7 +2023,7 @@ $(document).ready(function() {
         }
     })
 
-    $(".update_events_btn").click(function(){
+    $(".update_event1_btn").click(function(){
         getEvent1Data();
     })
 
@@ -1943,7 +2043,62 @@ $(document).ready(function() {
         $(".quiz_restart_btn").click();
     })
 
-    $(".home_grid_item:eq(3)").click();
+    createEvent1Raitings();    
 
+    $.ajax({
+        url: "arrays.php",
+        type: "post",
+        data: {
+            arraysBtn: "users_array"
+        },
+        dataType: "json",
+        success: function(data) {
+                
+            $(".search_event1_e_g_user_input").keydown(function(e){
+                if (e.which == 13) { 
+                    $('.search_event1_e_g_user_btn').click();
+                }
+            })
+
+            $(".search_event1_g_e_user_input").keydown(function(e){
+                if (e.which == 13) { 
+                    $('.search_event1_g_e_user_btn').click();
+                }
+            })
+
+            $(".search_event1_e_g_user_btn").click(function(){
+                var UserExists = false;
+                var searchuser = $('.search_event1_e_g_user_input').val().trim();
+                for (var i = 0; i < data.length; i++) {
+                    if (searchuser == $(`.event1_raitings_e_g_user_username:eq(${i})`).text()) {
+                        $(`.event1_raitings_overflow`).scrollTop('0');
+                        var distance = $(`.event1_raitings_e_g_user:eq(${i})`).offset().top - $(`.event1_raitings_overflow`).offset().top;
+                        $(`.event1_raitings_overflow`).scrollTop(distance);
+                        UserExists = true;
+                    }
+                }
+                if (!UserExists && searchuser != '') {
+                    alert('There is no such user');
+                }
+            })
+
+            $(".search_event1_g_e_user_btn").click(function(){
+                var UserExists = false;
+                var searchuser = $('.search_event1_g_e_user_input').val().trim();
+                for (var i = 0; i < data.length; i++) {
+                    if (searchuser == $(`.event1_raitings_g_e_user_username:eq(${i})`).text()) {
+                        $(`.event1_raitings_overflow`).scrollTop('0');
+                        var distance = $(`.event1_raitings_g_e_user:eq(${i})`).offset().top - $(`.event1_raitings_overflow`).offset().top;
+                        $(`.event1_raitings_overflow`).scrollTop(distance);
+                        UserExists = true;
+                    }
+                }
+                if (!UserExists && searchuser != '') {
+                    alert('There is no such user');
+                }
+            })
+           
+        }
+    })   
 
 })  
