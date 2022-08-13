@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons text-white">settings</i></div>
+                    <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons text-white">settings</i></div>
                 <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down rounded">
                     <div class="d-flex flex-column gap-5 align-item-center justify-content-center mx-auto w_fit_s ">
                         <div class="home dp_item link_s mx-auto">Home</div>
@@ -479,6 +479,8 @@
             <!-- donation Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Donation</div>
+
+                <div class="w_fit_s mx-auto"><img src="./Img/donatebg.jpg" class="img-fluid"> </div>
             </div>
 
             <!-- profile page -->
@@ -915,8 +917,6 @@
                     This is event 4
                 </div>
             </div>
-
-
 
         </div>
 

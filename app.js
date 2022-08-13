@@ -2151,6 +2151,28 @@ $(document).ready(function() {
         }
     })
 
-    $(".home_grid_item:eq(4)").click()
+    $(".send_message_btn").click(function(){
+        var message = $(".wright_message_textarea").val();
+        if(message == ''){
+            alert('You Can Not Send Empty Message');
+        }else{
+            $.ajax({
+                url: "message.php",
+                type: "post",
+                data: {
+                    messageBtn: true,
+                    message: message,
+                    user: user,
+                    date: new Date()
+                },
+                success: function(data) {
+                    console.log(data)
+                    alert('Message Has Been Sent');
+                    $(".wright_message_textarea").val("");
+                }
+            })
+
+        }
+    })
 
 })
