@@ -137,3 +137,14 @@ body {
         width: fit-content;
     }
 }
+
+.wright_message_textarea{
+    width: 290px;
+    height: 100px;
+}
+
+@media(min-width:  580px){
+    .wright_message_textarea{
+        width: 500px;
+    }
+}

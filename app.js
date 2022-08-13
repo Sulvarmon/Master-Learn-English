@@ -2151,4 +2151,6 @@ $(document).ready(function() {
         }
     })
 
+    $(".home_grid_item:eq(4)").click()
+
 })

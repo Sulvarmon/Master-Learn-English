@@ -64,8 +64,8 @@
                     <img src="./Img/user_default_avatar.png" width="90" height="90" class="user_img rounded-circle border border-2 cursor_pointer_s">
                     <div class="home btn btn-warning p-21">Home</div>
                 </div>
-                <div class="play_btn_wrapper position-absolute top-50 start-50 border translate-middle">
-                    <div class="text-white play_btn_cont align-items-center justify-content-center gap-3 d-none d-md-flex p-1 ps-5 pe-5 rounded">
+                <div class="play_btn_wrapper position-absolute top-50 start-50 translate-middle">
+                    <div class="text-white play_btn_cont align-items-center justify-content-center gap-3 d-none d-lg-flex p-1 ps-5 pe-5 rounded">
                         <span>Go Here To Start</span>
                         <i class="material-icons">arrow_forward</i>
                         <div class="play_btn btn btn-warning ps-5 pe-5">Play</div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="play_btn_wrapper">
-                <div class="page_bg_color_s text-white container-fluid d-flex align-items-center justify-content-center gap-1 p-1 mb-3 mt-3 rounded d-md-none">
+                <div class="page_bg_color_s text-white container-md d-flex align-items-center justify-content-center gap-1 p-1 mb-3 mt-3 rounded d-lg-none">
                     <span>Go Here To Start</span>
                     <i class="material-icons">arrow_forward</i>
                     <div class="play_btn btn btn-warning ps-5 pe-5">Play</div>
@@ -461,7 +461,19 @@
 
             <!-- contacts Page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="w_fit_s mx-auto h1 text-warning m-5">Contacts</div>
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Contact Information</div>
+                <div class="d-flex gap-5 flex-wrap justify-content-center">
+                        <div class="d-flex flex-column gap-2 w_fit_s p-2">
+                            <div class="d-1 gap-2 align-items-center"><span class="text-info">Master-Learn-English</span></div>
+                            <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">email</i><span>Email:</span><span class="text-info">MasterLearnEnglish@gmail.com</span></div>
+                            <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">phone</i><span>Phone:</span><span class="text-info">+995(493) 22 13 46 79</span></div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-3">
+                            <div>Wright A Message</div>
+                            <textarea class="wright_message_textarea"></textarea>
+                            <div class="send_message_btn btn btn-primary">Send</div>
+                        </div>
+                </div>
             </div>
 
             <!-- donation Page -->
