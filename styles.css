@@ -5,13 +5,6 @@
     font-family: 'Raleway', sans-serif;
 }
 
-input:focus,
-textarea:focus,
-select:focus,
-button:focus {
-    outline: none;
-}
-
 body {
     display: none;
 }
@@ -79,7 +72,12 @@ body {
     .home_grid_cont_s {
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .grid_dictionary_item_s{
+        grid-column: 2 / span 1;
+    }
 }
+
+
 
 .dark_bg_s {
     position: absolute;

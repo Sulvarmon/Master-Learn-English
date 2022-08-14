@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     /**functions */
     function winScr(value) {
-        $(window).scrollTop(value);
+        $(window).scrollTop(value);        
     }
 
     function displayPage(i) {
@@ -45,7 +45,15 @@ $(document).ready(function() {
 
     function gridClicks(i) {
         $(`.home_grid_item:eq(${i})`).click(function() {
-            displayPage(i + 1);
+            winScr(0)
+            switch(i){
+                case 6:
+                    displayPage(14);
+                    break;
+                default:
+                    displayPage(i + 1);
+                    break;
+            }
         })
     }
 
@@ -413,6 +421,24 @@ $(document).ready(function() {
         })
     }
 
+    function clickOnUserImgAndUsernameCont(){
+         $(".user_img_and_username").off().on("click", function() {
+            winScr(0);
+            var otherUser = $(this).children().eq(1).text().trim();
+            scrollPos = $(window).scrollTop();
+            console.log("sshdds")
+            if (otherUser == user) {
+                setOtherUserPage(otherUser);
+                $(".other_user_results_page_title").text(`My Results`);
+                displayPage(9)
+            } else {
+                setOtherUserPage(otherUser);
+                $(".other_user_results_page_title").text(`${otherUser} 's Results`);
+                displayPage(9)
+            }
+        })
+    }
+
     function getFriendsArray() {
         $.ajax({
             url: "arrays.php",
@@ -438,6 +464,7 @@ $(document).ready(function() {
                         $(`.firends_cont_item_img_and_username:eq(${i})`).append(`<div class='friend_name'>${filteredData[i].friend_name}</div>`);
                     }
                     setUserImgs();
+                    clickOnUserImgAndUsernameCont();
                 } else {
                     $(".friends_cont_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
                 }
@@ -470,6 +497,7 @@ $(document).ready(function() {
                         $(`.req_sent_item_img_and_username:eq(${i})`).append(`<div class='req_sent_name'>${filteredData[i].user_name}</div>`);
                     }
                     setUserImgs();
+                    clickOnUserImgAndUsernameCont();
                 } else {
                     $(".req_sent_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
                 }
@@ -506,6 +534,7 @@ $(document).ready(function() {
                         $(`.req_rec_item_img_and_username:eq(${i})`).append(`<div class='req_rec_name'>${filteredData[i].friend_name}</div>`);
                     }
                     setUserImgs();
+                    clickOnUserImgAndUsernameCont();
                 } else {
                     $(".req_rec_inner ").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
                 }
@@ -1992,10 +2021,11 @@ $(document).ready(function() {
 
     /**Here is the end of play page*/
 
-    $(document).on("click", ".user_img_and_username", function() {
+    $(".user_img_and_username").on("click", function() {
         winScr(0);
         var otherUser = $(this).children().eq(1).text().trim();
         scrollPos = $(window).scrollTop();
+        console.log("sshdds")
         if (otherUser == user) {
             setOtherUserPage(otherUser);
             $(".other_user_results_page_title").text(`My Results`);
@@ -2005,8 +2035,8 @@ $(document).ready(function() {
             $(".other_user_results_page_title").text(`${otherUser} 's Results`);
             displayPage(9)
         }
-
     })
+
 
     $(".user_img, .username").click(function() {
         $(".home").click();
@@ -2020,6 +2050,7 @@ $(document).ready(function() {
                     setTimeout(function() {
                         winScr(scrollPos);
                     }, 1);
+                    //winScr(scrollPos);
                     displayPage(pageIndex.oldValue);
                     break;
                 case 0:
@@ -2166,7 +2197,6 @@ $(document).ready(function() {
                     date: new Date()
                 },
                 success: function(data) {
-                    console.log(data)
                     alert('Message Has Been Sent');
                     $(".wright_message_textarea").val("");
                 }
@@ -2174,5 +2204,54 @@ $(document).ready(function() {
 
         }
     })
+
+    $.each(dictionary,function(i,e){
+        $(".dictionary_table").append("<tr class='dictionary_table_item'></tr>");
+    })
+
+    for (var i = 0; i < $(".dictionary_table_item").length; i++) {
+        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-info">'+ (i+1) +'</td>');
+        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-warning">'+ dictionary[i].eng_word +'</td>');
+        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-success">'+ dictionary[i].geo_word +'</td>');
+    }
+
+    $(".dic_search_result_cont_wrapper").hide();
+
+    $(".dictionary_search_input").keydown(function(e) {
+        if (e.which == 13) {
+            $(".dictionary_search_btn").click();
+        }
+    })
+
+    $(".dictionary_search_btn").click(function(){
+        var word = $(".dictionary_search_input").val().trim();
+        if(word != ''){
+            var isResult = false;
+            $.each(dictionary,function(i,e){
+                if(word == e.eng_word || word == e.geo_word){
+                    $(".dic_search_result_cont_wrapper").show();
+                    $(".search_result_eng_word").text(`${e.eng_word}`);
+                    $(".search_result_geo_word").text(`${e.geo_word}`);
+                    isResult = true;
+                    return false;
+                }
+            })
+
+            if(!isResult){
+                alert("There Is Not Such Word In This Dictionary");
+                $(".dictionary_search_input").val('');
+            }  
+        }
+        
+    })
+
+    $(".clear_dic_search_btn").click(function(){
+        $(".dic_search_result_cont_wrapper").hide();
+        $(".search_result_eng_word").text(`...`);
+        $(".search_result_geo_word").text(`...`);
+        $(".dictionary_search_input").val('');
+    })
+
+
 
 })

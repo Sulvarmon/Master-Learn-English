@@ -123,6 +123,11 @@
                         <div class="w_fit_s mx-auto mb-2 text-white h5">Donate</div>
                         <div class="grid_img_s"></div>
                     </div>
+                    <div class="home_grid_item grid_dictionary_item_s p-2 border border-secondary cursor_pointer_s position-relative">
+                        <div class="dark_bg_s"></div>
+                        <div class="w_fit_s mx-auto mb-2 text-white h5">Dictionary</div>
+                        <div class="grid_img_s"></div>
+                    </div>
                 </div>
             </div>
 
@@ -148,7 +153,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
+                                        <?php
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
@@ -466,7 +471,7 @@
                         <div class="d-flex flex-column gap-2 w_fit_s p-2">
                             <div class="d-1 gap-2 align-items-center"><span class="text-info">Master-Learn-English</span></div>
                             <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">email</i><span>Email:</span><span class="text-info">MasterLearnEnglish@gmail.com</span></div>
-                            <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">phone</i><span>Phone:</span><span class="text-info">+995(493) 22 13 46 79</span></div>
+                            <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">phone</i><span>Phone:</span><span class="text-info">599 19 73 55</span></div>
                         </div>
                         <div class="d-flex flex-column align-items-center gap-3">
                             <div>Wright A Message</div>
@@ -915,6 +920,48 @@
                 <div class="update_event4_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
                     This is event 4
+                </div>
+            </div>
+
+            <!-- dictionary page -->
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Dictionary</div>
+                <div class="container-fluid overflow-auto d-flex flex-column gap-2 align-items-center p-2">
+                    <div class="mt-2 d-flex flex-column gap-2 align-items-center">
+                        <div>Search A Word</div>
+                        <div class="d-flex flex-wrap gap-2 jus">
+                            <input class="dictionary_search_input p-2" type="text">
+                            <button class="dictionary_search_btn btn btn-primary p-2">Search</button>
+                        </div>
+                        <div class="dic_search_result_cont_wrapper">
+                            <div class="dic_search_result_cont d-flex flex-wrap gap-2 p-2 align-items-center">
+                                <div>
+                                    <table class="dic_search_result_table table table-dark mt-2 text-start align-middle">
+                                        <tr>
+                                            <th>English</th>
+                                            <th>Georgian</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-warning search_result_eng_word">...</td>
+                                            <td class="text-success search_result_geo_word">...</td>
+                                        </tr>                            
+                                    </table> 
+                                </div>
+                                <button class="clear_dic_search_btn btn btn-primary">Clear</button>
+                            </div>  
+                        </div>
+                        
+                    </div>
+                    <div class="w_fit_s mx-auto">
+                        <table class="dictionary_table table table-hover table-dark mt-2 text-start align-middle">
+                            <tr>
+                                <th>#</th>
+                                <th>English</th>
+                                <th>Georgian</th>
+                            </tr>                            
+                        </table> 
+                    </div>
+                    
                 </div>
             </div>
 
