@@ -72,7 +72,11 @@
                     </div>
                 </div>
 
+                <div class="d-flex gap-2 align-items-center">
+                    <div class="message cursor_pointer_s user-select-none"><i class="material-icons text-white">mail</i></div>
                     <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons text-white">settings</i></div>
+                </div>
+                
                 <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down rounded">
                     <div class="d-flex flex-column gap-5 align-item-center justify-content-center mx-auto w_fit_s ">
                         <div class="home dp_item link_s mx-auto">Home</div>
@@ -153,7 +157,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        <?php
+                                    <?php
                                             for ($i=0; $i <10 ; $i++) { 
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
@@ -393,7 +397,8 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i></th>
+                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i>
+                                </th>
                             </tr>
                             <tr>
                                 <th colspan="3">Eng to Geo points</th>
@@ -434,13 +439,15 @@
                 <!-- contents are appended in js file -->
                 <div class="friends_cont container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Friends</div>
-                    <div class="friends_cont_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2"></div>
+                    <div class="friends_cont_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                    </div>
                 </div>
                 <div class="container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Search Friend</div>
                     <div class="d-flex flex-column gap-2 align-items-center">
                         <div class="d-flex flex-column gap-2 align-items-center">
-                            <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here"></div>
+                            <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here">
+                            </div>
                             <div class="search_user_btn btn btn-primary mt-3">Search User</div>
                         </div>
                         <div class="search_result p-2 d-flex flex-wrap"></div>
@@ -448,11 +455,13 @@
                 </div>
                 <div class="req_sent_cont container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Sent</div>
-                    <div class="req_sent_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2"></div>
+                    <div class="req_sent_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                    </div>
                 </div>
                 <div class="req_rec_cont container mt-5 p-2 border">
                     <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Received</div>
-                    <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2"></div>
+                    <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                    </div>
                 </div>
             </div>
 
@@ -468,16 +477,17 @@
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Contact Information</div>
                 <div class="d-flex gap-5 flex-wrap justify-content-center">
-                        <div class="d-flex flex-column gap-2 w_fit_s p-2">
-                            <div class="d-1 gap-2 align-items-center"><span class="text-info">Master-Learn-English</span></div>
-                            <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">email</i><span>Email:</span><span class="text-info">MasterLearnEnglish@gmail.com</span></div>
-                            <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">phone</i><span>Phone:</span><span class="text-info">599 19 73 55</span></div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center gap-3">
-                            <div>Wright A Message</div>
-                            <textarea class="wright_message_textarea"></textarea>
-                            <div class="send_message_btn btn btn-primary">Send</div>
-                        </div>
+                    <div class="d-flex flex-column gap-2 w_fit_s p-2">
+                        <div class="d-1 gap-2 align-items-center"><span class="text-info">Master-Learn-English</span></div>
+                        <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">email</i><span>Email:</span><span class="text-info">MasterLearnEnglish@gmail.com</span></div>
+                        <div class="d-flex gap-2 align-items-center flex-wrap"><i class="material-icons">phone</i><span>Phone:</span><span class="text-info">599 19 73
+                            55</span></div>
+                    </div>
+                    <div class="d-flex flex-column align-items-center gap-3">
+                        <div>Wright A Message</div>
+                        <textarea class="wright_message_textarea"></textarea>
+                        <div class="send_message_btn btn btn-primary">Send</div>
+                    </div>
                 </div>
             </div>
 
@@ -582,9 +592,12 @@
                             <div class="d-flex flex-column gap-4 h5 align-items-center ">
                                 <div class="d-flex align-items-center gap-2 "><span>Choose</span><i class=" material-icons ">arrow_downward</i></div>
                                 <div class="d-flex gap-4 flex-wrap justify-content-center ">
-                                    <div><input type="radio" class="choose_time form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">5 Min(300 Sec)</span></div>
-                                    <div><input type="radio" class="choose_time form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">3 Min(180 Sec)</span></div>
-                                    <div><input type="radio" class="choose_time form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">1 Min(60 Sec)</span></div>
+                                    <div><input type="radio" class="choose_time form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">5 Min(300 Sec)</span>
+                                    </div>
+                                    <div><input type="radio" class="choose_time form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">3 Min(180 Sec)</span>
+                                    </div>
+                                    <div><input type="radio" class="choose_time form-check-input" style="transform: translateY(-2px) "><span class="ms-2 ">1 Min(60 Sec)</span>
+                                    </div>
                                 </div>
                                 <div class="start_btn btn btn-primary ">Start</div>
                             </div>
@@ -627,7 +640,8 @@
                                     <div class="d-flex flex-column flex-md-row gap-3 align-items-center">
                                         <div class="text-danger" style="font-size: 40px;">Time Is Out</div>
                                         <div class="restart_btn_cont" style="display: none;">
-                                            <div class="restart_btn btn btn-primary" style="transition: 1s;opacity: 0;">Restart</div>
+                                            <div class="restart_btn btn btn-primary" style="transition: 1s;opacity: 0;">
+                                                Restart</div>
                                         </div>
                                     </div>
                                 </div>
@@ -709,7 +723,8 @@
                 <div class="other_user_results_page_title w_fit_s mx-auto h1 text-warning m-5">User Results</div>
                 <div class="update_other_user_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
-                    <div><img class="results_other_user_img" src="./Img/user_default_avatar.png" width="250" height="250"></div>
+                    <div><img class="results_other_user_img" src="./Img/user_default_avatar.png" width="250" height="250">
+                    </div>
                     <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
                         <thead>
                             <tr>
@@ -747,7 +762,8 @@
                     <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
                         <thead>
                             <tr>
-                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i></th>
+                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i>
+                                </th>
                             </tr>
                             <tr>
                                 <th colspan="3">Eng to Geo points</th>
@@ -944,13 +960,13 @@
                                         <tr>
                                             <td class="text-warning search_result_eng_word">...</td>
                                             <td class="text-success search_result_geo_word">...</td>
-                                        </tr>                            
-                                    </table> 
+                                        </tr>
+                                    </table>
                                 </div>
                                 <button class="clear_dic_search_btn btn btn-primary">Clear</button>
-                            </div>  
+                            </div>
                         </div>
-                        
+
                     </div>
                     <div class="w_fit_s mx-auto">
                         <table class="dictionary_table table table-hover table-dark mt-2 text-start align-middle">
@@ -958,12 +974,37 @@
                                 <th>#</th>
                                 <th>English</th>
                                 <th>Georgian</th>
-                            </tr>                            
-                        </table> 
+                            </tr>
+                        </table>
                     </div>
-                    
+
                 </div>
             </div>
+
+            <!-- messages page -->
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="w_fit_s mx-auto h1 text-warning m-5">Messages</div>
+                <div class="d-flex flex-wrap gap-2">
+                    <div class="w_fit_s d-flex flex-column gap-2 align-items-center p-2 border">
+                        <div class="user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center">
+                            <img src='./Img/user_default_avatar.png' width='50' height='50' class='messages_img rounded-circle'>
+                            <span class='messages_user ms-2'>username1</span>
+                        </div>
+                        <div class="user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center">
+                            <img src='./Img/user_default_avatar.png' width='50' height='50' class='messages_img rounded-circle'>
+                            <span class='messages_user ms-2'>username2</span>
+                        </div>
+                        <div class="user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center">
+                            <img src='./Img/user_default_avatar.png' width='50' height='50' class='messages_img rounded-circle'>
+                            <span class='messages_user ms-2'>username3</span>
+                        </div>
+                    </div>
+                    <!-- <div class="border"></div> -->
+                </div>
+                
+            </div>
+
+
 
         </div>
 

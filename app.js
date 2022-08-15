@@ -32,8 +32,11 @@ $(document).ready(function() {
     })
 
     /**functions */
-    function winScr(value) {
-        $(window).scrollTop(value);        
+    function winScr() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        });       
     }
 
     function displayPage(i) {
@@ -45,7 +48,7 @@ $(document).ready(function() {
 
     function gridClicks(i) {
         $(`.home_grid_item:eq(${i})`).click(function() {
-            winScr(0)
+            winScr()
             switch(i){
                 case 6:
                     displayPage(14);
@@ -423,10 +426,9 @@ $(document).ready(function() {
 
     function clickOnUserImgAndUsernameCont(){
          $(".user_img_and_username").off().on("click", function() {
-            winScr(0);
-            var otherUser = $(this).children().eq(1).text().trim();
             scrollPos = $(window).scrollTop();
-            console.log("sshdds")
+            winScr();
+            var otherUser = $(this).children().eq(1).text().trim();            
             if (otherUser == user) {
                 setOtherUserPage(otherUser);
                 $(".other_user_results_page_title").text(`My Results`);
@@ -435,7 +437,7 @@ $(document).ready(function() {
                 setOtherUserPage(otherUser);
                 $(".other_user_results_page_title").text(`${otherUser} 's Results`);
                 displayPage(9)
-            }
+            }            
         })
     }
 
@@ -1058,7 +1060,7 @@ $(document).ready(function() {
                 updateEvent1EGData();
                 updateEvent1GEData();
 
-
+                clickOnUserImgAndUsernameCont();    
             }
         })
     }
@@ -1136,8 +1138,6 @@ $(document).ready(function() {
     showHidePassword("change_pass_show_hide>input", "change_password_input>input");
 
     getEvent1Data();
-
-    winScr(0);
 
     $(".login_username_input>input, .login_password_input>input").keydown(function(e) {
         if (e.which == 13) {
@@ -1877,7 +1877,7 @@ $(document).ready(function() {
     })
 
     $(".quiz_finish_btn").click(function() {
-        winScr(0);
+        winScr();
         $(".quiz_finish_btn").addClass("disabled");
         $(".answers_cont, .after_quiz_cont").show();
         var questions = [];
@@ -2000,7 +2000,7 @@ $(document).ready(function() {
     })
 
     $(".quiz_restart_btn").click(function() {
-        winScr(0);
+        winScr();
         $(".quiz_finish_btn").removeClass("disabled");
         $(".answers_cont, .after_quiz_cont").hide();
         $(".correct_or_wrong").text("answer is ?");
@@ -2019,39 +2019,27 @@ $(document).ready(function() {
         }
     })
 
-    /**Here is the end of play page*/
+    /**Here is the end of play page*/    
 
-    $(".user_img_and_username").on("click", function() {
-        winScr(0);
-        var otherUser = $(this).children().eq(1).text().trim();
-        scrollPos = $(window).scrollTop();
-        console.log("sshdds")
-        if (otherUser == user) {
-            setOtherUserPage(otherUser);
-            $(".other_user_results_page_title").text(`My Results`);
-            displayPage(9)
-        } else {
-            setOtherUserPage(otherUser);
-            $(".other_user_results_page_title").text(`${otherUser} 's Results`);
-            displayPage(9)
-        }
-    })
-
+    clickOnUserImgAndUsernameCont();
 
     $(".user_img, .username").click(function() {
         $(".home").click();
         $(".home_grid_item:eq(1)").click();
     })
 
+
     $(".back_btn").click(function() {
         function withOrWithoutScroll(index) {
             switch (index) {
                 case 1:
-                    setTimeout(function() {
-                        winScr(scrollPos);
-                    }, 1);
-                    //winScr(scrollPos);
                     displayPage(pageIndex.oldValue);
+                    window.scrollTo({
+                      top: scrollPos,
+                      behavior: 'instant',
+                    });
+
+
                     break;
                 case 0:
                     displayPage(pageIndex.oldValue);
@@ -2252,6 +2240,11 @@ $(document).ready(function() {
         $(".dictionary_search_input").val('');
     })
 
+    $(".message").click(function(){
+        displayPage(15);
+    })
 
+
+    $(".message").click();
 
 })
