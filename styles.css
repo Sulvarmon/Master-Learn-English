@@ -146,3 +146,8 @@ body {
         width: 500px;
     }
 }
+
+.messages_input{
+    outline: none;
+    border-radius: 20px;
+}

@@ -16,6 +16,8 @@ $(document).ready(function() {
         oldValue: 0,
         newValue: 0
     };
+    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     /** */
 
     $.ajax({
@@ -36,7 +38,20 @@ $(document).ready(function() {
         window.scrollTo({
             top: 0,
             behavior: 'instant',
-        });       
+        });
+    }
+
+    function getDate() {
+
+        var date = {
+            year: new Date().getFullYear(),
+            month: month[new Date().getMonth()],
+            day: new Date().getDate(),
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes(),
+        }
+
+        return date;
     }
 
     function displayPage(i) {
@@ -49,7 +64,7 @@ $(document).ready(function() {
     function gridClicks(i) {
         $(`.home_grid_item:eq(${i})`).click(function() {
             winScr()
-            switch(i){
+            switch (i) {
                 case 6:
                     displayPage(14);
                     break;
@@ -424,11 +439,11 @@ $(document).ready(function() {
         })
     }
 
-    function clickOnUserImgAndUsernameCont(){
-         $(".user_img_and_username").off().on("click", function() {
+    function clickOnUserImgAndUsernameCont() {
+        $(".user_img_and_username").off().on("click", function() {
             scrollPos = $(window).scrollTop();
             winScr();
-            var otherUser = $(this).children().eq(1).text().trim();            
+            var otherUser = $(this).children().eq(1).text().trim();
             if (otherUser == user) {
                 setOtherUserPage(otherUser);
                 $(".other_user_results_page_title").text(`My Results`);
@@ -437,7 +452,7 @@ $(document).ready(function() {
                 setOtherUserPage(otherUser);
                 $(".other_user_results_page_title").text(`${otherUser} 's Results`);
                 displayPage(9)
-            }            
+            }
         })
     }
 
@@ -1060,7 +1075,7 @@ $(document).ready(function() {
                 updateEvent1EGData();
                 updateEvent1GEData();
 
-                clickOnUserImgAndUsernameCont();    
+                clickOnUserImgAndUsernameCont();
             }
         })
     }
@@ -2019,7 +2034,7 @@ $(document).ready(function() {
         }
     })
 
-    /**Here is the end of play page*/    
+    /**Here is the end of play page*/
 
     clickOnUserImgAndUsernameCont();
 
@@ -2035,8 +2050,8 @@ $(document).ready(function() {
                 case 1:
                     displayPage(pageIndex.oldValue);
                     window.scrollTo({
-                      top: scrollPos,
-                      behavior: 'instant',
+                        top: scrollPos,
+                        behavior: 'instant',
                     });
 
 
@@ -2093,7 +2108,7 @@ $(document).ready(function() {
                 }
             }
         })
-
+        $(".event1_table_update_time").text(`${getDate().month}/${getDate().day}/${getDate().year} ${getDate().hour}:${getDate().minute}`)
     })
 
     $(".event1_quiz_btn_e_g").click(function() {
@@ -2170,11 +2185,11 @@ $(document).ready(function() {
         }
     })
 
-    $(".send_message_btn").click(function(){
+    $(".send_message_btn").click(function() {
         var message = $(".wright_message_textarea").val();
-        if(message == ''){
+        if (message == '') {
             alert('You Can Not Send Empty Message');
-        }else{
+        } else {
             $.ajax({
                 url: "message.php",
                 type: "post",
@@ -2193,14 +2208,14 @@ $(document).ready(function() {
         }
     })
 
-    $.each(dictionary,function(i,e){
+    $.each(dictionary, function(i, e) {
         $(".dictionary_table").append("<tr class='dictionary_table_item'></tr>");
     })
 
     for (var i = 0; i < $(".dictionary_table_item").length; i++) {
-        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-info">'+ (i+1) +'</td>');
-        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-warning">'+ dictionary[i].eng_word +'</td>');
-        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-success">'+ dictionary[i].geo_word +'</td>');
+        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-info">' + (i + 1) + '</td>');
+        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-warning">' + dictionary[i].eng_word + '</td>');
+        $(`.dictionary_table_item:eq(${i})`).append('<td class="text-success">' + dictionary[i].geo_word + '</td>');
     }
 
     $(".dic_search_result_cont_wrapper").hide();
@@ -2211,12 +2226,12 @@ $(document).ready(function() {
         }
     })
 
-    $(".dictionary_search_btn").click(function(){
+    $(".dictionary_search_btn").click(function() {
         var word = $(".dictionary_search_input").val().trim();
-        if(word != ''){
+        if (word != '') {
             var isResult = false;
-            $.each(dictionary,function(i,e){
-                if(word == e.eng_word || word == e.geo_word){
+            $.each(dictionary, function(i, e) {
+                if (word == e.eng_word || word == e.geo_word) {
                     $(".dic_search_result_cont_wrapper").show();
                     $(".search_result_eng_word").text(`${e.eng_word}`);
                     $(".search_result_geo_word").text(`${e.geo_word}`);
@@ -2225,26 +2240,29 @@ $(document).ready(function() {
                 }
             })
 
-            if(!isResult){
+            if (!isResult) {
                 alert("There Is Not Such Word In This Dictionary");
                 $(".dictionary_search_input").val('');
-            }  
+            }
         }
-        
+
     })
 
-    $(".clear_dic_search_btn").click(function(){
+    $(".clear_dic_search_btn").click(function() {
         $(".dic_search_result_cont_wrapper").hide();
         $(".search_result_eng_word").text(`...`);
         $(".search_result_geo_word").text(`...`);
         $(".dictionary_search_input").val('');
     })
 
-    $(".message").click(function(){
+
+
+    $(".event1_table_update_time").text(`${getDate().month}/${getDate().day}/${getDate().year} ${getDate().hour}:${getDate().minute}`)
+
+    $(".messages").click(function(){
         displayPage(15);
     })
 
-
-    $(".message").click();
+    $(".messages").click();
 
 })

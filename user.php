@@ -32,7 +32,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
-
         <!-- font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -71,9 +70,8 @@
                         <div class="play_btn btn btn-warning ps-5 pe-5">Play</div>
                     </div>
                 </div>
-
                 <div class="d-flex gap-2 align-items-center">
-                    <div class="message cursor_pointer_s user-select-none"><i class="material-icons text-white">mail</i></div>
+                    <div class="messages cursor_pointer_s user-select-none"><i class="material-icons text-white">mail</i></div>
                     <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons text-white">settings</i></div>
                 </div>
                 
@@ -162,7 +160,7 @@
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_no_time_img rounded-circle'>" . "<span class='top10_e_g_no_time_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_e_g_no_time_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_e_g_no_time_point'>" . "..." . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -192,7 +190,7 @@
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_no_time_img rounded-circle'>" . "<span class='top10_g_e_no_time_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_g_e_no_time_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_g_e_no_time_point'>" . "..." . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -232,11 +230,11 @@
                                                 echo "<tr>";
                                                     echo "<th>" . ($i+1) . "</th>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time5min_img rounded-circle'>" . "<span class='top10_e_g_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_e_g_with_time5min_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_e_g_with_time5min_point'>" . "..." . "</td>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time3min_img rounded-circle'>" . "<span class='top10_e_g_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_e_g_with_time3min_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_e_g_with_time3min_point'>" . "..." . "</td>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_with_time1min_img rounded-circle'>" . "<span class='top10_e_g_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_e_g_with_time1min_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_e_g_with_time1min_point'>" . "..." . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -276,11 +274,11 @@
                                                 echo "<tr>";
                                                     echo "<th>" . ($i+1) . "</th>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time5min_img rounded-circle'>" . "<span class='top10_g_e_with_time5min_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_g_e_with_time5min_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_g_e_with_time5min_point'>" . "..." . "</td>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time3min_img rounded-circle'>" . "<span class='top10_g_e_with_time3min_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_g_e_with_time3min_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_g_e_with_time3min_point'>" . "..." . "</td>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_with_time1min_img rounded-circle'>" . "<span class='top10_g_e_with_time1min_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_g_e_with_time1min_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_g_e_with_time1min_point'>" . "..." . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -311,7 +309,7 @@
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_e_g_quiz_img rounded-circle'>" . "<span class='top10_e_g_quiz_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_e_g_quiz_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_e_g_quiz_point'>" . "..." . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -342,7 +340,7 @@
                                                 echo "<tr>";
                                                     echo "<th scope='row'>" . ($i+1) . "</th>";
                                                     echo "<td class='user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'>" . "<img src='./Img/user_default_avatar.png' width='50' height='50' class='top10_g_e_quiz_img rounded-circle'>" . "<span class='top10_g_e_quiz_user ms-2'>" . "username" . "</span>" . "</td>";
-                                                    echo "<td class='top10_g_e_quiz_point'>" . "999" . "</td>";
+                                                    echo "<td class='top10_g_e_quiz_point'>" . "..." . "</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
@@ -372,8 +370,8 @@
                                 <th>Geo to Eng points</th>
                             </tr>
                             <tr>
-                                <td class="my_results_e_g_no_time">999</td>
-                                <td class="my_results_g_e_no_time">999</td>
+                                <td class="my_results_e_g_no_time">...</td>
+                                <td class="my_results_g_e_no_time">...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -389,8 +387,8 @@
                                 <th>Geo to Eng points</th>
                             </tr>
                             <tr>
-                                <td class="my_results_e_g_quiz">999</td>
-                                <td class="my_results_g_e_quiz">999</td>
+                                <td class="my_results_e_g_quiz">...</td>
+                                <td class="my_results_g_e_quiz">...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -415,12 +413,12 @@
                                 <th>1min</th>
                             </tr>
                             <tr>
-                                <th class="my_results_e_g_with_time5min">999</th>
-                                <th class="my_results_e_g_with_time3min">999</th>
-                                <th class="my_results_e_g_with_time1min">999</th>
-                                <th class="my_results_g_e_with_time5min">999</th>
-                                <th class="my_results_g_e_with_time3min">999</th>
-                                <th class="my_results_g_e_with_time1min">999</th>
+                                <th class="my_results_e_g_with_time5min">...</th>
+                                <th class="my_results_e_g_with_time3min">...</th>
+                                <th class="my_results_e_g_with_time1min">...</th>
+                                <th class="my_results_g_e_with_time5min">...</th>
+                                <th class="my_results_g_e_with_time3min">...</th>
+                                <th class="my_results_g_e_with_time1min">...</th>
                             </tr>
 
                         </tbody>
@@ -647,7 +645,7 @@
                                 </div>
                                 <div class="d-flex flex-column align-items-center mt-3 ">
                                     <div>Points Collected</div>
-                                    <div class="points text-warning rounded " style="font-size: 40px;">999</div>
+                                    <div class="points text-warning rounded " style="font-size: 40px;">...</div>
                                 </div>
                             </div>
 
@@ -668,11 +666,11 @@
                                     <div>Quiz Results</div>
                                     <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
                                         <div class="text-center">Total Points Collected In This Quiz</div>
-                                        <div class="points_collected text-success h4">999</div>
+                                        <div class="points_collected text-success h4">...</div>
                                     </div>
                                     <div class="d-flex gap-2 p-2 bg-light text-dark rounded align-items-center">
                                         <div class="text-center">Your Total Points In This Type Of Quiz</div>
-                                        <div class="total_quiz_points text-success h4">999</div>
+                                        <div class="total_quiz_points text-success h4">...</div>
                                     </div>
                                 </div>
                                 <div class="quiz_restart_btn btn btn-primary">Restart</div>
@@ -737,8 +735,8 @@
                                 <th>Geo to Eng points</th>
                             </tr>
                             <tr>
-                                <td class="other_user_results_e_g_no_time">999</td>
-                                <td class="other_user_results_g_e_no_time">999</td>
+                                <td class="other_user_results_e_g_no_time">...</td>
+                                <td class="other_user_results_g_e_no_time">...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -754,8 +752,8 @@
                                 <th>Geo to Eng points</th>
                             </tr>
                             <tr>
-                                <td class="other_user_results_e_g_quiz">999</td>
-                                <td class="other_user_results_g_e_quiz">999</td>
+                                <td class="other_user_results_e_g_quiz">...</td>
+                                <td class="other_user_results_g_e_quiz">...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -780,14 +778,13 @@
                                 <th>1min</th>
                             </tr>
                             <tr>
-                                <th class="other_user_results_e_g_with_time5min">999</th>
-                                <th class="other_user_results_e_g_with_time3min">999</th>
-                                <th class="other_user_results_e_g_with_time1min">999</th>
-                                <th class="other_user_results_g_e_with_time5min">999</th>
-                                <th class="other_user_results_g_e_with_time3min">999</th>
-                                <th class="other_user_results_g_e_with_time1min">999</th>
+                                <th class="other_user_results_e_g_with_time5min">...</th>
+                                <th class="other_user_results_e_g_with_time3min">...</th>
+                                <th class="other_user_results_e_g_with_time1min">...</th>
+                                <th class="other_user_results_g_e_with_time5min">...</th>
+                                <th class="other_user_results_g_e_with_time3min">...</th>
+                                <th class="other_user_results_g_e_with_time1min">...</th>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -867,7 +864,13 @@
                         </div>
                     </div>
 
-                    <div class="event1_hide_show event1_raitings_overflow overflow-auto">
+                    
+                    <div class="d-flex flex-column gap-2 p-2 border  mt-5 mb-2">
+                        <div class="text-info mt-1 mb-1 w_fit_s mx-auto h5">Last Updated:</div>
+                        <div class="event1_table_update_time h5 text-warning">...</div>
+                    </div>
+
+                    <div class="event1_hide_show event1_raitings_overflow overflow-auto">                                                
                         <div class="w_fit_s mx-auto">
                             <table class="event1_raitings table table-hover table-dark text-center align-middle">
                                 <tr>
@@ -980,29 +983,53 @@
 
                 </div>
             </div>
-
-            <!-- messages page -->
+        
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Messages</div>
-                <div class="d-flex flex-wrap gap-2">
-                    <div class="w_fit_s d-flex flex-column gap-2 align-items-center p-2 border">
-                        <div class="user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center">
-                            <img src='./Img/user_default_avatar.png' width='50' height='50' class='messages_img rounded-circle'>
-                            <span class='messages_user ms-2'>username1</span>
-                        </div>
-                        <div class="user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center">
-                            <img src='./Img/user_default_avatar.png' width='50' height='50' class='messages_img rounded-circle'>
-                            <span class='messages_user ms-2'>username2</span>
-                        </div>
-                        <div class="user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center">
-                            <img src='./Img/user_default_avatar.png' width='50' height='50' class='messages_img rounded-circle'>
-                            <span class='messages_user ms-2'>username3</span>
-                        </div>
+                <div class="d-flex gap-2 p-2 border rounded">
+                    <div class="d-flex flex-column gap-2 p-2 border rounded w_fit_s">
+                        <div class="border rounded p-2">user1</div>
+                        <div class="border rounded p-2">user2</div>
+                        <div class="border rounded p-2">user3</div>
+                        <div class="border rounded p-2">user4</div>
                     </div>
-                    <!-- <div class="border"></div> -->
+                    <div class="flex-fill border rounded position-relative">
+                        <div class="d-flex gap-1 position-absolute bottom-0 start-0 w-100 border border-danger align-items-center p-2">
+                            <div class="flex-fill">
+                                <input type="text" class="messages_input p-2 w-100">                           
+                            </div>
+                            <div class="cursor_pointer_s h_fit_s"><i class="material-icons">mood</i> </div>
+                        </div>
+                        
+                    </div>
                 </div>
                 
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

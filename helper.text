@@ -25,7 +25,4 @@ if(mysqli_num_rows($query) > 0){
     }
 }
 
-window.scrollTo({
-            top: scrollPos,
-            behavior: 'instant',
-        });
+clickOnUserImgAndUsernameCont
