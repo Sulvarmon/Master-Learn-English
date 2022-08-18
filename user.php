@@ -991,12 +991,25 @@
                     <!-- appended in js -->
                     <div class="chats_cont d-flex flex-wrap gap-2 justify-content-center"></div>
                 </div>
+            </div>
+
+            <div class="page_bg_color_s page container-md text-white mt-5 p-3">
+                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
+                    <i class="material-icons">arrow_back</i>
+                    <span>Go Back</span>
+                </div>
+                <div class="d-flex gap-2 flex-column align-items-center">
+                    <div class="chat_with d-flex gap-2 align-items-center mt-5">
+                        <img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">
+                        <span class="ms-2">...</span>
+                    </div>
+                    <div class="border rounded overflow-auto p-2 w-100" style="height: 500px;"></div>
+                </div>
                 
             </div>
 
 
-
-
+                
 
 
 

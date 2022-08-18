@@ -2325,7 +2325,7 @@ $(document).ready(function() {
                             if($(`.msg_user_cont:eq(${i})>span`).text() == e.user){
                                 $(`.msg_user_cont:eq(${i})>img`).attr("src" ,`./img/profile_imgs/${e.img}`)
                             }
-                        } 
+                        }
                     })
                     
                 }
@@ -2334,7 +2334,14 @@ $(document).ready(function() {
                 
             }
 
-
+            $(".msg_user_cont").click(function(){
+                var index = $(".msg_user_cont").index(this)
+                var msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
+                var msgUserImg = $(`.msg_user_cont:eq(${index})>img`).attr("src");
+                $(".chat_with>img").attr("src", `${msgUserImg}`);
+                $(".chat_with>span").text(`${msgUser}`);
+                displayPage(16)
+            })
 
         }
     })
