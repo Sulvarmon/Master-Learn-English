@@ -986,22 +986,10 @@
         
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Messages</div>
-                <div class="d-flex gap-2 p-2 border rounded">
-                    <div class="d-flex flex-column gap-2 p-2 border rounded w_fit_s">
-                        <div class="border rounded p-2">user1</div>
-                        <div class="border rounded p-2">user2</div>
-                        <div class="border rounded p-2">user3</div>
-                        <div class="border rounded p-2">user4</div>
-                    </div>
-                    <div class="flex-fill border rounded position-relative">
-                        <div class="d-flex gap-1 position-absolute bottom-0 start-0 w-100 border border-danger align-items-center p-2">
-                            <div class="flex-fill">
-                                <input type="text" class="messages_input p-2 w-100">                           
-                            </div>
-                            <div class="cursor_pointer_s h_fit_s"><i class="material-icons">mood</i> </div>
-                        </div>
-                        
-                    </div>
+                <div class="chats_cont_wrapper">
+                    <div class="w_fit_s mx-auto h4 text-info m-2">Chats</div>
+                    <!-- appended in js -->
+                    <div class="chats_cont d-flex flex-wrap gap-2 justify-content-center"></div>
                 </div>
                 
             </div>

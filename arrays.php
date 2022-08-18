@@ -216,6 +216,20 @@ if(isset($_POST['arraysBtn'])){
 
             echo json_encode($reqRent);
             break;
+        case 'messages':
+            $array = array();
+
+            $sql = "SELECT * FROM messages";
+            $query = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($query) > 0){
+                while($row = mysqli_fetch_assoc($query)){
+                    array_push($array, $row);
+                }
+            }
+
+            echo json_encode($array);
+            break;
         default:
             # code...
             break;

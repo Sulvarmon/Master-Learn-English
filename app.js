@@ -2261,6 +2261,82 @@ $(document).ready(function() {
 
     $(".messages").click(function(){
         displayPage(15);
+    });
+
+
+    $.ajax({
+        url: "./arrays.php",
+        type: "post",
+        data:{
+            arraysBtn: "messages",
+        },
+        dataType: "json",
+        success: function(data){
+            filteredData = [];
+            filteredData2 = [];
+            filteredData3 = [];
+
+            $.each(data, function(i, e) {
+                if(user == e.sender || user == e.receiver){
+                    filteredData.push(e);
+                }                             
+            });
+
+            $.each(filteredData, function(i, e) {
+                var string = `${e.sender}-${e.receiver}`;
+                var string2 = `${e.receiver}-${e.sender}`;
+                if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1){
+                    filteredData2.push(string);
+                } 
+            });
+
+            for (var i = 0; i < filteredData2.length; i++) {
+                $(".chats_cont").append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
+            }
+
+            for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
+                $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
+            }
+
+            $.each(filteredData2, function(i, e) {
+                var splited = e.split('-');
+                filteredData3.push(splited)
+            });
+
+            for (var i = 0; i < filteredData3.length; i++) {
+                if(user == filteredData3[i][0]){
+                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
+                }
+                if(user == filteredData3[i][1]){
+                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);                    
+                }
+
+            $.ajax({
+                url: "arrays.php",
+                type: "post",
+                data: {
+                    arraysBtn: "user_imgs_array"
+                },
+                dataType: "json",
+                success: function(data2) {
+                    $.each(data2, function(i,e){
+                        for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                            if($(`.msg_user_cont:eq(${i})>span`).text() == e.user){
+                                $(`.msg_user_cont:eq(${i})>img`).attr("src" ,`./img/profile_imgs/${e.img}`)
+                            }
+                        } 
+                    })
+                    
+                }
+            })
+
+                
+            }
+
+
+
+        }
     })
 
     $(".messages").click();
