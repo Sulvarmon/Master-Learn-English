@@ -2336,6 +2336,7 @@ $(document).ready(function() {
             }
 
             $(".msg_user_cont").click(function(){
+                $(".messages_area").hide();
                 function messenger(data){                    
                     $(".messages_area_inner_cont").empty();
                     var userMessages = [];
@@ -2343,23 +2344,45 @@ $(document).ready(function() {
                     $.each(data,function(i,e){
                         if(user == e.sender && msgUser == e.receiver){
                             $(".messages_area_inner_cont").append("<div class='messages_area_user d-flex justify-content-end'></div>");
-                            userMessages.push(e.msg);
+                            var fTime = e.time.split(" ");
+                            var fTime2 = [];
+                            for (var i = 1; i <= 4; i++) {
+                                fTime2.push(fTime[i]);
+                            }                            
+                            var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
+                            userMessages.push({'msg': e.msg, 'time': time});
                         }
                         if(user == e.receiver && msgUser == e.sender){
                             $(".messages_area_inner_cont").append("<div class='messages_area_other_user d-flex justify-content-start'></div>");
-                            otherUserMessages.push(e.msg);
+                            var fTime = e.time.split(" ");
+                            var fTime2 = [];
+                            for (var i = 1; i <= 4; i++) {
+                                fTime2.push(fTime[i]);
+                            }                            
+                            var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
+                            otherUserMessages.push({'msg': e.msg, 'time': time});
                         }
                     })
 
                     for (var i = 0; i < $(".messages_area_user").length; i++) {
-                        $(`.messages_area_user:eq(${i})`).append("<div class='w_fit_s bg-primary p-2 msg_rounded_s'>" + userMessages[i] + "</div>")
+                        $(`.messages_area_user:eq(${i})`).append("<div class='messages_area_user_msg_and_time d-flex gap-2 align-items-center'></div>")
+                    }
+
+                    for (var i = 0; i < $(".messages_area_user_msg_and_time").length; i++) {
+                        $(`.messages_area_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s text-warning' style='font-size: 12px;' >" + userMessages[i].time + "</div>")
+                        $(`.messages_area_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s bg-primary p-2 msg_rounded_s'>" + userMessages[i].msg + "</div>")
                     }
 
                     for (var i = 0; i < $(".messages_area_other_user").length; i++) {
-                        $(`.messages_area_other_user:eq(${i})`).append("<div class='w_fit_s bg-secondary p-2 msg_rounded_s'>" + otherUserMessages[i] + "</div>")
+                        $(`.messages_area_other_user:eq(${i})`).append("<div class='messages_area_other_user_msg_and_time d-flex gap-2 align-items-center'></div>")
                     }
-                }
 
+                    for (var i = 0; i < $(".messages_area_other_user_msg_and_time").length; i++) {
+                        $(`.messages_area_other_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s bg-secondary p-2 msg_rounded_s'>" + otherUserMessages[i].msg + "</div>")
+                        $(`.messages_area_other_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s text-warning' style='font-size: 12px;' >" + otherUserMessages[i].time + "</div>")
+                    }
+                    $(".messages_area").show()
+                }
                 
                 var index = $(".msg_user_cont").index(this)
                 msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
@@ -2394,9 +2417,10 @@ $(document).ready(function() {
                 var oldData = [];
 
                 var interval  = setInterval(function(){
-                    console.log()
                     if($(".page:eq(16)").css("display") == 'none'){
+                        $(".messages_area").hide()
                         clearInterval(interval);
+
                     }
                     $.ajax({
                         url: "arrays.php",
@@ -2426,6 +2450,10 @@ $(document).ready(function() {
 
         }
     })
+        
+        $(".home").click(function(){
+            console.log($(".messages_area_user").css("display"))
+        })
 
     $(".messages").click();
 
