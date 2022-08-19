@@ -1003,7 +1003,17 @@
                         <img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">
                         <span class="ms-2">...</span>
                     </div>
-                    <div class="border rounded overflow-auto p-2 w-100" style="height: 500px;"></div>
+                    <div class="position-relative border rounded pt-4 ps-1 pe-1 w-100 d-flex flex-column gap-2" style="height: 500px;">
+                        <div class="msg_other_user_indicator position-absolute start-0 top-0 m-2"><img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle"></div>
+                        <div class="msg_user_indicator position-absolute end-0 top-0 m-2"><img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle"></div>
+                        <div class="position-absolute bottom-0 start-0 w-100 d-flex gap-1 align-items-center mb-1">
+                            <div class="flex-fill"><input type="text" class="type_msg_input w-100 p-2 msg_rounded_s" style="outline: none;"></div>
+                            <div class="cursor_pointer_s"><i class="material-icons">mood</i></div>
+                        </div>
+                        <div class="messages_area overflow-auto mt-5 border" style="height: 365px;">
+                            <div class="messages_area_inner_cont d-flex flex-column gap-2 p-2"></div>
+                        </div>
+                    </div>
                 </div>
                 
             </div>

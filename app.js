@@ -2272,9 +2272,10 @@ $(document).ready(function() {
         },
         dataType: "json",
         success: function(data){
-            filteredData = [];
-            filteredData2 = [];
-            filteredData3 = [];
+            var filteredData = [];
+            var filteredData2 = [];
+            var filteredData3 = [];
+            var msgUser;
 
             $.each(data, function(i, e) {
                 if(user == e.sender || user == e.receiver){
@@ -2335,13 +2336,93 @@ $(document).ready(function() {
             }
 
             $(".msg_user_cont").click(function(){
+                function messenger(data){                    
+                    $(".messages_area_inner_cont").empty();
+                    var userMessages = [];
+                    var otherUserMessages = [];
+                    $.each(data,function(i,e){
+                        if(user == e.sender && msgUser == e.receiver){
+                            $(".messages_area_inner_cont").append("<div class='messages_area_user d-flex justify-content-end'></div>");
+                            userMessages.push(e.msg);
+                        }
+                        if(user == e.receiver && msgUser == e.sender){
+                            $(".messages_area_inner_cont").append("<div class='messages_area_other_user d-flex justify-content-start'></div>");
+                            otherUserMessages.push(e.msg);
+                        }
+                    })
+
+                    for (var i = 0; i < $(".messages_area_user").length; i++) {
+                        $(`.messages_area_user:eq(${i})`).append("<div class='w_fit_s bg-primary p-2 msg_rounded_s'>" + userMessages[i] + "</div>")
+                    }
+
+                    for (var i = 0; i < $(".messages_area_other_user").length; i++) {
+                        $(`.messages_area_other_user:eq(${i})`).append("<div class='w_fit_s bg-secondary p-2 msg_rounded_s'>" + otherUserMessages[i] + "</div>")
+                    }
+                }
+
+                
                 var index = $(".msg_user_cont").index(this)
-                var msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
+                msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
                 var msgUserImg = $(`.msg_user_cont:eq(${index})>img`).attr("src");
+                var userImg = $(".user_img").attr("src");
                 $(".chat_with>img").attr("src", `${msgUserImg}`);
                 $(".chat_with>span").text(`${msgUser}`);
-                displayPage(16)
-            })
+                $(".msg_other_user_indicator>img").attr("src", `${msgUserImg}`);
+                $(".msg_user_indicator>img").attr("src", `${userImg}`);
+                displayPage(16);
+
+                $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
+
+                $(".type_msg_input").keydown(function(e) {
+                    var msg = $(".type_msg_input").val();
+                    if (e.which == 13 && msg != '') {
+                        $.ajax({
+                            url: "messenger.php",
+                            type: "post",
+                            data: {
+                                messengerBtn: true,
+                                user: user,
+                                otherUser: msgUser,
+                                msg: $(".type_msg_input").val(),
+                                time: new Date()
+                            }
+                        })
+                        $(".type_msg_input").val('');
+                    }
+                })
+
+                var oldData = [];
+
+                var interval  = setInterval(function(){
+                    console.log()
+                    if($(".page:eq(16)").css("display") == 'none'){
+                        clearInterval(interval);
+                    }
+                    $.ajax({
+                        url: "arrays.php",
+                        type: "post",
+                        data: {
+                            arraysBtn: "messages"
+                        },
+                        dataType: "json",
+                        success: function(data3) {
+                            if(data3.length != oldData.length){
+                                oldData = data3;
+                                var filterdDataForMessenger = [];
+                                $.each(data3, function(i, e) {
+                                    if(user == e.sender || user == e.receiver){
+                                        filterdDataForMessenger.push(e);
+                                    }                             
+                                });                 
+                                messenger(filterdDataForMessenger);
+                                $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
+                            }
+                         
+                        }
+                    }) 
+                },100)                
+
+            })  
 
         }
     })
