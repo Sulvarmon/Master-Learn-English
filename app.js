@@ -2079,6 +2079,23 @@ $(document).ready(function() {
         displayEvnetsInfo();
     })
 
+    $.ajax({
+        url: "events.php",
+        type: "post",
+        data: {
+            eventBtn: "get_events"
+        },
+        dataType: "json",
+        success: function(data) {
+            if (data[0].showDailyTable == 1) {
+                $(".event1_hide_show").show();
+                
+            } else {
+                $(".event1_hide_show").hide();
+            }
+        }
+    })
+
     $(".update_event1_btn").click(function() {
         getEvent1Data();
         $.ajax({
@@ -2450,10 +2467,6 @@ $(document).ready(function() {
 
         }
     })
-        
-        $(".home").click(function(){
-            console.log($(".messages_area_user").css("display"))
-        })
 
     $(".messages").click();
 
