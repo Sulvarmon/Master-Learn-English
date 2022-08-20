@@ -17,7 +17,38 @@ $(document).ready(function() {
         newValue: 0
     };
     var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var emojis = ["&#128512", "&#128513", "&#128514", "&#128515", "&#128516", "&#128517", "&#128518", "&#128519",
+                  "&#128520", "&#128521", "&#128522", "&#128523", "&#128524", "&#128525", "&#128526", "&#128527"
+                ];
+    var searchFriendObj ={
+        clickedEl: "search_user_btn",
+        input: "search_friend_iput>input",
+        resultCont: "search_result",
+        item: "search_result_item",
+        imgAndName: "search_result_item_img_and_username",
+        btnsCont: "search_result_btns_cont",
+        btn1: "send_friend_req_btn",
+        btn1Text: "Send Friend Request",
+        btn2: "clean_search_user_btn",
+        btn2Text: "Clean",
+        userimg: "search_user_img",
+        username: "search_user_name"
+    }
 
+    var searchMessengerObj ={
+        clickedEl: "search_chat_user_btn",
+        input: "search_chat_user_iput>input",
+        resultCont: "search_chat_result",
+        item: "search_chat_result_item",
+        imgAndName: "search_chat_result_item_img_and_username",
+        btnsCont: "search_chat_result_btns_cont",
+        btn1: "start_chat_btn",
+        btn1Text: "Send Message",
+        btn2: "clean_search_chat_user_btn",
+        btn2Text: "Clean",
+        userimg: "search_chat_user_img",
+        username: "search_chat_user_name"
+    }
     /** */
 
     $.ajax({
@@ -1263,6 +1294,134 @@ $(document).ready(function() {
         })
     }
 
+    function searchUser(forWhat, obj){
+        $(`.${obj.clickedEl}`).click(function() {
+            $.ajax({
+                url: "arrays.php",
+                type: "post",
+                data: {
+                    arraysBtn: "users_array"
+                },
+                dataType: "json",
+                success: function(data) {
+                    if (data != 0) {
+                        var searchedUser = $(`.${obj.input}`).val().trim();
+                        var noSearchResult = true;
+                        for (var i = 0; i < data.length; i++) {
+                            if (searchedUser == data[i].username && searchedUser != "") {
+                                noSearchResult = false;
+                                $(`.${obj.resultCont}`).empty();
+                                $(`.${obj.resultCont}`).append("<div class='"+obj.item+" p-2 d-flex flex-column gap-2 align-items-center'></div>")
+                                $(`.${obj.item}`).append("<div class='"+obj.imgAndName+" user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
+                                $(`.${obj.item}`).append("<div class='"+obj.btnsCont+" d-flex gap-2'></div>");
+                                $(`.${obj.btnsCont}`).append("<div class='"+obj.btn1+" btn btn-success'>"+obj.btn1Text+"</div>");
+                                $(`.${obj.btnsCont}`).append("<div class='"+obj.btn2+" btn btn-danger'>"+obj.btn2Text+"</div>");
+                                $(`.${obj.imgAndName}`).append("<div><img src='./Img/user_default_avatar.png' class='"+obj.userimg+" rounded-circle' width='60' height='60'></div>")
+                                $(`.${obj.imgAndName}`).append("<div class="+obj.username+">"+data[i].username+"</div>");
+                                break;
+                            }
+                        }
+                        if(forWhat == "friends"){
+                            $(`.${obj.btn1}`).click(function() {
+                                var friend = $(`.${obj.username}`).text().trim();
+
+                                $.ajax({
+                                    url: "arrays.php",
+                                    type: "post",
+                                    data: {
+                                        arraysBtn: "friends"
+                                    },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        var isInFriends = false;
+                                        for (var i = 0; i < data.length; i++) {
+                                            if (user == data[i].user_name && friend == data[i].friend_name) {
+                                                isInFriends = true;
+                                                alert("The User Is Already Your Friend");
+                                                break;
+                                            }
+                                        }
+                                        if (!isInFriends) {
+                                            var isInReqSents = false;
+                                            $.ajax({
+                                                url: "arrays.php",
+                                                type: "post",
+                                                data: {
+                                                    arraysBtn: "requests"
+                                                },
+                                                dataType: "json",
+                                                success: function(data) {
+                                                    for (var i = 0; i < data.length; i++) {
+                                                        if (user == data[i].friend_name && friend == data[i].user_name) {
+                                                            isInReqSents = true;
+                                                            alert("You Already Have Sent Request To This User");
+                                                            break;
+                                                        }
+                                                    }
+                                                    if (!isInReqSents) {
+                                                        if (user == friend) {
+                                                            alert("You And Yourself Are Already Friends. \n Unless You Are Suicidal")
+                                                        } else {
+                                                            $.ajax({
+                                                                url: "friends_page.php",
+                                                                type: "post",
+                                                                data: {
+                                                                    friendsPageBtn: "send_req",
+                                                                    user: user,
+                                                                    friend: friend
+                                                                },
+                                                                success: function() {
+                                                                    $(".update_my_friends_btn").click();
+                                                                }
+                                                            })
+                                                        }
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            })  
+                        }
+                        
+                        if(forWhat == "messages"){
+                            
+                        }
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "user_imgs_array"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data != 0) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (searchedUser == data[i].user) {
+                                            $(`.${obj.userimg}`).attr("src", `./Img/profile_imgs/${data[i].img}`);
+                                            break;
+                                        }
+
+                                    }
+                                }
+                            }
+                        })
+                        if (noSearchResult && searchedUser != "") {
+                            $(`.${obj.resultCont}`).empty();
+                            $(`.${obj.resultCont}`).append("<div class='"+obj.item+" p-2 d-flex flex-column gap-2 align-items-center'></div>")
+                            $(`.${obj.item}`).append("<div>There Is Not Such User</div>");
+                            $(`.${obj.item}`).append("<div class='"+obj.btn2+" btn btn-danger'>"+obj.btn2Text+"</div>");
+                        }
+                        $(`.${obj.btn2}`).click(function() {
+                            $(`.${obj.resultCont}`).empty();
+                            $(`.${obj.input}`).val("");
+                        })
+                    }
+                }
+            })
+        })  
+    }
+
     /** */
 
     /**set raitings and my results pages data and images */
@@ -1462,126 +1621,14 @@ $(document).ready(function() {
         }
     })
 
-    $(".search_user_btn").click(function() {
-        $.ajax({
-            url: "arrays.php",
-            type: "post",
-            data: {
-                arraysBtn: "users_array"
-            },
-            dataType: "json",
-            success: function(data) {
-                if (data != 0) {
-                    var searchedUser = $(".search_friend_iput>input").val().trim();
-                    var noSearchResult = true;
-                    for (var i = 0; i < data.length; i++) {
-                        if (searchedUser == data[i].username && searchedUser != "") {
-                            noSearchResult = false;
-                            $(".search_result").empty();
-                            $(".search_result").append("<div class='search_result_item p-2 d-flex flex-column gap-2 align-items-center'></div>")
-                            $(`.search_result_item`).append("<div class='search_result_item_img_and_username user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
-                            $(`.search_result_item`).append("<div class='search_result_btns_cont d-flex gap-2'></div>");
-                            $(`.search_result_btns_cont`).append("<div class='send_friend_req_btn btn btn-success'>Send Friend Request</div>");
-                            $(`.search_result_btns_cont`).append("<div class='clean_search_user_btn btn btn-danger'>Clean</div>");
-                            $(`.search_result_item_img_and_username`).append("<div><img src='./Img/user_default_avatar.png' class='search_user_img rounded-circle' width='60' height='60'></div>")
-                            $(`.search_result_item_img_and_username`).append(`<div class='search_user_name'>${data[i].username}</div>`);
-                            break;
-                        }
-                    }
-                    $(".send_friend_req_btn").click(function() {
-                        var friend = $(".search_user_name").text().trim();
-
-                        $.ajax({
-                            url: "arrays.php",
-                            type: "post",
-                            data: {
-                                arraysBtn: "friends"
-                            },
-                            dataType: "json",
-                            success: function(data) {
-                                var isInFriends = false;
-                                for (var i = 0; i < data.length; i++) {
-                                    if (user == data[i].user_name && friend == data[i].friend_name) {
-                                        isInFriends = true;
-                                        alert("The User Is Already Your Friend");
-                                        break;
-                                    }
-                                }
-                                if (!isInFriends) {
-                                    var isInReqSents = false;
-                                    $.ajax({
-                                        url: "arrays.php",
-                                        type: "post",
-                                        data: {
-                                            arraysBtn: "requests"
-                                        },
-                                        dataType: "json",
-                                        success: function(data) {
-                                            for (var i = 0; i < data.length; i++) {
-                                                if (user == data[i].friend_name && friend == data[i].user_name) {
-                                                    isInReqSents = true;
-                                                    alert("You Already Have Sent Request To This User");
-                                                    break;
-                                                }
-                                            }
-                                            if (!isInReqSents) {
-                                                if (user == friend) {
-                                                    alert("You And Yourself Are Already Friends. \n Unless You Are Suicidal")
-                                                } else {
-                                                    $.ajax({
-                                                        url: "friends_page.php",
-                                                        type: "post",
-                                                        data: {
-                                                            friendsPageBtn: "send_req",
-                                                            user: user,
-                                                            friend: friend
-                                                        },
-                                                        success: function() {
-                                                            $(".update_my_friends_btn").click();
-                                                        }
-                                                    })
-                                                }
-                                            }
-                                        }
-                                    })
-                                }
-                            }
-                        })
-                    })
-                    $.ajax({
-                        url: "arrays.php",
-                        type: "post",
-                        data: {
-                            arraysBtn: "user_imgs_array"
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            if (data != 0) {
-                                for (var i = 0; i < data.length; i++) {
-                                    if (searchedUser == data[i].user) {
-                                        $(".search_user_img").attr("src", `./Img/profile_imgs/${data[i].img}`);
-                                        break;
-                                    }
-
-                                }
-                            }
-                        }
-                    })
-                    if (noSearchResult && searchedUser != "") {
-                        $(".search_result").empty();
-                        $(".search_result").append("<div class='search_result_item p-2 d-flex flex-column gap-2 align-items-center'></div>")
-                        $(`.search_result_item`).append("<div>There Is Not Such User</div>");
-                        $(`.search_result_item`).append("<div class='clean_search_user_btn btn btn-danger'>Clean</div>");
-                    }
-                    $(".clean_search_user_btn").click(function() {
-                        $(".search_result").empty();
-                        $(".search_friend_iput>input").val("");
-                    })
-                }
-            }
-        })
+    $(".search_chat_user_iput>input").keydown(function(e) {
+        if (e.which === 13) { //click on enter
+            $(".search_chat_user_btn").click();
+        }
     })
 
+    searchUser("friends", searchFriendObj);
+    searchUser("messages", searchMessengerObj);
 
     /**delete account */
     $(".delete_account_btn").click(function() {
@@ -2468,11 +2515,7 @@ $(document).ready(function() {
             })
 
         }
-    })
-        
-    var emojis = ["&#128512", "&#128513", "&#128514", "&#128515", "&#128516", "&#128517", "&#128518", "&#128519",
-                  "&#128520", "&#128521", "&#128522", "&#128523", "&#128524", "&#128525", "&#128526", "&#128527"
-                ]
+    })    
 
     $.each(emojis,function(i,e){
         $(".messenger_emojis").append("<div class='cursor_pointer_s'>" + e + "</div>")
@@ -2497,4 +2540,6 @@ $(document).ready(function() {
         $(".messenger_emojis_wrapper").hide();       
     });
     
+    $(".messages").click()
+
 })
