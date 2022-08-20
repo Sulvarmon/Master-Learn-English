@@ -74,7 +74,7 @@
                     <div class="messages cursor_pointer_s user-select-none"><i class="material-icons text-white">mail</i></div>
                     <div class="settings settings_s cursor_pointer_s user-select-none"><i class="material-icons text-white">settings</i></div>
                 </div>
-                
+
                 <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down rounded">
                     <div class="d-flex flex-column gap-5 align-item-center justify-content-center mx-auto w_fit_s ">
                         <div class="home dp_item link_s mx-auto">Home</div>
@@ -720,74 +720,77 @@
                 </div>
                 <div class="other_user_results_page_title w_fit_s mx-auto h1 text-warning m-5">User Results</div>
                 <div class="update_other_user_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
-                    <div><img class="results_other_user_img" src="./Img/user_default_avatar.png" width="250" height="250">
+                <div class="other_user_page_content_wrapper">
+                    <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
+                        <div><img class="results_other_user_img" src="./Img/user_default_avatar.png" width="250" height="250">
+                        </div>
+                        <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
+                            <thead>
+                                <tr>
+                                    <th colspan="2"> <span>Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Eng to Geo points</th>
+                                    <th>Geo to Eng points</th>
+                                </tr>
+                                <tr>
+                                    <td class="other_user_results_e_g_no_time">...</td>
+                                    <td class="other_user_results_g_e_no_time">...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
+                            <thead>
+                                <tr>
+                                    <th colspan="2"> <span>Quiz</span> <i class="material-icons align-middle">quiz</i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Eng to Geo points</th>
+                                    <th>Geo to Eng points</th>
+                                </tr>
+                                <tr>
+                                    <td class="other_user_results_e_g_quiz">...</td>
+                                    <td class="other_user_results_g_e_quiz">...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
+                            <thead>
+                                <tr>
+                                    <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3">Eng to Geo points</th>
+                                    <th colspan="3">Geo to Eng points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>5min</th>
+                                    <th>3min</th>
+                                    <th>1min</th>
+                                    <th>5min</th>
+                                    <th>3min</th>
+                                    <th>1min</th>
+                                </tr>
+                                <tr>
+                                    <th class="other_user_results_e_g_with_time5min">...</th>
+                                    <th class="other_user_results_e_g_with_time3min">...</th>
+                                    <th class="other_user_results_e_g_with_time1min">...</th>
+                                    <th class="other_user_results_g_e_with_time5min">...</th>
+                                    <th class="other_user_results_g_e_with_time3min">...</th>
+                                    <th class="other_user_results_g_e_with_time1min">...</th>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
-                        <thead>
-                            <tr>
-                                <th colspan="2"> <span>Without Time</span> <i class="material-icons align-middle">timer_off</i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>Eng to Geo points</th>
-                                <th>Geo to Eng points</th>
-                            </tr>
-                            <tr>
-                                <td class="other_user_results_e_g_no_time">...</td>
-                                <td class="other_user_results_g_e_no_time">...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="w-25 table table-hover table-dark text-center align-middle " style="height: fit-content;">
-                        <thead>
-                            <tr>
-                                <th colspan="2"> <span>Quiz</span> <i class="material-icons align-middle">quiz</i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>Eng to Geo points</th>
-                                <th>Geo to Eng points</th>
-                            </tr>
-                            <tr>
-                                <td class="other_user_results_e_g_quiz">...</td>
-                                <td class="other_user_results_g_e_quiz">...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="w-25 table table-hover table-dark text-center align-middle" style="height: fit-content;">
-                        <thead>
-                            <tr>
-                                <th colspan="6"> <span>With Time</span> <i class="material-icons align-middle">timer</i>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th colspan="3">Eng to Geo points</th>
-                                <th colspan="3">Geo to Eng points</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>5min</th>
-                                <th>3min</th>
-                                <th>1min</th>
-                                <th>5min</th>
-                                <th>3min</th>
-                                <th>1min</th>
-                            </tr>
-                            <tr>
-                                <th class="other_user_results_e_g_with_time5min">...</th>
-                                <th class="other_user_results_e_g_with_time3min">...</th>
-                                <th class="other_user_results_e_g_with_time1min">...</th>
-                                <th class="other_user_results_g_e_with_time5min">...</th>
-                                <th class="other_user_results_g_e_with_time3min">...</th>
-                                <th class="other_user_results_g_e_with_time1min">...</th>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
+
 
             </div>
 
@@ -864,13 +867,13 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="d-flex flex-column gap-2 p-2 border  mt-5 mb-2">
                         <div class="text-info mt-1 mb-1 w_fit_s mx-auto h5">Last Updated:</div>
                         <div class="event1_table_update_time h5 text-warning">...</div>
                     </div>
 
-                    <div class="event1_hide_show event1_raitings_overflow overflow-auto">                                                
+                    <div class="event1_hide_show event1_raitings_overflow overflow-auto">
                         <div class="w_fit_s mx-auto">
                             <table class="event1_raitings table table-hover table-dark text-center align-middle">
                                 <tr>
@@ -983,7 +986,7 @@
 
                 </div>
             </div>
-        
+
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Messages</div>
                 <div class="chats_cont_wrapper">
@@ -1007,19 +1010,30 @@
                         <div class="msg_other_user_indicator position-absolute start-0 top-0 m-2"><img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle"></div>
                         <div class="msg_user_indicator position-absolute end-0 top-0 m-2"><img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 d-flex gap-1 align-items-center mb-1">
-                            <div class="flex-fill"><input type="text" class="type_msg_input w-100 p-2 msg_rounded_s" style="outline: none;"></div>
-                            <div class="cursor_pointer_s"><i class="material-icons">mood</i></div>
+                            <div class="flex-fill ">
+                                <input type="text" class="type_msg_input w-100 p-2 msg_rounded_s" style="outline: none;">
+                            </div>
+                            <div class="position-relative" >
+                                <div class="cursor_pointer_s messenger_emojis_opener">
+                                    <i class="material-icons">mood</i>                                                            
+                                </div>
+                                <div class="messenger_emojis_wrapper messenger_emojis_wrapper_s">
+                                    <!-- appended in js -->
+                                    <div class="messenger_emojis d-flex flex-wrap gap-2 p-2 border rounded page_bg_color_s"></div>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="messages_area overflow-auto mt-5 border" style="height: 365px;">
+                        <div class="messages_area overflow-auto mt-5" style="height: 365px;">
                             <div class="messages_area_inner_cont d-flex flex-column gap-2 p-2"></div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
 
-                
+
 
 
 

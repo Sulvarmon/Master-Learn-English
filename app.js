@@ -440,21 +440,27 @@ $(document).ready(function() {
     }
 
     function clickOnUserImgAndUsernameCont() {
-        $(".user_img_and_username").off().on("click", function() {
+        $(document).off().on("click",".user_img_and_username", function() {
+            $(".other_user_page_content_wrapper").css("visibility", "hidden");
             scrollPos = $(window).scrollTop();
             winScr();
             var otherUser = $(this).children().eq(1).text().trim();
             if (otherUser == user) {
                 setOtherUserPage(otherUser);
                 $(".other_user_results_page_title").text(`My Results`);
-                displayPage(9)
+                displayPage(9);
             } else {
                 setOtherUserPage(otherUser);
                 $(".other_user_results_page_title").text(`${otherUser} 's Results`);
-                displayPage(9)
+                displayPage(9);
             }
         })
     }
+
+
+
+
+
 
     function getFriendsArray() {
         $.ajax({
@@ -900,49 +906,49 @@ $(document).ready(function() {
                     }
 
                 }
-            }
-        })
 
-        $.ajax({
-            url: "arrays.php",
-            type: "post",
-            data: {
-                arraysBtn: "users_array"
-            },
-            dataType: "json",
-            success: function(data) {
-                for (var i = 0; i < data.length; i++) {
-                    if (username == data[i].username) {
-                        $(".other_user_results_e_g_no_time").text(`${data[i].e_g_points}`);
-                        $(".other_user_results_g_e_no_time").text(`${data[i].g_e_points}`);
-                        $(".other_user_results_e_g_with_time5min").text(`${data[i].g_e_points_5min}`);
-                        $(".other_user_results_e_g_with_time3min").text(`${data[i].g_e_points_3min}`);
-                        $(".other_user_results_e_g_with_time1min").text(`${data[i].g_e_points_1min}`);
-                        $(".other_user_results_g_e_with_time5min").text(`${data[i].g_e_points_5min}`);
-                        $(".other_user_results_g_e_with_time3min").text(`${data[i].g_e_points_3min}`);
-                        $(".other_user_results_g_e_with_time1min").text(`${data[i].g_e_points_1min}`);
-                        break;
+                $.ajax({
+                    url: "arrays.php",
+                    type: "post",
+                    data: {
+                        arraysBtn: "users_array"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (username == data[i].username) {
+                                $(".other_user_results_e_g_no_time").text(`${data[i].e_g_points}`);
+                                $(".other_user_results_g_e_no_time").text(`${data[i].g_e_points}`);
+                                $(".other_user_results_e_g_with_time5min").text(`${data[i].g_e_points_5min}`);
+                                $(".other_user_results_e_g_with_time3min").text(`${data[i].g_e_points_3min}`);
+                                $(".other_user_results_e_g_with_time1min").text(`${data[i].g_e_points_1min}`);
+                                $(".other_user_results_g_e_with_time5min").text(`${data[i].g_e_points_5min}`);
+                                $(".other_user_results_g_e_with_time3min").text(`${data[i].g_e_points_3min}`);
+                                $(".other_user_results_g_e_with_time1min").text(`${data[i].g_e_points_1min}`);
+                                break;
+                            }
+
+                        }
+
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "quizEG"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (username == data[i].user) {
+                                        $(".other_user_results_e_g_quiz").text(`${data[i].e_g_points}`);
+                                        $(".other_user_results_g_e_quiz").text(`${data[i].g_e_points}`);
+                                    }
+                                }
+                                $(".other_user_page_content_wrapper").css("visibility", "visible");
+                            }
+                        })
                     }
-
-                }
-            }
-        })
-
-        $.ajax({
-            url: "arrays.php",
-            type: "post",
-            data: {
-                arraysBtn: "quizEG"
-            },
-            dataType: "json",
-            success: function(data) {
-                for (var i = 0; i < data.length; i++) {
-                    if (username == data[i].user) {
-                        $(".other_user_results_e_g_quiz").text(`${data[i].e_g_points}`);
-                        $(".other_user_results_g_e_quiz").text(`${data[i].g_e_points}`);
-                    }
-                }
-
+                })
             }
         })
     }
@@ -1104,7 +1110,7 @@ $(document).ready(function() {
 
 
 
-                $(document).off().on("click", ".events_item", function() {
+                $(".events_item").off().on("click", function() {
                     var event = {};
                     event.name = $(this).children().eq(0).text();
                     event.sDate = $(this).children().eq(1).text();
@@ -1328,7 +1334,8 @@ $(document).ready(function() {
     })
 
     /**unfriend */
-    $(document).on("click", ".unfriend_btn", function() {
+
+    $(document).on("click",".unfriend_btn", function() {
         var index = $(".unfriend_btn").index(this);
         var friend = $(`.friend_name:eq(${index})`).text().trim();
         if (confirm(`Are You Sure You Want To Remove Friend ${friend} ?`)) {
@@ -1350,7 +1357,7 @@ $(document).ready(function() {
     })
 
     /**unsend friend request */
-    $(document).on("click", ".unsend_btn", function() {
+    $(document).on("click",".unsend_btn", function() {
         var index = $(".unsend_btn").index(this);
         var friend = $(`.req_sent_name:eq(${index})`).text().trim();
         if (confirm(`Do You Want To Unsend Request ?`)) {
@@ -1371,7 +1378,7 @@ $(document).ready(function() {
     })
 
     /**add friend */
-    $(document).on("click", ".add_friend_btn", function() {
+    $(document).on("click",".add_friend_btn", function() {
         var index = $(".add_friend_btn").index(this);
         var friend = $(`.req_rec_name:eq(${index})`).text().trim();
         $.ajax({
@@ -1413,7 +1420,7 @@ $(document).ready(function() {
     })
 
     /**reject friend request*/
-    $(document).on("click", ".rej_friend_btn", function() {
+    $(document).on("click",".rej_friend_btn", function() {
         var index = $(".rej_friend_btn").index(this);
         var friend = $(`.req_rec_name:eq(${index})`).text().trim();
         $.ajax({
@@ -1477,7 +1484,7 @@ $(document).ready(function() {
                             noSearchResult = false;
                             $(".search_result").empty();
                             $(".search_result").append("<div class='search_result_item p-2 d-flex flex-column gap-2 align-items-center'></div>")
-                            $(`.search_result_item`).append("<div class='search_result_item_img_and_username d-flex gap-2 align-items-center'></div>");
+                            $(`.search_result_item`).append("<div class='search_result_item_img_and_username user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
                             $(`.search_result_item`).append("<div class='search_result_btns_cont d-flex gap-2'></div>");
                             $(`.search_result_btns_cont`).append("<div class='send_friend_req_btn btn btn-success'>Send Friend Request</div>");
                             $(`.search_result_btns_cont`).append("<div class='clean_search_user_btn btn btn-danger'>Clean</div>");
@@ -2089,7 +2096,7 @@ $(document).ready(function() {
         success: function(data) {
             if (data[0].showDailyTable == 1) {
                 $(".event1_hide_show").show();
-                
+
             } else {
                 $(".event1_hide_show").hide();
             }
@@ -2276,7 +2283,7 @@ $(document).ready(function() {
 
     $(".event1_table_update_time").text(`${getDate().month}/${getDate().day}/${getDate().year} ${getDate().hour}:${getDate().minute}`)
 
-    $(".messages").click(function(){
+    $(".messages").click(function() {
         displayPage(15);
     });
 
@@ -2284,28 +2291,28 @@ $(document).ready(function() {
     $.ajax({
         url: "./arrays.php",
         type: "post",
-        data:{
+        data: {
             arraysBtn: "messages",
         },
         dataType: "json",
-        success: function(data){
+        success: function(data) {
             var filteredData = [];
             var filteredData2 = [];
             var filteredData3 = [];
             var msgUser;
 
             $.each(data, function(i, e) {
-                if(user == e.sender || user == e.receiver){
+                if (user == e.sender || user == e.receiver) {
                     filteredData.push(e);
-                }                             
+                }
             });
 
             $.each(filteredData, function(i, e) {
                 var string = `${e.sender}-${e.receiver}`;
                 var string2 = `${e.receiver}-${e.sender}`;
-                if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1){
+                if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
                     filteredData2.push(string);
-                } 
+                }
             });
 
             for (var i = 0; i < filteredData2.length; i++) {
@@ -2323,61 +2330,62 @@ $(document).ready(function() {
             });
 
             for (var i = 0; i < filteredData3.length; i++) {
-                if(user == filteredData3[i][0]){
+                if (user == filteredData3[i][0]) {
                     $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
                 }
-                if(user == filteredData3[i][1]){
-                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);                    
+                if (user == filteredData3[i][1]) {
+                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
                 }
 
-            $.ajax({
-                url: "arrays.php",
-                type: "post",
-                data: {
-                    arraysBtn: "user_imgs_array"
-                },
-                dataType: "json",
-                success: function(data2) {
-                    $.each(data2, function(i,e){
-                        for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                            if($(`.msg_user_cont:eq(${i})>span`).text() == e.user){
-                                $(`.msg_user_cont:eq(${i})>img`).attr("src" ,`./img/profile_imgs/${e.img}`)
+                $.ajax({
+                    url: "arrays.php",
+                    type: "post",
+                    data: {
+                        arraysBtn: "user_imgs_array"
+                    },
+                    dataType: "json",
+                    success: function(data2) {
+                        $.each(data2, function(i, e) {
+                            for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                                if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
+                                    $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
+                                }
                             }
-                        }
-                    })
-                    
-                }
-            })
+                        })
 
-                
+                    }
+                })
+
+
             }
 
-            $(".msg_user_cont").click(function(){
+            $(".msg_user_cont").click(function() {
                 $(".messages_area").hide();
-                function messenger(data){                    
+
+                function messenger(data) {
                     $(".messages_area_inner_cont").empty();
                     var userMessages = [];
                     var otherUserMessages = [];
-                    $.each(data,function(i,e){
-                        if(user == e.sender && msgUser == e.receiver){
+                    $.each(data, function(i, e) {
+                        if (user == e.sender && msgUser == e.receiver) {
                             $(".messages_area_inner_cont").append("<div class='messages_area_user d-flex justify-content-end'></div>");
                             var fTime = e.time.split(" ");
                             var fTime2 = [];
                             for (var i = 1; i <= 4; i++) {
                                 fTime2.push(fTime[i]);
-                            }                            
+                            }
                             var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
-                            userMessages.push({'msg': e.msg, 'time': time});
+                            userMessages.push({ 'msg': e.msg, 'time': time });
                         }
-                        if(user == e.receiver && msgUser == e.sender){
+                        if (user == e.receiver && msgUser == e.sender) {
                             $(".messages_area_inner_cont").append("<div class='messages_area_other_user d-flex justify-content-start'></div>");
                             var fTime = e.time.split(" ");
                             var fTime2 = [];
                             for (var i = 1; i <= 4; i++) {
                                 fTime2.push(fTime[i]);
-                            }                            
+                            }
                             var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
-                            otherUserMessages.push({'msg': e.msg, 'time': time});
+                            otherUserMessages.push({ 'msg': e.msg, 'time': time });
                         }
                     })
 
@@ -2400,7 +2408,7 @@ $(document).ready(function() {
                     }
                     $(".messages_area").show()
                 }
-                
+
                 var index = $(".msg_user_cont").index(this)
                 msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
                 var msgUserImg = $(`.msg_user_cont:eq(${index})>img`).attr("src");
@@ -2433,8 +2441,8 @@ $(document).ready(function() {
 
                 var oldData = [];
 
-                var interval  = setInterval(function(){
-                    if($(".page:eq(16)").css("display") == 'none'){
+                var interval = setInterval(function() {
+                    if ($(".page:eq(16)").css("display") == 'none') {
                         $(".messages_area").hide()
                         clearInterval(interval);
 
@@ -2447,27 +2455,51 @@ $(document).ready(function() {
                         },
                         dataType: "json",
                         success: function(data3) {
-                            if(data3.length != oldData.length){
+                            if (data3.length != oldData.length) {
                                 oldData = data3;
                                 var filterdDataForMessenger = [];
                                 $.each(data3, function(i, e) {
-                                    if(user == e.sender || user == e.receiver){
+                                    if (user == e.sender || user == e.receiver) {
                                         filterdDataForMessenger.push(e);
-                                    }                             
-                                });                 
+                                    }
+                                });
                                 messenger(filterdDataForMessenger);
                                 $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
                             }
-                         
                         }
-                    }) 
-                },100)                
+                    })
+                }, 100)
 
-            })  
+            })
 
         }
     })
+        
+    var emojis = ["&#128512", "&#128513", "&#128514", "&#128515", "&#128516", "&#128517", "&#128518", "&#128519",
+                  "&#128520", "&#128521", "&#128522", "&#128523", "&#128524", "&#128525", "&#128526", "&#128527"
+                ]
 
-    $(".messages").click();
+    $.each(emojis,function(i,e){
+        $(".messenger_emojis").append("<div class='cursor_pointer_s'>" + e + "</div>")
+    })
 
+    $(".messenger_emojis_opener").click(function(e){
+        e.stopPropagation();
+        $(".messenger_emojis_wrapper").show();
+    })
+
+    $(".messenger_emojis_wrapper").click(function(e){
+         e.stopPropagation();
+    })
+
+    $(".messenger_emojis>div").on("click", function(){
+        $(".type_msg_input").focus()
+        var inputValur = $(".type_msg_input").val();
+        $(".type_msg_input").val(`${inputValur}${$(this).text()}`)
+    })
+
+    $(window).on('click', function() {
+        $(".messenger_emojis_wrapper").hide();       
+    });
+    
 })

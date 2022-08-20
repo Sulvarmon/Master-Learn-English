@@ -155,3 +155,10 @@ body {
     border-radius: 20px;
 }
 
+.messenger_emojis_wrapper_s{
+    position: absolute;
+    bottom: 0px;
+    left: -200px;
+    width: 200px;
+    display: none;
+}
