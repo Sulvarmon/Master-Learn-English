@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="navbar_dropdown navbar_dropdown_s position-absolute end-0 bg-light p-5 drop_down rounded">
-                    <div class="d-flex flex-column gap-5 align-item-center justify-content-center mx-auto w_fit_s ">
+                    <div class="d-flex flex-column gap-5 align-items-center justify-content-center mx-auto w_fit_s ">
                         <div class="home dp_item link_s mx-auto">Home</div>
                         <div class="profile_page_link dp_item link_s mx-auto">Profile</div>
                         <div class="logout_btn btn btn-primary mx-auto">Log Out</div>
@@ -992,13 +992,31 @@
                 <div class="chats_cont_wrapper">
                     <div class="w_fit_s mt-5 p-2 mx-auto">
                         <div class="text-warning h5 mx-auto w_fit_s mb-2">Search User</div>
-                        <div class="d-flex flex-column gap-2 align-items-center">
+                        <div class="d-flex flex-column gap-2 align-items-center position-relative">
                             <div class="d-flex flex-column gap-2 align-items-center">
                                 <div class="search_chat_user_iput"><input type="text" class="p-2" placeholder="type username here">
                                 </div>
                                 <div class="search_chat_user_btn btn btn-primary mt-3">Search User</div>
                             </div>
                             <div class="search_chat_result p-2 d-flex flex-wrap"></div>
+                            <div class="first_msg_cont_wrapper" style="display: none;">
+                            <div class="first_msg_cont first_msg_cont_s d-flex flex-column gap-2 bg-dark align-items-center justify-content-center w_fit_s">
+                                <input type="text" class="first_msg_input rounded p-2 w-75">
+                                <div class="d-flex gap-2 align-items-center">
+                                   <button class="send_first_msg btn btn-primary w_fit_s">Send</button> 
+                                   <div class="position-relative" >
+                                        <div class="cursor_pointer_s first_msg_emojis_opener d-flex align-items-center">
+                                            <i class="material-icons">mood</i>                                                            
+                                        </div>
+                                        <div class="first_msg_emojis_wrapper emojis_wrapper_s2 bg-dark">
+                                            <!-- appended in js -->
+                                            <div class="first_msg_emojis d-flex flex-wrap gap-2 p-2 border rounded"></div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                            
+                            </div>                                                        
                         </div>
                     </div>
                     <div class="w_fit_s mx-auto h4 text-info m-2">Chats</div>                    
@@ -1025,10 +1043,10 @@
                                 <input type="text" class="type_msg_input w-100 p-2 msg_rounded_s" style="outline: none;">
                             </div>
                             <div class="position-relative" >
-                                <div class="cursor_pointer_s messenger_emojis_opener">
+                                <div class="cursor_pointer_s messenger_emojis_opener d-flex align-items-center">
                                     <i class="material-icons">mood</i>                                                            
                                 </div>
-                                <div class="messenger_emojis_wrapper messenger_emojis_wrapper_s">
+                                <div class="messenger_emojis_wrapper emojis_wrapper_s">
                                     <!-- appended in js -->
                                     <div class="messenger_emojis d-flex flex-wrap gap-2 p-2 border rounded page_bg_color_s"></div>
                                 </div>

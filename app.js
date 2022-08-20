@@ -43,7 +43,7 @@ $(document).ready(function() {
         imgAndName: "search_chat_result_item_img_and_username",
         btnsCont: "search_chat_result_btns_cont",
         btn1: "start_chat_btn",
-        btn1Text: "Send Message",
+        btn1Text: "Start Conversation",
         btn2: "clean_search_chat_user_btn",
         btn2Text: "Clean",
         userimg: "search_chat_user_img",
@@ -1386,7 +1386,7 @@ $(document).ready(function() {
                         
                         if(forWhat == "messages"){
                             var isInChat = false;
-                            $(`.${obj.btn1}`).on("click", function(){
+                            $(`.${obj.btn1}`).on("click", function(e){
                                 for (var i = 0; i < $(".msg_user_cont").length; i++) {
                                     if(searchedUser == $(`.msg_user_cont:eq(${i})>span`).text()){
                                         isInChat = true;
@@ -1395,7 +1395,16 @@ $(document).ready(function() {
                                     }
                                 }
                                 if(!isInChat){
-                                    
+                                    e.stopPropagation()
+                                    console.log("dd")                            
+                                    $(".first_msg_cont_wrapper").show(); 
+                                    $(".first_msg_cont_wrapper").on("click",function(e){
+                                        $(".first_msg_emojis_wrapper").hide();
+                                        e.stopPropagation();
+                                    })
+                                    $(window).on("click", function(){
+                                        $(".first_msg_cont_wrapper").hide(); 
+                                    })
                                 }
                             })
                         }
@@ -1433,6 +1442,73 @@ $(document).ready(function() {
                 }
             })
         })  
+    }
+
+    function makechat(data){
+        var filteredData = [];
+        var filteredData2 = [];
+        var filteredData3 = [];
+        var msgUser;
+
+        $.each(data, function(i, e) {
+            if (user == e.sender || user == e.receiver) {
+                filteredData.push(e);
+            }
+        });
+
+        $.each(filteredData, function(i, e) {
+            var string = `${e.sender}-${e.receiver}`;
+            var string2 = `${e.receiver}-${e.sender}`;
+            if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
+                filteredData2.push(string);
+            }
+        });
+
+        $(".chats_cont").empty();
+
+        for (var i = 0; i < filteredData2.length; i++) {
+            $(".chats_cont").append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
+        }
+
+        for (var i = 0; i < $(".msg_user_cont").length; i++) {
+            $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
+            $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
+        }
+
+        $.each(filteredData2, function(i, e) {
+            var splited = e.split('-');
+            filteredData3.push(splited)
+        });
+
+        for (var i = 0; i < filteredData3.length; i++) {
+            if (user == filteredData3[i][0]) {
+                $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
+            }
+            if (user == filteredData3[i][1]) {
+                $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
+            }
+
+            $.ajax({
+                url: "arrays.php",
+                type: "post",
+                data: {
+                    arraysBtn: "user_imgs_array"
+                },
+                dataType: "json",
+                success: function(data2) {
+                    $.each(data2, function(i, e) {
+                        for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                            if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
+                                $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
+                            }
+                        }
+                    })
+
+                }
+            })
+
+
+        }
     }
 
     /** */
@@ -2342,7 +2418,6 @@ $(document).ready(function() {
         displayPage(15);
     });
 
-
     $.ajax({
         url: "./arrays.php",
         type: "post",
@@ -2351,68 +2426,7 @@ $(document).ready(function() {
         },
         dataType: "json",
         success: function(data) {
-            var filteredData = [];
-            var filteredData2 = [];
-            var filteredData3 = [];
-            var msgUser;
-
-            $.each(data, function(i, e) {
-                if (user == e.sender || user == e.receiver) {
-                    filteredData.push(e);
-                }
-            });
-
-            $.each(filteredData, function(i, e) {
-                var string = `${e.sender}-${e.receiver}`;
-                var string2 = `${e.receiver}-${e.sender}`;
-                if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
-                    filteredData2.push(string);
-                }
-            });
-
-            for (var i = 0; i < filteredData2.length; i++) {
-                $(".chats_cont").append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
-            }
-
-            for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
-                $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
-            }
-
-            $.each(filteredData2, function(i, e) {
-                var splited = e.split('-');
-                filteredData3.push(splited)
-            });
-
-            for (var i = 0; i < filteredData3.length; i++) {
-                if (user == filteredData3[i][0]) {
-                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
-                }
-                if (user == filteredData3[i][1]) {
-                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
-                }
-
-                $.ajax({
-                    url: "arrays.php",
-                    type: "post",
-                    data: {
-                        arraysBtn: "user_imgs_array"
-                    },
-                    dataType: "json",
-                    success: function(data2) {
-                        $.each(data2, function(i, e) {
-                            for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                                if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
-                                    $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
-                                }
-                            }
-                        })
-
-                    }
-                })
-
-
-            }
+            makechat(data);
 
             $(".msg_user_cont").click(function() {
                 $(".messages_area").hide();
@@ -2529,29 +2543,50 @@ $(document).ready(function() {
 
         }
     })    
+        
+    var messenderEmoji = {
+       appendedEl: "messenger_emojis",
+       clickedEl: "messenger_emojis_opener",
+       wrapper: "messenger_emojis_wrapper",
+       emoji: "messenger_emojis>div",
+       input: "type_msg_input"
+    }
 
-    $.each(emojis,function(i,e){
-        $(".messenger_emojis").append("<div class='cursor_pointer_s'>" + e + "</div>")
-    })
+    var firstMessageEmoji = {
+       appendedEl: "first_msg_emojis",
+       clickedEl: "first_msg_emojis_opener",
+       wrapper: "first_msg_emojis_wrapper",
+       emoji: "first_msg_emojis>div",
+       input: "first_msg_input"
+    }
 
-    $(".messenger_emojis_opener").click(function(e){
-        e.stopPropagation();
-        $(".messenger_emojis_wrapper").show();
-    })
+    function emojiHandler(obj){
+        $.each(emojis,function(i,e){
+            $(`.${obj.appendedEl}`).append("<div class='cursor_pointer_s'>" + e + "</div>")
+        })
 
-    $(".messenger_emojis_wrapper").click(function(e){
-         e.stopPropagation();
-    })
+        $(`.${obj.clickedEl}`).click(function(e){
+            e.stopPropagation();
+            $(`.${obj.wrapper}`).show();
+        })
 
-    $(".messenger_emojis>div").on("click", function(){
-        $(".type_msg_input").focus()
-        var inputValur = $(".type_msg_input").val();
-        $(".type_msg_input").val(`${inputValur}${$(this).text()}`)
-    })
+        $(`.${obj.wrapper}`).click(function(e){
+             e.stopPropagation();
+        })
 
-    $(window).on('click', function() {
-        $(".messenger_emojis_wrapper").hide();       
-    });
+        $(`.${obj.emoji}`).on("click", function(){
+            $(`.${obj.input}`).focus()
+            var inputValur = $(`.${obj.input}`).val();
+            $(`.${obj.input}`).val(`${inputValur}${$(this).text()}`)
+        })
+
+        $(window).on('click', function() {
+            $(`.${obj.wrapper}`).hide();       
+        }); 
+    }
+
+    emojiHandler(messenderEmoji); 
+    emojiHandler(firstMessageEmoji); 
     
     $(".messages").click()
 
