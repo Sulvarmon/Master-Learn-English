@@ -486,6 +486,28 @@ $(document).ready(function() {
                         $(`.firends_cont_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='friend_img rounded-circle' width='60' height='60'></div>")
                         $(`.firends_cont_item_img_and_username:eq(${i})`).append(`<div class='friend_name'>${filteredData[i].friend_name}</div>`);
                     }
+
+                    $(".unfriend_btn").on("click", function() {
+                        var index = $(".unfriend_btn").index(this);
+                        var friend = $(`.friend_name:eq(${index})`).text().trim();
+                        if (confirm(`Are You Sure You Want To Remove Friend ${friend} ?`)) {
+                            $(`.firends_cont_item:eq(${index})`).remove();
+                            $.ajax({
+                                url: "friends_page.php",
+                                type: "post",
+                                data: {
+                                    friendsPageBtn: "unfriend",
+                                    user: user,
+                                    friend: friend,
+                                },
+                                success: function() {
+                                    $(".update_my_friends_btn").click();
+                                }
+                            })
+
+                        }
+                    })
+
                     setUserImgs();
                     clickOnUserImgAndUsernameCont();
                 } else {
@@ -519,6 +541,25 @@ $(document).ready(function() {
                         $(`.req_sent_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_sent_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_sent_item_img_and_username:eq(${i})`).append(`<div class='req_sent_name'>${filteredData[i].user_name}</div>`);
                     }
+                    $(".unsend_btn").on("click", function() {
+                        var index = $(".unsend_btn").index(this);
+                        var friend = $(`.req_sent_name:eq(${index})`).text().trim();
+                        if (confirm(`Do You Want To Unsend Request ?`)) {
+                            $(`.req_sent_item:eq(${index})`).remove();
+                            $.ajax({
+                                url: "friends_page.php",
+                                type: "post",
+                                data: {
+                                    friendsPageBtn: "unsend",
+                                    user: user,
+                                    friend: friend,
+                                },
+                                success: function() {
+                                    $(".update_my_friends_btn").click();
+                                }
+                            })
+                        }
+                    })
                     setUserImgs();
                     clickOnUserImgAndUsernameCont();
                 } else {
@@ -556,6 +597,88 @@ $(document).ready(function() {
                         $(`.req_rec_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_rec_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_rec_item_img_and_username:eq(${i})`).append(`<div class='req_rec_name'>${filteredData[i].friend_name}</div>`);
                     }
+                    
+                    $(".add_friend_btn").on("click", function() {
+                        var index = $(".add_friend_btn").index(this);
+                        var friend = $(`.req_rec_name:eq(${index})`).text().trim();
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "requests",
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                var reqHasBeenUnsent = true;
+                                for (var i = 0; i < data.length; i++) {
+                                    if (friend == data[i].friend_name && user == data[i].user_name) {
+                                        reqHasBeenUnsent = false;
+                                        if (confirm(`Do You Want To Add ${friend} As Friend ?`)) {
+                                            $(`.req_rec_item:eq(${index})`).remove();
+                                            $.ajax({
+                                                url: "friends_page.php",
+                                                type: "post",
+                                                data: {
+                                                    friendsPageBtn: "addFriend",
+                                                    user: user,
+                                                    friend: friend,
+                                                },
+                                                success: function() {
+                                                    $(".update_my_friends_btn").click();
+                                                }
+                                            })
+                                        }
+                                        break;
+                                    }
+                                }
+                                if (reqHasBeenUnsent) {
+                                    $(`.req_rec_item:eq(${index})`).remove();
+                                    alert("This User Unsent Request");
+                                }
+                            }
+                        })
+                    })
+
+                    $(".rej_friend_btn").on("click", function() {
+                        var index = $(".rej_friend_btn").index(this);
+                        var friend = $(`.req_rec_name:eq(${index})`).text().trim();
+                        $.ajax({
+                            url: "arrays.php",
+                            type: "post",
+                            data: {
+                                arraysBtn: "requests",
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                var reqHasBeenUnsent = true;
+                                for (var i = 0; i < data.length; i++) {
+                                    if (friend == data[i].friend_name && user == data[i].user_name) {
+                                        reqHasBeenUnsent = false;
+                                        if (confirm(`Do You Want Reject Request From ${friend} ?`)) {
+                                            $(`.req_rec_item:eq(${index})`).remove();
+                                            $.ajax({
+                                                url: "friends_page.php",
+                                                type: "post",
+                                                data: {
+                                                    friendsPageBtn: "rejFriend",
+                                                    user: user,
+                                                    friend: friend,
+                                                },
+                                                success: function() {
+                                                    $(".update_my_friends_btn").click();
+                                                }
+                                            })
+                                        }
+                                        break;
+                                    }
+                                }
+                                if (reqHasBeenUnsent) {
+                                    $(`.req_rec_item:eq(${index})`).remove();
+                                    alert("This User Unsent Request");
+                                }
+                            }
+                        })
+                    })
                     setUserImgs();
                     clickOnUserImgAndUsernameCont();
                 } else {
@@ -1331,134 +1454,6 @@ $(document).ready(function() {
         getFriendsArray();
         getReqsSentArray();
         getReqsRecArray();
-    })
-
-    /**unfriend */
-
-    $(document).on("click",".unfriend_btn", function() {
-        var index = $(".unfriend_btn").index(this);
-        var friend = $(`.friend_name:eq(${index})`).text().trim();
-        if (confirm(`Are You Sure You Want To Remove Friend ${friend} ?`)) {
-            $(`.firends_cont_item:eq(${index})`).remove();
-            $.ajax({
-                url: "friends_page.php",
-                type: "post",
-                data: {
-                    friendsPageBtn: "unfriend",
-                    user: user,
-                    friend: friend,
-                },
-                success: function() {
-                    $(".update_my_friends_btn").click();
-                }
-            })
-
-        }
-    })
-
-    /**unsend friend request */
-    $(document).on("click",".unsend_btn", function() {
-        var index = $(".unsend_btn").index(this);
-        var friend = $(`.req_sent_name:eq(${index})`).text().trim();
-        if (confirm(`Do You Want To Unsend Request ?`)) {
-            $(`.req_sent_item:eq(${index})`).remove();
-            $.ajax({
-                url: "friends_page.php",
-                type: "post",
-                data: {
-                    friendsPageBtn: "unsend",
-                    user: user,
-                    friend: friend,
-                },
-                success: function() {
-                    $(".update_my_friends_btn").click();
-                }
-            })
-        }
-    })
-
-    /**add friend */
-    $(document).on("click",".add_friend_btn", function() {
-        var index = $(".add_friend_btn").index(this);
-        var friend = $(`.req_rec_name:eq(${index})`).text().trim();
-        $.ajax({
-            url: "arrays.php",
-            type: "post",
-            data: {
-                arraysBtn: "requests",
-            },
-            dataType: 'json',
-            success: function(data) {
-                var reqHasBeenUnsent = true;
-                for (var i = 0; i < data.length; i++) {
-                    if (friend == data[i].friend_name && user == data[i].user_name) {
-                        reqHasBeenUnsent = false;
-                        if (confirm(`Do You Want To Add ${friend} As Friend ?`)) {
-                            $(`.req_rec_item:eq(${index})`).remove();
-                            $.ajax({
-                                url: "friends_page.php",
-                                type: "post",
-                                data: {
-                                    friendsPageBtn: "addFriend",
-                                    user: user,
-                                    friend: friend,
-                                },
-                                success: function() {
-                                    $(".update_my_friends_btn").click();
-                                }
-                            })
-                        }
-                        break;
-                    }
-                }
-                if (reqHasBeenUnsent) {
-                    $(`.req_rec_item:eq(${index})`).remove();
-                    alert("This User Unsent Request");
-                }
-            }
-        })
-    })
-
-    /**reject friend request*/
-    $(document).on("click",".rej_friend_btn", function() {
-        var index = $(".rej_friend_btn").index(this);
-        var friend = $(`.req_rec_name:eq(${index})`).text().trim();
-        $.ajax({
-            url: "arrays.php",
-            type: "post",
-            data: {
-                arraysBtn: "requests",
-            },
-            dataType: 'json',
-            success: function(data) {
-                var reqHasBeenUnsent = true;
-                for (var i = 0; i < data.length; i++) {
-                    if (friend == data[i].friend_name && user == data[i].user_name) {
-                        reqHasBeenUnsent = false;
-                        if (confirm(`Do You Want Reject Request From ${friend} ?`)) {
-                            $(`.req_rec_item:eq(${index})`).remove();
-                            $.ajax({
-                                url: "friends_page.php",
-                                type: "post",
-                                data: {
-                                    friendsPageBtn: "rejFriend",
-                                    user: user,
-                                    friend: friend,
-                                },
-                                success: function() {
-                                    $(".update_my_friends_btn").click();
-                                }
-                            })
-                        }
-                        break;
-                    }
-                }
-                if (reqHasBeenUnsent) {
-                    $(`.req_rec_item:eq(${index})`).remove();
-                    alert("This User Unsent Request");
-                }
-            }
-        })
     })
 
     $(".search_friend_iput>input").keydown(function(e) {
