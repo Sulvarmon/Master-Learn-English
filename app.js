@@ -1385,8 +1385,21 @@ $(document).ready(function() {
                         }
                         
                         if(forWhat == "messages"){
-                            
+                            var isInChat = false;
+                            $(`.${obj.btn1}`).on("click", function(){
+                                for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                                    if(searchedUser == $(`.msg_user_cont:eq(${i})>span`).text()){
+                                        isInChat = true;
+                                        $(`.msg_user_cont:eq(${i})`).click();
+                                        break;
+                                    }
+                                }
+                                if(!isInChat){
+                                    
+                                }
+                            })
                         }
+
                         $.ajax({
                             url: "arrays.php",
                             type: "post",
