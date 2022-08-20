@@ -1395,8 +1395,7 @@ $(document).ready(function() {
                                     }
                                 }
                                 if(!isInChat){
-                                    e.stopPropagation()
-                                    console.log("dd")                            
+                                    e.stopPropagation()                           
                                     $(".first_msg_cont_wrapper").show(); 
                                     $(".first_msg_cont_wrapper").on("click",function(e){
                                         $(".first_msg_emojis_wrapper").hide();

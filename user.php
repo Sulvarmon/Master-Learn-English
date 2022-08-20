@@ -1001,6 +1001,7 @@
                             <div class="search_chat_result p-2 d-flex flex-wrap"></div>
                             <div class="first_msg_cont_wrapper" style="display: none;">
                             <div class="first_msg_cont first_msg_cont_s d-flex flex-column gap-2 bg-dark align-items-center justify-content-center w_fit_s">
+                                <div>Send First Message</div>
                                 <input type="text" class="first_msg_input rounded p-2 w-75">
                                 <div class="d-flex gap-2 align-items-center">
                                    <button class="send_first_msg btn btn-primary w_fit_s">Send</button> 
