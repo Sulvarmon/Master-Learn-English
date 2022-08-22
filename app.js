@@ -1444,70 +1444,130 @@ $(document).ready(function() {
     }
 
     function makechat(data) {
-        var filteredData = [];
-        var filteredData2 = [];
-        var filteredData3 = [];
-        var msgUser;
 
-        $.each(data, function(i, e) {
-            if (user == e.sender || user == e.receiver) {
-                filteredData.push(e);
-            }
-        });
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "messages"
+            },
+            dataType: "json",
+            success: function(dataM) {
+              
+                var filteredData = [];
+                var filteredData2 = [];
+                var filteredData3 = [];
+                var msgUser;
 
-        $.each(filteredData, function(i, e) {
-            var string = `${e.sender}-${e.receiver}`;
-            var string2 = `${e.receiver}-${e.sender}`;
-            if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
-                filteredData2.push(string);
-            }
-        });
+                $.each(data, function(i, e) {
+                    if (user == e.sender || user == e.receiver) {
+                        filteredData.push(e);
+                    }
+                });
 
-        $(".chats_cont").empty();
+                $.each(filteredData, function(i, e) {
+                    var string = `${e.sender}-${e.receiver}`;
+                    var string2 = `${e.receiver}-${e.sender}`;
+                    if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
+                        filteredData2.push(string);
+                    }
+                });
 
-        for (var i = 0; i < filteredData2.length; i++) {
-            $(".chats_cont").append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
-        }
-
-        for (var i = 0; i < $(".msg_user_cont").length; i++) {
-            $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
-            $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
-        }
-
-        $.each(filteredData2, function(i, e) {
-            var splited = e.split('-');
-            filteredData3.push(splited)
-        });
-
-        for (var i = 0; i < filteredData3.length; i++) {
-            if (user == filteredData3[i][0]) {
-                $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
-            }
-            if (user == filteredData3[i][1]) {
-                $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
-            }
-
-            $.ajax({
-                url: "arrays.php",
-                type: "post",
-                data: {
-                    arraysBtn: "user_imgs_array"
-                },
-                dataType: "json",
-                success: function(data2) {
-                    $.each(data2, function(i, e) {
-                        for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                            if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
-                                $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
+                for (var i = 0; i < dataM.length; i++) {
+                    if(dataM[i].delete_chat != 'No'){
+                        var splitDataM = dataM[i].delete_chat.split('-');
+                        var deleteUser = splitDataM[0];
+                        var deleteOtherUser = splitDataM[1];
+                        if(user == deleteUser){
+                            for (var j = 0; j < filteredData2.length; j++) {                                
+                                if(
+                                    filteredData2[j] == deleteUser.concat('-').concat(deleteOtherUser) || 
+                                    filteredData2[j] == deleteOtherUser.concat('-').concat(deleteUser)
+                                ){                                    
+                                    filteredData2.splice(j,1);
+                                }
                             }
+                        }
+                    }
+                }
+
+                $(".chats_cont").empty();
+
+                for (var i = 0; i < filteredData2.length; i++) {
+                    $(".chats_cont").append('<div class="msg_user_cont_wrapper position-relative"></div>')
+                }
+
+                for (var i = 0; i < $(".msg_user_cont_wrapper").length; i++) {
+                    $(`.msg_user_cont_wrapper:eq(${i})`).append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
+                    $(`.msg_user_cont_wrapper:eq(${i})`).append("<i class='material-icons position-absolute start-100 top-0 translate-middle bg-dark text-danger rounded-circle p-2 cursor_pointer_s border'>delete</i>")
+                }
+
+                $(".msg_user_cont_wrapper>i").hide();
+
+                $(".msg_user_cont_wrapper").on("mouseenter", function(){
+                    $(this).children().eq(1).show();
+                })
+
+                $(".msg_user_cont_wrapper>i").on("click", function(){
+                    if(confirm("Do You Want To Permanently Delete This Chat?")){
+                        var otherUser = $(this).siblings().children().eq(1).text();
+                        $.ajax({
+                            url: "messenger.php",
+                            type: "post",
+                            data: {
+                                messengerBtn: "delete_chat",
+                                user: user,
+                                otherUser: otherUser
+                            }
+                        })
+                    }
+                })
+
+                $(".msg_user_cont_wrapper").on("mouseleave", function(){
+                    $(".msg_user_cont_wrapper>i").hide();
+                })
+
+                for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                    $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
+                    $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
+                }
+
+                $.each(filteredData2, function(i, e) {
+                    var splited = e.split('-');
+                    filteredData3.push(splited)
+                });
+
+                for (var i = 0; i < filteredData3.length; i++) {
+                    if (user == filteredData3[i][0]) {
+                        $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
+                    }
+                    if (user == filteredData3[i][1]) {
+                        $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
+                    }
+
+                    $.ajax({
+                        url: "arrays.php",
+                        type: "post",
+                        data: {
+                            arraysBtn: "user_imgs_array"
+                        },
+                        dataType: "json",
+                        success: function(data2) {
+                            $.each(data2, function(i, e) {
+                                for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                                    if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
+                                        $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
+                                    }
+                                }
+                            })
+
                         }
                     })
 
                 }
-            })
 
-
-        }
+            }
+        })
     }
 
     /** */
@@ -2494,7 +2554,7 @@ $(document).ready(function() {
                             url: "messenger.php",
                             type: "post",
                             data: {
-                                messengerBtn: true,
+                                messengerBtn: 'create_chat',
                                 user: user,
                                 otherUser: msgUser,
                                 msg: $(".type_msg_input").val(),
@@ -2592,7 +2652,7 @@ $(document).ready(function() {
             url: "messenger.php",
             type: "post",
             data: {
-                messengerBtn: true,
+                messengerBtn: 'create_chat',
                 user: user,
                 otherUser: otherUser,
                 msg: msg,

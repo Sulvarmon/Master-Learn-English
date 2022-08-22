@@ -1020,9 +1020,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w_fit_s mx-auto h4 text-info m-2">Chats</div>
+                    <div class="w_fit_s mx-auto h4 text-info m-4">Chats</div>
                     <!-- appended in js -->
-                    <div class="chats_cont d-flex flex-wrap gap-2 justify-content-center"></div>
+                    <div class="chats_cont d-flex flex-wrap gap-4 justify-content-center"></div>
                 </div>
             </div>
 
