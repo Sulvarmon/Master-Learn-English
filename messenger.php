@@ -51,6 +51,15 @@ if(isset($_POST['messengerBtn'])){
 			}
 			mysqli_close($conn);
 			break;
+		case 'recover_chat':
+			$user = $_POST['user'];
+			$otherUser = $_POST['otherUser'];
+			$sql = "UPDATE messages SET delete_chat = 'No' WHERE sender = '$user' AND receiver = '$otherUser' ";
+			mysqli_query($conn,$sql);
+			$sql = "UPDATE messages SET delete_chat = 'No' WHERE receiver = '$user' AND sender = '$otherUser' ";
+			mysqli_query($conn,$sql);
+			mysqli_close($conn);
+			break;
 		default:
 			// code...
 			break;

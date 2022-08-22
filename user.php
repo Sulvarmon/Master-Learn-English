@@ -1022,7 +1022,12 @@
                     </div>
                     <div class="w_fit_s mx-auto h4 text-info m-4">Chats</div>
                     <!-- appended in js -->
-                    <div class="chats_cont d-flex flex-wrap gap-4 justify-content-center"></div>
+                    <div class="chats_cont_wrapper_inner">
+                       <div class="chats_cont d-flex flex-wrap gap-4 justify-content-center"></div> 
+                    </div>                    
+                    <div class="loading_chat_cont_wraper" style="display: none">
+                        <div class="loading_chat_cont d-flex justify-content-center align-items-center p-2 bg-dark rounded">Loading ...</div>
+                    </div>                    
                 </div>
             </div>
 
