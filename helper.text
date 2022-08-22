@@ -12,6 +12,8 @@ $.ajax({
 
 
 
+first_message
+
 
 
  $array = array();
@@ -25,14 +27,35 @@ if(mysqli_num_rows($query) > 0){
     }
 }
 
-<div class="container mt-5 p-2 border">
-                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Search Friend</div>
-                    <div class="d-flex flex-column gap-2 align-items-center">
-                        <div class="d-flex flex-column gap-2 align-items-center">
-                            <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here">
+var searchMessengerObj ={
+        clickedEl: "search_chat_user_btn",
+        input: "search_chat_user_iput>input",
+        resultCont: "search_chat_result",
+        item: "search_chat_result_item",
+        imgAndName: "search_chat_result_item_img_and_username",
+        btnsCont: "search_chat_result_btns_cont",
+        btn1: "start_chat_btn",
+        btn1Text: "Send Message",
+        btn2: "clean_search_chat_user_btn",
+        btn2Text: "Clean",
+        userimg: "search_chat_user_img",
+        username: "search_chat_user_name"
+    }
+
+
+    if(forWhat == "messages"){
+                            $(`.${obj.btn1}`).on("click", function(){
+                                displayPage(16);
+                            })
+                        }
+
+
+                        <div class="position-relative" >
+                                <div class="cursor_pointer_s messenger_emojis_opener">
+                                    <i class="material-icons">mood</i>                                                            
+                                </div>
+                                <div class="messenger_emojis_wrapper emojis_wrapper_s">
+                                    <!-- appended in js -->
+                                    <div class="messenger_emojis d-flex flex-wrap gap-2 p-2 border rounded page_bg_color_s"></div>
+                                </div>
                             </div>
-                            <div class="search_user_btn btn btn-primary mt-3">Search User</div>
-                        </div>
-                        <div class="search_result p-2 d-flex flex-wrap"></div>
-                    </div>
-                </div>

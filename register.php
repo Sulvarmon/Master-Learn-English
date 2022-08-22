@@ -45,6 +45,15 @@ if(isset($_POST["registerBtn"])){
 
     /** */
 
+    /*short username*/
+    if(strlen($user)<4){
+        $registrationStatus = false;
+        $error = "Username Is Too Short. Should be 4 characters at least";
+        echo $error;
+        mysqli_close($conn);
+        exit();
+    }
+
     /**weak password */
     if(strlen($password)<4){
         $registrationStatus = false;

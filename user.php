@@ -1000,27 +1000,27 @@
                             </div>
                             <div class="search_chat_result p-2 d-flex flex-wrap"></div>
                             <div class="first_msg_cont_wrapper" style="display: none;">
-                            <div class="first_msg_cont first_msg_cont_s d-flex flex-column gap-2 bg-dark align-items-center justify-content-center w_fit_s">
-                                <div>Send First Message</div>
-                                <input type="text" class="first_msg_input rounded p-2 w-75">
-                                <div class="d-flex gap-2 align-items-center">
-                                   <button class="send_first_msg btn btn-primary w_fit_s">Send</button> 
-                                   <div class="position-relative" >
-                                        <div class="cursor_pointer_s first_msg_emojis_opener d-flex align-items-center">
-                                            <i class="material-icons">mood</i>                                                            
-                                        </div>
-                                        <div class="first_msg_emojis_wrapper emojis_wrapper_s2 bg-dark">
-                                            <!-- appended in js -->
-                                            <div class="first_msg_emojis d-flex flex-wrap gap-2 p-2 border rounded"></div>
+                                <div class="first_msg_cont first_msg_cont_s d-flex flex-column gap-2 bg-dark align-items-center justify-content-center w_fit_s">
+                                    <div>Send First Message</div>
+                                    <input type="text" class="first_msg_input rounded p-2 w-75">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <button class="send_first_msg btn btn-primary w_fit_s">Send</button>
+                                        <div class="position-relative">
+                                            <div class="cursor_pointer_s first_msg_emojis_opener d-flex align-items-center">
+                                                <i class="material-icons">mood</i>
+                                            </div>
+                                            <div class="first_msg_emojis_wrapper emojis_wrapper_s2 bg-dark">
+                                                <!-- appended in js -->
+                                                <div class="first_msg_emojis d-flex flex-wrap gap-2 p-2 border rounded"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
+
                             </div>
-                            
-                            </div>                                                        
                         </div>
                     </div>
-                    <div class="w_fit_s mx-auto h4 text-info m-2">Chats</div>                    
+                    <div class="w_fit_s mx-auto h4 text-info m-2">Chats</div>
                     <!-- appended in js -->
                     <div class="chats_cont d-flex flex-wrap gap-2 justify-content-center"></div>
                 </div>
@@ -1043,16 +1043,16 @@
                             <div class="flex-fill ">
                                 <input type="text" class="type_msg_input w-100 p-2 msg_rounded_s" style="outline: none;">
                             </div>
-                            <div class="position-relative" >
+                            <div class="position-relative">
                                 <div class="cursor_pointer_s messenger_emojis_opener d-flex align-items-center">
-                                    <i class="material-icons">mood</i>                                                            
+                                    <i class="material-icons">mood</i>
                                 </div>
                                 <div class="messenger_emojis_wrapper emojis_wrapper_s">
                                     <!-- appended in js -->
                                     <div class="messenger_emojis d-flex flex-wrap gap-2 p-2 border rounded page_bg_color_s"></div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="messages_area overflow-auto mt-5" style="height: 365px;">
                             <div class="messages_area_inner_cont d-flex flex-column gap-2 p-2"></div>

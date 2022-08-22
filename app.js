@@ -18,9 +18,9 @@ $(document).ready(function() {
     };
     var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var emojis = ["&#128512", "&#128513", "&#128514", "&#128515", "&#128516", "&#128517", "&#128518", "&#128519",
-                  "&#128520", "&#128521", "&#128522", "&#128523", "&#128524", "&#128525", "&#128526", "&#128527"
-                ];
-    var searchFriendObj ={
+        "&#128520", "&#128521", "&#128522", "&#128523", "&#128524", "&#128525", "&#128526", "&#128527"
+    ];
+    var searchFriendObj = {
         clickedEl: "search_user_btn",
         input: "search_friend_iput>input",
         resultCont: "search_result",
@@ -35,21 +35,21 @@ $(document).ready(function() {
         username: "search_user_name"
     }
 
-    var searchMessengerObj ={
-        clickedEl: "search_chat_user_btn",
-        input: "search_chat_user_iput>input",
-        resultCont: "search_chat_result",
-        item: "search_chat_result_item",
-        imgAndName: "search_chat_result_item_img_and_username",
-        btnsCont: "search_chat_result_btns_cont",
-        btn1: "start_chat_btn",
-        btn1Text: "Start Conversation",
-        btn2: "clean_search_chat_user_btn",
-        btn2Text: "Clean",
-        userimg: "search_chat_user_img",
-        username: "search_chat_user_name"
-    }
-    /** */
+    var searchMessengerObj = {
+            clickedEl: "search_chat_user_btn",
+            input: "search_chat_user_iput>input",
+            resultCont: "search_chat_result",
+            item: "search_chat_result_item",
+            imgAndName: "search_chat_result_item_img_and_username",
+            btnsCont: "search_chat_result_btns_cont",
+            btn1: "start_chat_btn",
+            btn1Text: "Start Conversation",
+            btn2: "clean_search_chat_user_btn",
+            btn2Text: "Clean",
+            userimg: "search_chat_user_img",
+            username: "search_chat_user_name"
+        }
+        /** */
 
     $.ajax({
         url: "arrays.php",
@@ -471,7 +471,7 @@ $(document).ready(function() {
     }
 
     function clickOnUserImgAndUsernameCont() {
-        $(document).off().on("click",".user_img_and_username", function() {
+        $(document).off().on("click", ".user_img_and_username", function() {
             $(".other_user_page_content_wrapper").css("visibility", "hidden");
             scrollPos = $(window).scrollTop();
             winScr();
@@ -628,7 +628,7 @@ $(document).ready(function() {
                         $(`.req_rec_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_rec_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_rec_item_img_and_username:eq(${i})`).append(`<div class='req_rec_name'>${filteredData[i].friend_name}</div>`);
                     }
-                    
+
                     $(".add_friend_btn").on("click", function() {
                         var index = $(".add_friend_btn").index(this);
                         var friend = $(`.req_rec_name:eq(${index})`).text().trim();
@@ -1294,7 +1294,7 @@ $(document).ready(function() {
         })
     }
 
-    function searchUser(forWhat, obj){
+    function searchUser(forWhat, obj) {
         $(`.${obj.clickedEl}`).click(function() {
             $.ajax({
                 url: "arrays.php",
@@ -1311,17 +1311,17 @@ $(document).ready(function() {
                             if (searchedUser == data[i].username && searchedUser != "") {
                                 noSearchResult = false;
                                 $(`.${obj.resultCont}`).empty();
-                                $(`.${obj.resultCont}`).append("<div class='"+obj.item+" p-2 d-flex flex-column gap-2 align-items-center'></div>")
-                                $(`.${obj.item}`).append("<div class='"+obj.imgAndName+" user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
-                                $(`.${obj.item}`).append("<div class='"+obj.btnsCont+" d-flex gap-2'></div>");
-                                $(`.${obj.btnsCont}`).append("<div class='"+obj.btn1+" btn btn-success'>"+obj.btn1Text+"</div>");
-                                $(`.${obj.btnsCont}`).append("<div class='"+obj.btn2+" btn btn-danger'>"+obj.btn2Text+"</div>");
-                                $(`.${obj.imgAndName}`).append("<div><img src='./Img/user_default_avatar.png' class='"+obj.userimg+" rounded-circle' width='60' height='60'></div>")
-                                $(`.${obj.imgAndName}`).append("<div class="+obj.username+">"+data[i].username+"</div>");
+                                $(`.${obj.resultCont}`).append("<div class='" + obj.item + " p-2 d-flex flex-column gap-2 align-items-center'></div>")
+                                $(`.${obj.item}`).append("<div class='" + obj.imgAndName + " user_img_and_username user_img_and_username_s d-flex gap-2 align-items-center'></div>");
+                                $(`.${obj.item}`).append("<div class='" + obj.btnsCont + " d-flex gap-2'></div>");
+                                $(`.${obj.btnsCont}`).append("<div class='" + obj.btn1 + " btn btn-success'>" + obj.btn1Text + "</div>");
+                                $(`.${obj.btnsCont}`).append("<div class='" + obj.btn2 + " btn btn-danger'>" + obj.btn2Text + "</div>");
+                                $(`.${obj.imgAndName}`).append("<div><img src='./Img/user_default_avatar.png' class='" + obj.userimg + " rounded-circle' width='60' height='60'></div>")
+                                $(`.${obj.imgAndName}`).append("<div class=" + obj.username + ">" + data[i].username + "</div>");
                                 break;
                             }
                         }
-                        if(forWhat == "friends"){
+                        if (forWhat == "friends") {
                             $(`.${obj.btn1}`).click(function() {
                                 var friend = $(`.${obj.username}`).text().trim();
 
@@ -1381,28 +1381,28 @@ $(document).ready(function() {
                                         }
                                     }
                                 })
-                            })  
+                            })
                         }
-                        
-                        if(forWhat == "messages"){
+
+                        if (forWhat == "messages") {
                             var isInChat = false;
-                            $(`.${obj.btn1}`).on("click", function(e){
+                            $(`.${obj.btn1}`).on("click", function(e) {
                                 for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                                    if(searchedUser == $(`.msg_user_cont:eq(${i})>span`).text()){
+                                    if (searchedUser == $(`.msg_user_cont:eq(${i})>span`).text()) {
                                         isInChat = true;
                                         $(`.msg_user_cont:eq(${i})`).click();
                                         break;
                                     }
                                 }
-                                if(!isInChat){
-                                    e.stopPropagation()                           
-                                    $(".first_msg_cont_wrapper").show(); 
-                                    $(".first_msg_cont_wrapper").on("click",function(e){
+                                if (!isInChat) {
+                                    e.stopPropagation()
+                                    $(".first_msg_cont_wrapper").show();
+                                    $(".first_msg_cont_wrapper").on("click", function(e) {
                                         $(".first_msg_emojis_wrapper").hide();
                                         e.stopPropagation();
                                     })
-                                    $(window).on("click", function(){
-                                        $(".first_msg_cont_wrapper").hide(); 
+                                    $(window).on("click", function() {
+                                        $(".first_msg_cont_wrapper").hide();
                                     })
                                 }
                             })
@@ -1429,9 +1429,9 @@ $(document).ready(function() {
                         })
                         if (noSearchResult && searchedUser != "") {
                             $(`.${obj.resultCont}`).empty();
-                            $(`.${obj.resultCont}`).append("<div class='"+obj.item+" p-2 d-flex flex-column gap-2 align-items-center'></div>")
+                            $(`.${obj.resultCont}`).append("<div class='" + obj.item + " p-2 d-flex flex-column gap-2 align-items-center'></div>")
                             $(`.${obj.item}`).append("<div>There Is Not Such User</div>");
-                            $(`.${obj.item}`).append("<div class='"+obj.btn2+" btn btn-danger'>"+obj.btn2Text+"</div>");
+                            $(`.${obj.item}`).append("<div class='" + obj.btn2 + " btn btn-danger'>" + obj.btn2Text + "</div>");
                         }
                         $(`.${obj.btn2}`).click(function() {
                             $(`.${obj.resultCont}`).empty();
@@ -1440,10 +1440,10 @@ $(document).ready(function() {
                     }
                 }
             })
-        })  
+        })
     }
 
-    function makechat(data){
+    function makechat(data) {
         var filteredData = [];
         var filteredData2 = [];
         var filteredData3 = [];
@@ -2426,10 +2426,8 @@ $(document).ready(function() {
         dataType: "json",
         success: function(data) {
             makechat(data);
-
-            $(".msg_user_cont").click(function() {
+            $(document).on("click", ".msg_user_cont", function(){
                 $(".messages_area").hide();
-
                 function messenger(data) {
                     $(".messages_area_inner_cont").empty();
                     var userMessages = [];
@@ -2541,52 +2539,85 @@ $(document).ready(function() {
             })
 
         }
-    })    
-        
+    })
+
     var messenderEmoji = {
-       appendedEl: "messenger_emojis",
-       clickedEl: "messenger_emojis_opener",
-       wrapper: "messenger_emojis_wrapper",
-       emoji: "messenger_emojis>div",
-       input: "type_msg_input"
+        appendedEl: "messenger_emojis",
+        clickedEl: "messenger_emojis_opener",
+        wrapper: "messenger_emojis_wrapper",
+        emoji: "messenger_emojis>div",
+        input: "type_msg_input"
     }
 
     var firstMessageEmoji = {
-       appendedEl: "first_msg_emojis",
-       clickedEl: "first_msg_emojis_opener",
-       wrapper: "first_msg_emojis_wrapper",
-       emoji: "first_msg_emojis>div",
-       input: "first_msg_input"
+        appendedEl: "first_msg_emojis",
+        clickedEl: "first_msg_emojis_opener",
+        wrapper: "first_msg_emojis_wrapper",
+        emoji: "first_msg_emojis>div",
+        input: "first_msg_input"
     }
 
-    function emojiHandler(obj){
-        $.each(emojis,function(i,e){
+    function emojiHandler(obj) {
+        $.each(emojis, function(i, e) {
             $(`.${obj.appendedEl}`).append("<div class='cursor_pointer_s'>" + e + "</div>")
         })
 
-        $(`.${obj.clickedEl}`).click(function(e){
+        $(`.${obj.clickedEl}`).click(function(e) {
             e.stopPropagation();
             $(`.${obj.wrapper}`).show();
         })
 
-        $(`.${obj.wrapper}`).click(function(e){
-             e.stopPropagation();
+        $(`.${obj.wrapper}`).click(function(e) {
+            e.stopPropagation();
         })
 
-        $(`.${obj.emoji}`).on("click", function(){
+        $(`.${obj.emoji}`).on("click", function() {
             $(`.${obj.input}`).focus()
             var inputValur = $(`.${obj.input}`).val();
             $(`.${obj.input}`).val(`${inputValur}${$(this).text()}`)
         })
 
         $(window).on('click', function() {
-            $(`.${obj.wrapper}`).hide();       
-        }); 
+            $(`.${obj.wrapper}`).hide();
+        });
     }
 
-    emojiHandler(messenderEmoji); 
-    emojiHandler(firstMessageEmoji); 
-    
+    emojiHandler(messenderEmoji);
+    emojiHandler(firstMessageEmoji);
+
+    $(".send_first_msg").on("click", function(){
+        var otherUser = $(".search_chat_user_name").text();
+        var msg = $(".first_msg_input").val();
+        $.ajax({
+            url: "messenger.php",
+            type: "post",
+            data: {
+                messengerBtn: true,
+                user: user,
+                otherUser: otherUser,
+                msg: msg,
+                time: new Date()
+            },
+            success: function() {
+                $(".first_msg_input").val('');
+                $(".clean_search_chat_user_btn").click();
+                $.ajax({
+                    url: "arrays.php",
+                    type: "post",
+                    data: {
+                        arraysBtn: "messages"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        makechat(data);
+                        var lastIndex = $(".msg_user_cont").length - 1;
+                        $(`.msg_user_cont:eq(${lastIndex})`).click();
+                    }
+                })
+            }
+        })
+    })
+
     $(".messages").click()
 
 })
