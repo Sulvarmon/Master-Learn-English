@@ -33,19 +33,24 @@ if(isset($_POST['messengerBtn'])){
 
 			for ($i=0; $i <sizeof($array) ; $i++) {
 				if($array[$i]['sender'] == $user && $array[$i]['receiver'] == $otherUser){
-					if($array[$i]['delete_chat'] = 'No'){						
+					if($array[$i]['delete_chat'] == 'No'){						
 						$id = $array[$i]['id'];
 						$sql = "UPDATE messages SET delete_chat = '$user-$otherUser' WHERE id = '$id' ";
+						mysqli_query($conn,$sql);
+					}else{
+						$sql = "DELETE from messages WHERE sender = '$user' AND receiver = '$otherUser'";
 						mysqli_query($conn,$sql);
 					}
 					
 				}
 				if($array[$i]['receiver'] == $user && $array[$i]['sender'] == $otherUser){
-					if($array[$i]['delete_chat'] = 'No'){
+					if($array[$i]['delete_chat'] == 'No'){
 						$id = $array[$i]['id'];
 						$sql = "UPDATE messages SET delete_chat = '$user-$otherUser' WHERE id = '$id' ";
+						mysqli_query($conn,$sql);					
+					}else{
+						$sql = "DELETE from messages WHERE sender = '$otherUser' AND receiver = '$user'";
 						mysqli_query($conn,$sql);
-					
 					}
 				}
 			}

@@ -49,6 +49,7 @@ $(document).ready(function() {
             userimg: "search_chat_user_img",
             username: "search_chat_user_name"
         }
+    var firstMsgClickStatus = true;
         /** */
 
     $.ajax({
@@ -1421,18 +1422,8 @@ $(document).ready(function() {
                                                                 otherUser: otherUser
                                                             },
                                                             success: function() {
-                                                                $.ajax({
-                                                                    url: "arrays.php",
-                                                                    type: "post",
-                                                                    data: {
-                                                                        arraysBtn: "messages"
-                                                                    },
-                                                                    dataType: "json",
-                                                                    success: function(dataRecoverChat) {
-                                                                            makechat(dataRecoverChat);
-                                                                            alert("Now Clik Start Conversation Button")
-                                                                    }
-                                                                })
+                                                                makechat();
+                                                                alert("Now Clik Start Conversation Button");
                                                             }
                                                         })
                                                     }
@@ -1450,7 +1441,8 @@ $(document).ready(function() {
                                                 })
                                                 $(window).on("click", function() {
                                                     $(".first_msg_cont_wrapper").hide();
-                                                }) 
+                                                })
+                                                firstMsgClickStatus = true;
                                             }
                                         }
                                     })
@@ -1494,141 +1486,269 @@ $(document).ready(function() {
         })
     }
 
-    function makechat(data) {
-        function makeChatInnerFnc(dataForInner){
-            var filteredData = [];
-            var filteredData2 = [];
-            var filteredData3 = [];
-            var msgUser;
+    function makechat(forWhat = '') {
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "messages"
+            },
+            dataType: "json",
+            success: function(data) {
+                function makeChatInnerFnc(dataForInner){
+                    var filteredData = [];
+                    var filteredData2 = [];
+                    var filteredData3 = [];
+                    var msgUser;
 
-            $.each(dataForInner, function(i, e) {
-                if (user == e.sender || user == e.receiver) {
-                    filteredData.push(e);
-                }
-            });
+                    $.each(dataForInner, function(i, e) {
+                        if (user == e.sender || user == e.receiver) {
+                            filteredData.push(e);
+                        }
+                    });
 
-            $.each(filteredData, function(i, e) {
-                var string = `${e.sender}-${e.receiver}`;
-                var string2 = `${e.receiver}-${e.sender}`;
-                if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
-                    filteredData2.push(string);
-                }
-            });
+                    $.each(filteredData, function(i, e) {
+                        var string = `${e.sender}-${e.receiver}`;
+                        var string2 = `${e.receiver}-${e.sender}`;
+                        if ($.inArray(string, filteredData2) == -1 && $.inArray(string2, filteredData2) == -1) {
+                            filteredData2.push(string);
+                        }
+                    });
 
-            for (var i = 0; i < dataForInner.length; i++) {
-                if(dataForInner[i].delete_chat != 'No'){
-                    var splitDataM = dataForInner[i].delete_chat.split('-');
-                    var deleteUser = splitDataM[0];
-                    var deleteOtherUser = splitDataM[1];
-                    if(user == deleteUser){
-                        for (var j = 0; j < filteredData2.length; j++) {                                
-                            if(
-                                filteredData2[j] == deleteUser.concat('-').concat(deleteOtherUser) || 
-                                filteredData2[j] == deleteOtherUser.concat('-').concat(deleteUser)
-                            ){                                    
-                                filteredData2.splice(j,1);
+                    for (var i = 0; i < dataForInner.length; i++) {
+                        if(dataForInner[i].delete_chat != 'No'){
+                            var splitDataM = dataForInner[i].delete_chat.split('-');
+                            var deleteUser = splitDataM[0];
+                            var deleteOtherUser = splitDataM[1];
+                            if(user == deleteUser){
+                                for (var j = 0; j < filteredData2.length; j++) {                                
+                                    if(
+                                        filteredData2[j] == deleteUser.concat('-').concat(deleteOtherUser) || 
+                                        filteredData2[j] == deleteOtherUser.concat('-').concat(deleteUser)
+                                    ){                                    
+                                        filteredData2.splice(j,1);
+                                    }
+                                }
                             }
                         }
                     }
-                }
-            }
 
-            $(".chats_cont").empty();
+                    $(".chats_cont").empty();
 
-            for (var i = 0; i < filteredData2.length; i++) {
-                $(".chats_cont").append('<div class="msg_user_cont_wrapper position-relative"></div>')
-            }
-
-            for (var i = 0; i < $(".msg_user_cont_wrapper").length; i++) {
-                $(`.msg_user_cont_wrapper:eq(${i})`).append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
-                $(`.msg_user_cont_wrapper:eq(${i})`).append("<i class='material-icons position-absolute start-100 top-0 translate-middle bg-dark text-danger rounded-circle p-2 cursor_pointer_s border'>delete</i>")
-            }
-
-            $(".msg_user_cont_wrapper>i").hide();
-
-            $(".msg_user_cont_wrapper").on("mouseenter", function(){
-                $(this).children().eq(1).show();
-            })
-
-            $(".msg_user_cont_wrapper").on("mouseleave", function(){
-                $(".msg_user_cont_wrapper>i").hide();
-            })
-
-            for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
-                $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
-            }
-
-            $.each(filteredData2, function(i, e) {
-                var splited = e.split('-');
-                filteredData3.push(splited)
-            });
-
-            for (var i = 0; i < filteredData3.length; i++) {
-                if (user == filteredData3[i][0]) {
-                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
-                }
-                if (user == filteredData3[i][1]) {
-                    $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
-                }
-
-                $.ajax({
-                    url: "arrays.php",
-                    type: "post",
-                    data: {
-                        arraysBtn: "user_imgs_array"
-                    },
-                    dataType: "json",
-                    success: function(data2) {
-                        $.each(data2, function(i, e) {
-                            for (var i = 0; i < $(".msg_user_cont").length; i++) {
-                                if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
-                                    $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
-                                }
-                            }
-                        })
-
+                    for (var i = 0; i < filteredData2.length; i++) {
+                        $(".chats_cont").append('<div class="msg_user_cont_wrapper position-relative"></div>')
                     }
-                })
 
-            } 
-        }
+                    for (var i = 0; i < $(".msg_user_cont_wrapper").length; i++) {
+                        $(`.msg_user_cont_wrapper:eq(${i})`).append('<div class="msg_user_cont user_img_and_username_s d-flex gap-2 align-items-center w_fit_s border p-2 rounded"></div>')
+                        $(`.msg_user_cont_wrapper:eq(${i})`).append("<i class='material-icons position-absolute start-100 top-0 translate-middle bg-dark text-danger rounded-circle p-2 cursor_pointer_s border'>delete</i>")
+                    }
 
-        makeChatInnerFnc(data);
+                    $(".msg_user_cont_wrapper>i").hide();
 
-        $(".msg_user_cont_wrapper>i").on("click", function(){
-            if(confirm("Do You Want To Permanently Delete This Chat?")){
-                $(".chats_cont_wrapper_inner").hide();
-                $(".loading_chat_cont_wraper").show();
-                var otherUser = $(this).siblings().children().eq(1).text();
-                $.ajax({
-                    url: "messenger.php",
-                    type: "post",
-                    data: {
-                        messengerBtn: "delete_chat",
-                        user: user,
-                        otherUser: otherUser
-                    },
-                    success: function(){
+                    $(".msg_user_cont_wrapper").on("mouseenter", function(){
+                        $(this).children().eq(1).show();
+                    })
+
+                    $(".msg_user_cont_wrapper").on("mouseleave", function(){
+                        $(".msg_user_cont_wrapper>i").hide();
+                    })
+
+                    for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                        $(`.msg_user_cont:eq(${i})`).append('<img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle">');
+                        $(`.msg_user_cont:eq(${i})`).append('<span class="ms-2">Username</span>');
+                    }
+
+                    $.each(filteredData2, function(i, e) {
+                        var splited = e.split('-');
+                        filteredData3.push(splited)
+                    });
+
+                    for (var i = 0; i < filteredData3.length; i++) {
+                        if (user == filteredData3[i][0]) {
+                            $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][1]}`);
+                        }
+                        if (user == filteredData3[i][1]) {
+                            $(`.msg_user_cont:eq(${i})>span`).text(`${filteredData3[i][0]}`);
+                        }
+
                         $.ajax({
                             url: "arrays.php",
                             type: "post",
                             data: {
-                                arraysBtn: "messages"
+                                arraysBtn: "user_imgs_array"
                             },
                             dataType: "json",
-                            success: function(dataDeleteChat) {
+                            success: function(data2) {
+                                $.each(data2, function(i, e) {
+                                    for (var i = 0; i < $(".msg_user_cont").length; i++) {
+                                        if ($(`.msg_user_cont:eq(${i})>span`).text() == e.user) {
+                                            $(`.msg_user_cont:eq(${i})>img`).attr("src", `./img/profile_imgs/${e.img}`)
+                                        }
+                                    }
+                                })
 
-                                console.log(dataDeleteChat)
-                                makeChatInnerFnc(dataDeleteChat);
-                                $(".chats_cont_wrapper_inner").show();
-                                $(".loading_chat_cont_wraper").hide();
+                                $(document).off().on("click", ".msg_user_cont", function(){
+                                $(".messages_area").hide();
+                                function messenger(data) {
+                                    $(".messages_area_inner_cont").empty();
+                                    var userMessages = [];
+                                    var otherUserMessages = [];
+                                    $.each(data, function(i, e) {
+                                        if (user == e.sender && msgUser == e.receiver) {
+                                            $(".messages_area_inner_cont").append("<div class='messages_area_user d-flex justify-content-end'></div>");
+                                            var fTime = e.time.split(" ");
+                                            var fTime2 = [];
+                                            for (var i = 1; i <= 4; i++) {
+                                                fTime2.push(fTime[i]);
+                                            }
+                                            var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
+                                            userMessages.push({ 'msg': e.msg, 'time': time });
+                                        }
+                                        if (user == e.receiver && msgUser == e.sender) {
+                                            $(".messages_area_inner_cont").append("<div class='messages_area_other_user d-flex justify-content-start'></div>");
+                                            var fTime = e.time.split(" ");
+                                            var fTime2 = [];
+                                            for (var i = 1; i <= 4; i++) {
+                                                fTime2.push(fTime[i]);
+                                            }
+                                            var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
+                                            otherUserMessages.push({ 'msg': e.msg, 'time': time });
+                                        }
+                                    })
+
+                                    for (var i = 0; i < $(".messages_area_user").length; i++) {
+                                        $(`.messages_area_user:eq(${i})`).append("<div class='messages_area_user_msg_and_time d-flex gap-2 align-items-center'></div>")
+                                    }
+
+                                    for (var i = 0; i < $(".messages_area_user_msg_and_time").length; i++) {
+                                        $(`.messages_area_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s text-warning' style='font-size: 12px;' >" + userMessages[i].time + "</div>")
+                                        $(`.messages_area_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s bg-primary p-2 msg_rounded_s'>" + userMessages[i].msg + "</div>")
+                                    }
+
+                                    for (var i = 0; i < $(".messages_area_other_user").length; i++) {
+                                        $(`.messages_area_other_user:eq(${i})`).append("<div class='messages_area_other_user_msg_and_time d-flex gap-2 align-items-center'></div>")
+                                    }
+
+                                    for (var i = 0; i < $(".messages_area_other_user_msg_and_time").length; i++) {
+                                        $(`.messages_area_other_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s bg-secondary p-2 msg_rounded_s'>" + otherUserMessages[i].msg + "</div>")
+                                        $(`.messages_area_other_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s text-warning' style='font-size: 12px;' >" + otherUserMessages[i].time + "</div>")
+                                    }
+                                    $(".messages_area").show()
+                                }
+
+                                var index = $(".msg_user_cont").index(this)
+                                msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
+                                var msgUserImg = $(`.msg_user_cont:eq(${index})>img`).attr("src");
+                                var userImg = $(".user_img").attr("src");
+                                $(".chat_with>img").attr("src", `${msgUserImg}`);
+                                $(".chat_with>span").text(`${msgUser}`);
+                                $(".msg_other_user_indicator>img").attr("src", `${msgUserImg}`);
+                                $(".msg_user_indicator>img").attr("src", `${userImg}`);
+                                displayPage(16);
+
+                                $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
+
+                                $(".type_msg_input").keydown(function(e) {
+                                    var msg = $(".type_msg_input").val();
+                                    if (e.key == 'Enter' && msg != '') {
+                                        $.ajax({
+                                            url: "messenger.php",
+                                            type: "post",
+                                            data: {
+                                                messengerBtn: 'create_chat',
+                                                user: user,
+                                                otherUser: msgUser,
+                                                msg: $(".type_msg_input").val(),
+                                                time: new Date()
+                                            }
+                                        })
+                                        $(".type_msg_input").val('');
+                                    }
+                                })
+
+                                var oldData = [];
+
+                                var interval = setInterval(function() {
+                                    if ($(".page:eq(16)").css("display") == 'none') {
+                                        $(".messages_area").hide()
+                                        clearInterval(interval);
+
+                                    }
+                                    $.ajax({
+                                        url: "arrays.php",
+                                        type: "post",
+                                        data: {
+                                            arraysBtn: "messages"
+                                        },
+                                        dataType: "json",
+                                        success: function(data3) {
+                                            if (data3.length != oldData.length) {
+                                                oldData = data3;
+                                                var filterdDataForMessenger = [];
+                                                $.each(data3, function(i, e) {
+                                                    if (user == e.sender || user == e.receiver) {
+                                                        filterdDataForMessenger.push(e);
+                                                    }
+                                                });
+                                                messenger(filterdDataForMessenger);
+                                                $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
+                                            }
+                                        }
+                                    })
+                                }, 100)
+
+                            })
+
+                                if(forWhat == 'first_msg'){
+                                    if(firstMsgClickStatus){ // clicking only once
+                                        var lastIndex = $(".msg_user_cont").length - 1;                                    
+                                        $(`.msg_user_cont:eq(${lastIndex})`).click();
+                                        firstMsgClickStatus = false;
+                                    }                                    
+                                }
+                            }
+                        })
+
+                    } 
+                }
+
+                makeChatInnerFnc(data);
+
+                $(".msg_user_cont_wrapper>i").on("click", function(){
+                    if(confirm("Do You Want To Permanently Delete This Chat?")){
+                        $(".chats_cont_wrapper_inner").hide();
+                        $(".loading_chat_cont_wraper").show();
+                        var otherUser = $(this).siblings().children().eq(1).text();
+                        $.ajax({
+                            url: "messenger.php",
+                            type: "post",
+                            data: {
+                                messengerBtn: "delete_chat",
+                                user: user,
+                                otherUser: otherUser
+                            },
+                            success: function(){
+                                $.ajax({
+                                    url: "arrays.php",
+                                    type: "post",
+                                    data: {
+                                        arraysBtn: "messages"
+                                    },
+                                    dataType: "json",
+                                    success: function(dataDeleteChat) {
+                                        makeChatInnerFnc(dataDeleteChat);
+                                        $(".chats_cont_wrapper_inner").show();
+                                        $(".loading_chat_cont_wraper").hide();
+                                    }
+                                })
                             }
                         })
                     }
-                })
+                }) 
             }
         })
+            
 
     }
 
@@ -1653,13 +1773,13 @@ $(document).ready(function() {
     getEvent1Data();
 
     $(".login_username_input>input, .login_password_input>input").keydown(function(e) {
-        if (e.which == 13) {
+        if (e.key == 'Enter') {
             $(".login_btn").click();
         }
     })
 
     $(".reg_username_input>input, .reg_password_input>input").keydown(function(e) {
-        if (e.which == 13) {
+        if (e.key == 'Enter') {
             $(".reg_btn").click();
         }
     })
@@ -1826,13 +1946,13 @@ $(document).ready(function() {
     })
 
     $(".search_friend_iput>input").keydown(function(e) {
-        if (e.which === 13) { //click on enter
+        if (e.key == 'Enter') { //click on enter
             $(".search_user_btn").click();
         }
     })
 
     $(".search_chat_user_iput>input").keydown(function(e) {
-        if (e.which === 13) { //click on enter
+        if (e.key == 'Enter') { //click on enter
             $(".search_chat_user_btn").click();
         }
     })
@@ -2415,13 +2535,13 @@ $(document).ready(function() {
         success: function(data) {
 
             $(".search_event1_e_g_user_input").keydown(function(e) {
-                if (e.which == 13) {
+                if (e.key == 'Enter') {
                     $('.search_event1_e_g_user_btn').click();
                 }
             })
 
             $(".search_event1_g_e_user_input").keydown(function(e) {
-                if (e.which == 13) {
+                if (e.key == 'Enter') {
                     $('.search_event1_g_e_user_btn').click();
                 }
             })
@@ -2497,7 +2617,7 @@ $(document).ready(function() {
     $(".dic_search_result_cont_wrapper").hide();
 
     $(".dictionary_search_input").keydown(function(e) {
-        if (e.which == 13) {
+        if (e.key == 'Enter') {
             $(".dictionary_search_btn").click();
         }
     })
@@ -2547,118 +2667,8 @@ $(document).ready(function() {
         },
         dataType: "json",
         success: function(data) {
-            makechat(data);
-            $(document).on("click", ".msg_user_cont", function(){
-                $(".messages_area").hide();
-                function messenger(data) {
-                    $(".messages_area_inner_cont").empty();
-                    var userMessages = [];
-                    var otherUserMessages = [];
-                    $.each(data, function(i, e) {
-                        if (user == e.sender && msgUser == e.receiver) {
-                            $(".messages_area_inner_cont").append("<div class='messages_area_user d-flex justify-content-end'></div>");
-                            var fTime = e.time.split(" ");
-                            var fTime2 = [];
-                            for (var i = 1; i <= 4; i++) {
-                                fTime2.push(fTime[i]);
-                            }
-                            var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
-                            userMessages.push({ 'msg': e.msg, 'time': time });
-                        }
-                        if (user == e.receiver && msgUser == e.sender) {
-                            $(".messages_area_inner_cont").append("<div class='messages_area_other_user d-flex justify-content-start'></div>");
-                            var fTime = e.time.split(" ");
-                            var fTime2 = [];
-                            for (var i = 1; i <= 4; i++) {
-                                fTime2.push(fTime[i]);
-                            }
-                            var time = fTime2[0].concat("/").concat(fTime2[1]).concat("/").concat(fTime2[2]).concat(" ").concat(fTime2[3])
-                            otherUserMessages.push({ 'msg': e.msg, 'time': time });
-                        }
-                    })
-
-                    for (var i = 0; i < $(".messages_area_user").length; i++) {
-                        $(`.messages_area_user:eq(${i})`).append("<div class='messages_area_user_msg_and_time d-flex gap-2 align-items-center'></div>")
-                    }
-
-                    for (var i = 0; i < $(".messages_area_user_msg_and_time").length; i++) {
-                        $(`.messages_area_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s text-warning' style='font-size: 12px;' >" + userMessages[i].time + "</div>")
-                        $(`.messages_area_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s bg-primary p-2 msg_rounded_s'>" + userMessages[i].msg + "</div>")
-                    }
-
-                    for (var i = 0; i < $(".messages_area_other_user").length; i++) {
-                        $(`.messages_area_other_user:eq(${i})`).append("<div class='messages_area_other_user_msg_and_time d-flex gap-2 align-items-center'></div>")
-                    }
-
-                    for (var i = 0; i < $(".messages_area_other_user_msg_and_time").length; i++) {
-                        $(`.messages_area_other_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s bg-secondary p-2 msg_rounded_s'>" + otherUserMessages[i].msg + "</div>")
-                        $(`.messages_area_other_user_msg_and_time:eq(${i})`).append("<div class='w_fit_s text-warning' style='font-size: 12px;' >" + otherUserMessages[i].time + "</div>")
-                    }
-                    $(".messages_area").show()
-                }
-
-                var index = $(".msg_user_cont").index(this)
-                msgUser = $(`.msg_user_cont:eq(${index})>span`).text();
-                var msgUserImg = $(`.msg_user_cont:eq(${index})>img`).attr("src");
-                var userImg = $(".user_img").attr("src");
-                $(".chat_with>img").attr("src", `${msgUserImg}`);
-                $(".chat_with>span").text(`${msgUser}`);
-                $(".msg_other_user_indicator>img").attr("src", `${msgUserImg}`);
-                $(".msg_user_indicator>img").attr("src", `${userImg}`);
-                displayPage(16);
-
-                $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
-
-                $(".type_msg_input").keydown(function(e) {
-                    var msg = $(".type_msg_input").val();
-                    if (e.which == 13 && msg != '') {
-                        $.ajax({
-                            url: "messenger.php",
-                            type: "post",
-                            data: {
-                                messengerBtn: 'create_chat',
-                                user: user,
-                                otherUser: msgUser,
-                                msg: $(".type_msg_input").val(),
-                                time: new Date()
-                            }
-                        })
-                        $(".type_msg_input").val('');
-                    }
-                })
-
-                var oldData = [];
-
-                var interval = setInterval(function() {
-                    if ($(".page:eq(16)").css("display") == 'none') {
-                        $(".messages_area").hide()
-                        clearInterval(interval);
-
-                    }
-                    $.ajax({
-                        url: "arrays.php",
-                        type: "post",
-                        data: {
-                            arraysBtn: "messages"
-                        },
-                        dataType: "json",
-                        success: function(data3) {
-                            if (data3.length != oldData.length) {
-                                oldData = data3;
-                                var filterdDataForMessenger = [];
-                                $.each(data3, function(i, e) {
-                                    if (user == e.sender || user == e.receiver) {
-                                        filterdDataForMessenger.push(e);
-                                    }
-                                });
-                                messenger(filterdDataForMessenger);
-                                $(".messages_area").scrollTop($(".messages_area_inner_cont").height());
-                            }
-                        }
-                    })
-                }, 100)
-
-            })
+            makechat();
+            
 
         }
     })
@@ -2707,6 +2717,12 @@ $(document).ready(function() {
     emojiHandler(messenderEmoji);
     emojiHandler(firstMessageEmoji);
 
+    $(".first_msg_input").on("keydown", function(e){
+        if(e.key == 'Enter'){
+             $(".send_first_msg").click();
+        }
+    })
+
     $(".send_first_msg").on("click", function(){
         var otherUser = $(".search_chat_user_name").text();
         var msg = $(".first_msg_input").val();
@@ -2723,19 +2739,7 @@ $(document).ready(function() {
             success: function() {
                 $(".first_msg_input").val('');
                 $(".clean_search_chat_user_btn").click();
-                $.ajax({
-                    url: "arrays.php",
-                    type: "post",
-                    data: {
-                        arraysBtn: "messages"
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        makechat(data);
-                        var lastIndex = $(".msg_user_cont").length - 1;
-                        $(`.msg_user_cont:eq(${lastIndex})`).click();
-                    }
-                })
+                makechat('first_msg');
             }
         })
     })
