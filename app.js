@@ -472,7 +472,7 @@ $(document).ready(function() {
     }
 
     function clickOnUserImgAndUsernameCont() {
-        $(document).off().on("click", ".user_img_and_username", function() {
+        $(".user_img_and_username").off().on("click", function() {
             $(".other_user_page_content_wrapper").css("visibility", "hidden");
             scrollPos = $(window).scrollTop();
             winScr();
@@ -1322,6 +1322,7 @@ $(document).ready(function() {
                                 break;
                             }
                         }
+                        clickOnUserImgAndUsernameCont();
                         if (forWhat == "friends") {
                             $(`.${obj.btn1}`).click(function() {
                                 var friend = $(`.${obj.username}`).text().trim();
@@ -2471,6 +2472,8 @@ $(document).ready(function() {
 
             } else {
                 $(".event1_hide_show").hide();
+                $(".event1_raitings_e_g_user_username").text("Username");
+                $(".event1_raitings_e_g_user_point, .event1_raitings_e_g_user_point").text("...");
             }
         }
     })
@@ -2491,16 +2494,10 @@ $(document).ready(function() {
                     updateEvent1GEData();
                 } else {
                     $(".event1_hide_show").hide();
-                    for (var i = 0; i < $(".event1_raitings_e_g_user_username").length; i++) {
-                        $(`.event1_raitings_e_g_user_username:eq(${i})`).text(`username`);
-                        $(`.event1_raitings_e_g_user_point:eq(${i})`).text(`...`);
-                    }
+                    $(".event1_raitings_e_g_user_username").text("Username");
+                    $(".event1_raitings_e_g_user_point, .event1_raitings_e_g_user_point").text("...");  
                     $(`.event1_raitings_e_g_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
-                    $(`.event1_raitings_g_e_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
-                    for (var i = 0; i < $(".event1_raitings_g_e_user_username").length; i++) {
-                        $(`.event1_raitings_g_e_user_username:eq(${i})`).text(`username`);
-                        $(`.event1_raitings_g_e_user_point:eq(${i})`).text(`...`);
-                    }
+                    $(`.event1_raitings_g_e_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);                    
                 }
             }
         })
@@ -2744,7 +2741,10 @@ $(document).ready(function() {
         })
     })
 
-    $(".messages").click()
+    $(".all_evebts_btn").on("click", function(){
+        $(".home").click();
+        $(".home_grid_item:eq(3)").click();
+    })   
 
 
 })

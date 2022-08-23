@@ -441,7 +441,7 @@
                     </div>
                 </div>
                 <div class="container mt-5 p-2 border">
-                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Search Friend</div>
+                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Search User</div>
                     <div class="d-flex flex-column gap-2 align-items-center">
                         <div class="d-flex flex-column gap-2 align-items-center">
                             <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here">
@@ -796,9 +796,9 @@
 
             <!-- first event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
+                <div class="all_evebts_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
-                    <span>Go Back</span>
+                    <span>All Events</span>
                 </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
@@ -867,11 +867,12 @@
                         </div>
                     </div>
 
-
-                    <div class="d-flex flex-column gap-2 p-2 border  mt-5 mb-2">
-                        <div class="text-info mt-1 mb-1 w_fit_s mx-auto h5">Last Updated:</div>
-                        <div class="event1_table_update_time h5 text-warning">...</div>
-                    </div>
+                    <div class="event1_hide_show">
+                        <div class="d-flex flex-column gap-2 p-2 border  mt-5 mb-2">
+                            <div class="text-info mt-1 mb-1 w_fit_s mx-auto h5">Last Updated:</div>
+                            <div class="event1_table_update_time h5 text-warning">...</div>
+                        </div>
+                    </div>                    
 
                     <div class="event1_hide_show event1_raitings_overflow overflow-auto">
                         <div class="w_fit_s mx-auto">
@@ -893,9 +894,9 @@
 
             <!-- second event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
+                <div class="all_evebts_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
-                    <span>Go Back</span>
+                    <span>All Events</span>
                 </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
@@ -911,9 +912,9 @@
 
             <!-- third event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
+                <div class="all_evebts_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
-                    <span>Go Back</span>
+                    <span>All Events</span>
                 </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
@@ -929,9 +930,9 @@
 
             <!-- forth event page -->
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
-                <div class="back_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
+                <div class="all_evebts_btn position-absolute border d-flex align-items-center gap-2 btn btn-outline-warning">
                     <i class="material-icons">arrow_back</i>
-                    <span>Go Back</span>
+                    <span>All Events</span>
                 </div>
                 <div class="d-flex flex-column align-items-center w_fit_s mx-auto m-5">
                     <div class="event_name text-warning h1">A Particulat Event</div>
