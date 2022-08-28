@@ -2517,6 +2517,8 @@ $(document).ready(function() {
         }
     })
 
+    var oldData = '';
+
     function createMessages(chatWith){
         $.ajax({
             url: "arrays.php",
@@ -2526,27 +2528,31 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                $(".messages_area_inner_cont").empty();
-                for (var i = 0; i < data.length; i++) {
-                    var time = data[i].time;
-                    time = time.split(" ");
-                    time = time[1].concat("/").concat(time[2]).concat("/").concat(time[3]).concat(" ").concat(time[4].split(":")[0]).concat(":").concat(time[4].split(":")[1])
-                    if(data[i].sender == user && data[i].receiver == chatWith){
-                          $(".messages_area_inner_cont").append(
-                                "<div class='d-flex gap-2 align-items-center justify-content-end'>"+
-                                    "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
-                                    "<div class='bg-primary p-2 rounded'>"+data[i].msg+"</div>"+
-                                "</div>"
-                            )
+                if(data.length != oldData.length){
+                    oldData = data;                   
+                    $(".messages_area_inner_cont").empty();
+                    for (var i = 0; i < data.length; i++) {
+                        var time = data[i].time;
+                        time = time.split(" ");
+                        time = time[1].concat("/").concat(time[2]).concat("/").concat(time[3]).concat(" ").concat(time[4].split(":")[0]).concat(":").concat(time[4].split(":")[1])
+                        if(data[i].sender == user && data[i].receiver == chatWith){
+                              $(".messages_area_inner_cont").append(
+                                    "<div class='d-flex gap-2 align-items-center justify-content-end'>"+
+                                        "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
+                                        "<div class='bg-primary p-2 rounded'>"+data[i].msg+"</div>"+
+                                    "</div>"
+                                )
+                        }
+                        if(data[i].sender == chatWith && data[i].receiver == user){
+                              $(".messages_area_inner_cont").append(
+                                    "<div class='d-flex gap-2 align-items-center justify-content-start'>"+
+                                        "<div class='bg-secondary p-2 rounded'>"+data[i].msg+"</div>"+
+                                        "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
+                                    "</div>"
+                                )
+                        }
                     }
-                    if(data[i].sender == chatWith && data[i].receiver == user){
-                          $(".messages_area_inner_cont").append(
-                                "<div class='d-flex gap-2 align-items-center justify-content-start'>"+
-                                    "<div class='bg-secondary p-2 rounded'>"+data[i].msg+"</div>"+
-                                    "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
-                                "</div>"
-                            )
-                    }
+                    $(`.messages_area`).scrollTop(parseInt($(".messages_area_inner_cont").css("height")));
                 }
             }
         })
