@@ -155,28 +155,27 @@ body {
     border-radius: 20px;
 }
 
-.emojis_wrapper_s{
+.messenger_emojis_wrapper_s{
+    display: none;
     position: absolute;
-    bottom: 0px;
+    width: 200px;
+    bottom: 0;
     left: -200px;
-    width: 200px;
+}
+
+.send_first_msg_pop_up_s{
     display: none;
-}
-
-.emojis_wrapper_s2{
     position: absolute;
-    bottom: -120px;
-    left: -124px;
+    left: -200px;
+    top: 0;
     width: 200px;
+    height: 150px;
+}
+
+.first_msg_emojis_wrapper_s{
     display: none;
-}
-
-.first_msg_cont_s{  
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%;
-    height: 100%; 
-    z-index: 100;
+    left: -200px;
+    top: 150px;
+    width: 200px;
 }
-

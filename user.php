@@ -718,7 +718,26 @@
                     <i class="material-icons">arrow_back</i>
                     <span>Go Back</span>
                 </div>
-                <div class="other_user_results_page_title w_fit_s mx-auto h1 text-warning m-5">User Results</div>
+                <div class="other_user_results_page_title_cont w_fit_s mx-auto m-5 d-flex gap-5 align-items-center">
+                    <div class="other_user_results_page_title h1 text-warning">User Results</div>
+                    <!-- appended in js -->
+                    <div class="position-relative">
+                        <div class="send_first_msg_icon_cont cursor_pointer_s"></div>
+                        <div class="send_first_msg_pop_up send_first_msg_pop_up_s bg-dark rounded">
+                            <div class="d-flex flex-column gap-2 p-2 align-items-center justify-content-center" style="height:100%">
+                                <input type="text" class="first_msg_input p-2 w-75">
+                                <div class="d-flex gap-2 align-items-center">
+                                    <button class="send_first_msg_btn btn btn-primary w_fit_s">Send</button>
+                                    <i class="first_msg_emojis_opener material-icons cursor_pointer_s">mood</i>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="first_msg_emojis_wrapper first_msg_emojis_wrapper_s page_bg_color_s">
+                            <div class="first_msg_emojis d-flex flex-wrap gap-2"></div> 
+                        </div>
+                                     
+                    </div>               
+                </div>
                 <div class="update_other_user_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
                 <div class="other_user_page_content_wrapper">
                     <div class="container mt-5 d-flex gap-5 flex-wrap justify-content-center">
@@ -991,44 +1010,15 @@
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Messages</div>
                 <div class="chats_cont_wrapper">
-                    <div class="w_fit_s mt-5 p-2 mx-auto">
-                        <div class="text-warning h5 mx-auto w_fit_s mb-2">Search User</div>
-                        <div class="d-flex flex-column gap-2 align-items-center position-relative">
-                            <div class="d-flex flex-column gap-2 align-items-center">
-                                <div class="search_chat_user_iput"><input type="text" class="p-2" placeholder="type username here">
-                                </div>
-                                <div class="search_chat_user_btn btn btn-primary mt-3">Search User</div>
-                            </div>
-                            <div class="search_chat_result p-2 d-flex flex-wrap"></div>
-                            <div class="first_msg_cont_wrapper" style="display: none;">
-                                <div class="first_msg_cont first_msg_cont_s d-flex flex-column gap-2 bg-dark align-items-center justify-content-center w_fit_s">
-                                    <div>Send First Message</div>
-                                    <input type="text" class="first_msg_input rounded p-2 w-75">
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <button class="send_first_msg btn btn-primary w_fit_s">Send</button>
-                                        <div class="position-relative">
-                                            <div class="cursor_pointer_s first_msg_emojis_opener d-flex align-items-center">
-                                                <i class="material-icons">mood</i>
-                                            </div>
-                                            <div class="first_msg_emojis_wrapper emojis_wrapper_s2 bg-dark">
-                                                <!-- appended in js -->
-                                                <div class="first_msg_emojis d-flex flex-wrap gap-2 p-2 border rounded"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                     <div class="w_fit_s mx-auto h4 text-info m-4">Chats</div>
+                    <div class="d-flex gap-2 w_fit_s mx-auto m-4">
+                        <input type="text" class="search_chat_user_input p-2" placeholder="Search User">
+                        <button class="search_chat_user_btn btn btn-primary">Start Chat</button>
+                    </div>
                     <!-- appended in js -->
                     <div class="chats_cont_wrapper_inner">
                        <div class="chats_cont d-flex flex-wrap gap-4 justify-content-center"></div> 
-                    </div>                    
-                    <div class="loading_chat_cont_wraper" style="display: none">
-                        <div class="loading_chat_cont d-flex justify-content-center align-items-center p-2 bg-dark rounded">Loading ...</div>
-                    </div>                    
+                    </div>                   
                 </div>
             </div>
 
@@ -1053,7 +1043,7 @@
                                 <div class="cursor_pointer_s messenger_emojis_opener d-flex align-items-center">
                                     <i class="material-icons">mood</i>
                                 </div>
-                                <div class="messenger_emojis_wrapper emojis_wrapper_s">
+                                <div class="messenger_emojis_wrapper messenger_emojis_wrapper_s">
                                     <!-- appended in js -->
                                     <div class="messenger_emojis d-flex flex-wrap gap-2 p-2 border rounded page_bg_color_s"></div>
                                 </div>
