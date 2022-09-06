@@ -10,7 +10,7 @@ if(isset($_POST['eventBtn'])){
 								"name"=>"Event1",
 			 					"sDate"=>date('M/d/Y h:i', strtotime('08/20/2022 22:00')),
 			  					"eDate"=>date('M/d/Y h:i', strtotime('09/20/2022 22:00')),
-								"showDailyTable"=>1
+								"showDailyTable"=>0
 		  					),
 							array(
 								"name"=>"Event2",

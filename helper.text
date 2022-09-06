@@ -27,35 +27,4 @@ if(mysqli_num_rows($query) > 0){
     }
 }
 
-var searchMessengerObj ={
-        clickedEl: "search_chat_user_btn",
-        input: "search_chat_user_iput>input",
-        resultCont: "search_chat_result",
-        item: "search_chat_result_item",
-        imgAndName: "search_chat_result_item_img_and_username",
-        btnsCont: "search_chat_result_btns_cont",
-        btn1: "start_chat_btn",
-        btn1Text: "Send Message",
-        btn2: "clean_search_chat_user_btn",
-        btn2Text: "Clean",
-        userimg: "search_chat_user_img",
-        username: "search_chat_user_name"
-    }
-
-
-    if(forWhat == "messages"){
-                            $(`.${obj.btn1}`).on("click", function(){
-                                displayPage(16);
-                            })
-                        }
-
-
-                        <div class="position-relative" >
-                                <div class="cursor_pointer_s messenger_emojis_opener">
-                                    <i class="material-icons">mood</i>                                                            
-                                </div>
-                                <div class="messenger_emojis_wrapper emojis_wrapper_s">
-                                    <!-- appended in js -->
-                                    <div class="messenger_emojis d-flex flex-wrap gap-2 p-2 border rounded page_bg_color_s"></div>
-                                </div>
-                            </div>
+$(".hide_on_update_friends_btn_click").css("visibility", "visible");

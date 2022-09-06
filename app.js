@@ -17,6 +17,7 @@ $(document).ready(function() {
         oldValue: 0,
         newValue: 0
     };
+    var oldData = '';
     var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var emojis = ["&#128512", "&#128513", "&#128514", "&#128515", "&#128516", "&#128517", "&#128518", "&#128519",
         "&#128520", "&#128521", "&#128522", "&#128523", "&#128524", "&#128525", "&#128526", "&#128527"
@@ -517,6 +518,8 @@ $(document).ready(function() {
                         $(`.firends_cont_item_img_and_username:eq(${i})`).append(`<div class='friend_name'>${filteredData[i].friend_name}</div>`);
                     }
 
+                    $(".hide_on_update_friends_btn_click").css("visibility", "visible");
+
                     $(".unfriend_btn").on("click", function() {
                         var index = $(".unfriend_btn").index(this);
                         var friend = $(`.friend_name:eq(${index})`).text().trim();
@@ -541,7 +544,8 @@ $(document).ready(function() {
                     setUserImgs();
                     clickOnUserImgAndUsernameCont();
                 } else {
-                    $(".friends_cont_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
+                    $(".friends_cont_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>");
+                    $(".hide_on_update_friends_btn_click").css("visibility", "visible");
                 }
             }
         })
@@ -571,6 +575,9 @@ $(document).ready(function() {
                         $(`.req_sent_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_sent_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_sent_item_img_and_username:eq(${i})`).append(`<div class='req_sent_name'>${filteredData[i].user_name}</div>`);
                     }
+
+                    $(".hide_on_update_friends_btn_click").css("visibility", "visible");
+
                     $(".unsend_btn").on("click", function() {
                         var index = $(".unsend_btn").index(this);
                         var friend = $(`.req_sent_name:eq(${index})`).text().trim();
@@ -593,7 +600,8 @@ $(document).ready(function() {
                     setUserImgs();
                     clickOnUserImgAndUsernameCont();
                 } else {
-                    $(".req_sent_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
+                    $(".req_sent_inner").append("<div class='nothing_message mx-auto'>Nothing Here</div>");
+                    $(".hide_on_update_friends_btn_click").css("visibility", "visible");
                 }
             }
         })
@@ -627,6 +635,8 @@ $(document).ready(function() {
                         $(`.req_rec_item_img_and_username:eq(${i})`).append("<div><img src='./Img/user_default_avatar.png' class='req_rec_img rounded-circle' width='60' height='60'></div>")
                         $(`.req_rec_item_img_and_username:eq(${i})`).append(`<div class='req_rec_name'>${filteredData[i].friend_name}</div>`);
                     }
+
+                    $(".hide_on_update_friends_btn_click").css("visibility", "visible");
 
                     $(".add_friend_btn").on("click", function() {
                         var index = $(".add_friend_btn").index(this);
@@ -712,7 +722,8 @@ $(document).ready(function() {
                     setUserImgs();
                     clickOnUserImgAndUsernameCont();
                 } else {
-                    $(".req_rec_inner ").append("<div class='nothing_message mx-auto'>Nothing Here</div>")
+                    $(".req_rec_inner ").append("<div class='nothing_message mx-auto'>Nothing Here</div>");
+                    $(".hide_on_update_friends_btn_click").css("visibility", "visible");
                 }
             }
         })
@@ -1510,6 +1521,45 @@ $(document).ready(function() {
         })
     }
 
+    function createMessages(chatWith){
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "messages"
+            },
+            dataType: "json",
+            success: function(data) {                
+                if(data.length != oldData.length && $(".page:eq(16)").css("display") == "block"){                    
+                    oldData = data;
+                    $(".messages_area_inner_cont").empty();
+                    for (var i = 0; i < data.length; i++) {
+                        var time = data[i].time;
+                        time = time.split(" ");
+                        time = time[1].concat("/").concat(time[2]).concat("/").concat(time[3]).concat(" ").concat(time[4].split(":")[0]).concat(":").concat(time[4].split(":")[1])
+                        if(data[i].sender == user && data[i].receiver == chatWith){
+                              $(".messages_area_inner_cont").append(
+                                    "<div class='d-flex gap-2 align-items-center justify-content-end'>"+
+                                        "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
+                                        "<div class='bg-primary p-2 rounded'>"+data[i].msg+"</div>"+
+                                    "</div>"
+                                )
+                        }
+                        if(data[i].sender == chatWith && data[i].receiver == user){
+                              $(".messages_area_inner_cont").append(
+                                    "<div class='d-flex gap-2 align-items-center justify-content-start'>"+
+                                        "<div class='bg-secondary p-2 rounded'>"+data[i].msg+"</div>"+
+                                        "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
+                                    "</div>"
+                                )
+                        }
+                    }
+                    $(`.messages_area`).scrollTop(parseInt($(".messages_area_inner_cont").css("height")));
+                }
+            }
+        })
+    } 
+
     /** */
 
     /**set raitings and my results pages data and images */
@@ -1695,6 +1745,7 @@ $(document).ready(function() {
     })
 
     $(".update_my_friends_btn").click(function() {
+        $(".hide_on_update_friends_btn_click").css("visibility", "hidden");
         $(".friends_cont_inner").empty();
         $(".req_sent_inner").empty();
         $(".req_rec_inner").empty();
@@ -2246,10 +2297,12 @@ $(document).ready(function() {
             success: function(data) {
                 if (data[0].showDailyTable == 1) {
                     $(".event1_hide_show").show();
+                    $(".hide_event1_raitings").hide();
                     updateEvent1EGData();
                     updateEvent1GEData();
                 } else {
                     $(".event1_hide_show").hide();
+                    $(".hide_event1_raitings").show();
                     $(".event1_raitings_e_g_user_username").text("Username");
                     $(".event1_raitings_e_g_user_point, .event1_raitings_e_g_user_point").text("...");
                     $(`.event1_raitings_e_g_user_username`).siblings().attr("src", `./Img/user_default_avatar.png`);
@@ -2485,41 +2538,8 @@ $(document).ready(function() {
         }
     })
 
-    $(document).on("click", ".chats_cont>div", function(e){
-        if(noDoubleClick){
-            $(".messages_area_inner_cont").empty();
-            noDoubleClick = false;
-            var img = $(this).children().eq(0).attr("src");
-            var chatWith = $(this).children().eq(1).text();
-            $.ajax({
-                url: "arrays.php",
-                type: "post",
-                data: {
-                    arraysBtn: "messages"
-                },
-                dataType: "json",
-                success: function(data) {
-                    $(".chat_with>img").attr("src", `${img}`);
-                    $(".chat_with>span").text(`${chatWith}`);
-                    $(".msg_other_user_indicator>img").attr("src", `${img}`);
-                    $(".msg_user_indicator>img").attr("src", `${$(".user_img").attr("src")}`)                
-                    var interval = setInterval(function(){
-                        if($(".page:eq(16)").css("display") == "block"){
-                            createMessages(chatWith);
-                        }else{
-                            noDoubleClick = true;  
-                            clearInterval(interval)
-                        }
-                    },100)
-                    displayPage(16);
-                }
-            })
-        }
-    })
-
-    var oldData = '';
-
-    function createMessages(chatWith){
+    function messagesHelper(img, chatWith){
+        $(".messages_area_inner_cont").empty();            
         $.ajax({
             url: "arrays.php",
             type: "post",
@@ -2528,35 +2548,33 @@ $(document).ready(function() {
             },
             dataType: "json",
             success: function(data) {
-                if(data.length != oldData.length){
-                    oldData = data;                   
-                    $(".messages_area_inner_cont").empty();
-                    for (var i = 0; i < data.length; i++) {
-                        var time = data[i].time;
-                        time = time.split(" ");
-                        time = time[1].concat("/").concat(time[2]).concat("/").concat(time[3]).concat(" ").concat(time[4].split(":")[0]).concat(":").concat(time[4].split(":")[1])
-                        if(data[i].sender == user && data[i].receiver == chatWith){
-                              $(".messages_area_inner_cont").append(
-                                    "<div class='d-flex gap-2 align-items-center justify-content-end'>"+
-                                        "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
-                                        "<div class='bg-primary p-2 rounded'>"+data[i].msg+"</div>"+
-                                    "</div>"
-                                )
-                        }
-                        if(data[i].sender == chatWith && data[i].receiver == user){
-                              $(".messages_area_inner_cont").append(
-                                    "<div class='d-flex gap-2 align-items-center justify-content-start'>"+
-                                        "<div class='bg-secondary p-2 rounded'>"+data[i].msg+"</div>"+
-                                        "<div class='text-warning' style='font-size: 14px'>"+time+"</div>"+
-                                    "</div>"
-                                )
-                        }
-                    }
-                    $(`.messages_area`).scrollTop(parseInt($(".messages_area_inner_cont").css("height")));
-                }
+                $(".chat_with>img").attr("src", `${img}`);
+                $(".chat_with>span").text(`${chatWith}`);
+                $(".msg_other_user_indicator>img").attr("src", `${img}`);
+                $(".msg_user_indicator>img").attr("src", `${$(".user_img").attr("src")}`) 
+                displayPage(16);              
+                var interval = setInterval(function(){
+                    if($(".page:eq(16)").css("display") == "block"){
+                        createMessages(chatWith);
+                    }else{
+                        noDoubleClick = true;
+                        oldData = '';
+                        clearInterval(interval)        
+                    }                    
+                },100)
+               
             }
         })
-    }     
+    }   
+
+    $(document).on("click", ".chats_cont>div", function(e){
+        if(noDoubleClick){
+            noDoubleClick = false;
+            var img = $(this).children().eq(0).attr("src");
+            var chatWith = $(this).children().eq(1).text();
+            messagesHelper(img, chatWith);
+        }
+    })    
     
     $(".type_msg_input").on("keydown", function(e){
         var msg = $(".type_msg_input").val();

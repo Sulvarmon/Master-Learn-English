@@ -434,31 +434,33 @@
             <div class="page_bg_color_s page container-md text-white mt-5 p-3">
                 <div class="w_fit_s mx-auto h1 text-warning m-5">Friends</div>
                 <div class="update_my_friends_btn d-block btn btn-primary w_fit_s mx-auto">Update Data</div>
-                <!-- contents are appended in js file -->
-                <div class="friends_cont container mt-5 p-2 border">
-                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Friends</div>
-                    <div class="friends_cont_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
-                    </div>
-                </div>
-                <div class="container mt-5 p-2 border">
-                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Search User</div>
-                    <div class="d-flex flex-column gap-2 align-items-center">
-                        <div class="d-flex flex-column gap-2 align-items-center">
-                            <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here">
-                            </div>
-                            <div class="search_user_btn btn btn-primary mt-3">Search User</div>
+                <div class="hide_on_update_friends_btn_click">
+                    <!-- contents are appended in js file -->            
+                    <div class="friends_cont container mt-5 p-2 border">
+                        <div class="text-warning h5 mx-auto w_fit_s mb-5">Friends</div>
+                        <div class="friends_cont_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
                         </div>
-                        <div class="search_result p-2 d-flex flex-wrap"></div>
                     </div>
-                </div>
-                <div class="req_sent_cont container mt-5 p-2 border">
-                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Sent</div>
-                    <div class="req_sent_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                    <div class="container mt-5 p-2 border">
+                        <div class="text-warning h5 mx-auto w_fit_s mb-5">Search User</div>
+                        <div class="d-flex flex-column gap-2 align-items-center">
+                            <div class="d-flex flex-column gap-2 align-items-center">
+                                <div class="search_friend_iput"><input type="text" class="p-2" placeholder="type username here">
+                                </div>
+                                <div class="search_user_btn btn btn-primary mt-3">Search User</div>
+                            </div>
+                            <div class="search_result p-2 d-flex flex-wrap"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="req_rec_cont container mt-5 p-2 border">
-                    <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Received</div>
-                    <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                    <div class="req_sent_cont container mt-5 p-2 border">
+                        <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Sent</div>
+                        <div class="req_sent_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                        </div>
+                    </div>
+                    <div class="req_rec_cont container mt-5 p-2 border">
+                        <div class="text-warning h5 mx-auto w_fit_s mb-5">Requests You Have Received</div>
+                        <div class="req_rec_inner container d-flex justify-content-center justify-content-md-start flex-wrap gap-2">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -866,6 +868,7 @@
 
 
                     <div class="event1_hide_show mt-5 h3 text-center">Players Raitings In Event1</div>
+                    <div class="hide_event1_raitings mt-3 text-warning" style="display: none">Raiting Of This Event Is not Accessible Yet</div>
                     <div class="event1_hide_show">
                         <div class="d-flex flex-column gap-2 border p-2 align-items-center">
                             <div>Search User In Eng-Geo Type</div>
