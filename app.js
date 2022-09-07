@@ -1560,6 +1560,35 @@ $(document).ready(function() {
         })
     } 
 
+     function messagesHelper(img, chatWith){
+        $(".messages_area_inner_cont").empty();            
+        $.ajax({
+            url: "arrays.php",
+            type: "post",
+            data: {
+                arraysBtn: "messages"
+            },
+            dataType: "json",
+            success: function(data) {
+                $(".chat_with>img").attr("src", `${img}`);
+                $(".chat_with>span").text(`${chatWith}`);
+                $(".msg_other_user_indicator>img").attr("src", `${img}`);
+                $(".msg_user_indicator>img").attr("src", `${$(".user_img").attr("src")}`) 
+                displayPage(16);              
+                var interval = setInterval(function(){
+                    if($(".page:eq(16)").css("display") == "block"){
+                        createMessages(chatWith);
+                    }else{
+                        noDoubleClick = true;
+                        oldData = '';
+                        clearInterval(interval)        
+                    }                    
+                },100)
+               
+            }
+        })
+    } 
+
     /** */
 
     /**set raitings and my results pages data and images */
@@ -2276,9 +2305,10 @@ $(document).ready(function() {
         success: function(data) {
             if (data[0].showDailyTable == 1) {
                 $(".event1_hide_show").show();
-
+                $(".hide_event1_raitings").hide();
             } else {
                 $(".event1_hide_show").hide();
+                $(".hide_event1_raitings").show();
                 $(".event1_raitings_e_g_user_username").text("Username");
                 $(".event1_raitings_e_g_user_point, .event1_raitings_e_g_user_point").text("...");
             }
@@ -2492,8 +2522,7 @@ $(document).ready(function() {
                 }                 
                 if(!chatExists){
                     $(".send_first_msg_pop_up").show();                      
-                }else{
-                    $(".messages").click();
+                }else{                    
                     $(".search_chat_user_input").val(`${chatWith}`);
                     $(".search_chat_user_btn").click();
                 }
@@ -2532,40 +2561,14 @@ $(document).ready(function() {
                     time: new Date()
                 },
                 success: function() {
-                    createChat(); 
+                    createChat();
+                    $(".first_msg_input").val("");
+                    $(".send_first_msg_pop_up").hide();
+                    alert("Message Sent");
                 }
             })
         }
     })
-
-    function messagesHelper(img, chatWith){
-        $(".messages_area_inner_cont").empty();            
-        $.ajax({
-            url: "arrays.php",
-            type: "post",
-            data: {
-                arraysBtn: "messages"
-            },
-            dataType: "json",
-            success: function(data) {
-                $(".chat_with>img").attr("src", `${img}`);
-                $(".chat_with>span").text(`${chatWith}`);
-                $(".msg_other_user_indicator>img").attr("src", `${img}`);
-                $(".msg_user_indicator>img").attr("src", `${$(".user_img").attr("src")}`) 
-                displayPage(16);              
-                var interval = setInterval(function(){
-                    if($(".page:eq(16)").css("display") == "block"){
-                        createMessages(chatWith);
-                    }else{
-                        noDoubleClick = true;
-                        oldData = '';
-                        clearInterval(interval)        
-                    }                    
-                },100)
-               
-            }
-        })
-    }   
 
     $(document).on("click", ".chats_cont>div", function(e){
         if(noDoubleClick){
