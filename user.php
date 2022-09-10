@@ -50,7 +50,6 @@
     </head>
 
     <body>
-
         <div class="website_bg_s"></div>
         <div class="user_cont_s">
             <!-- header -->
@@ -869,6 +868,7 @@
 
                     <div class="event1_hide_show mt-5 h3 text-center">Players Raitings In Event1</div>
                     <div class="hide_event1_raitings mt-3 text-warning" style="display: none">Raiting Of This Event Is not Accessible Yet</div>
+                    <div class="hide_event1_raitings text-warning">Will be available from 21:00  to 22:00 every night</div>
                     <div class="event1_hide_show">
                         <div class="d-flex flex-column gap-2 border p-2 align-items-center">
                             <div>Search User In Eng-Geo Type</div>
@@ -1039,7 +1039,7 @@
                         <div class="msg_other_user_indicator position-absolute start-0 top-0 m-2"><img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle"></div>
                         <div class="msg_user_indicator position-absolute end-0 top-0 m-2"><img src="./Img/user_default_avatar.png" width="50" height="50" class="rounded-circle"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 d-flex gap-1 align-items-center mb-1">
-                            <div class="flex-fill ">
+                            <div class="flex-fill">
                                 <input type="text" class="type_msg_input w-100 p-2 msg_rounded_s" style="outline: none;">
                             </div>
                             <div class="position-relative">
