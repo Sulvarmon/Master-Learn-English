@@ -693,7 +693,7 @@
                                             echo '<div class="answers_cont" style="display: none;">';
                                                 echo '<div class="d-flex flex-column align-items-center">';
                                                     echo '<div class="correct_or_wrong h5" style="font-weight: bold;">' . 'answer is ?' . '</div>';
-                                                    echo '<div class="gain_or_lose_points h5" style="font-weight: bold;">' . '+1 or -1' . '</div>';
+                                                    echo '<div class="gain_or_lose_points h5" style="font-weight: bold;">' . '+1 or 0' . '</div>';
                                                 echo '</div>';
                                             echo '</div>';
                                         echo '</div>';

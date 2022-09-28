@@ -1970,7 +1970,7 @@ $(document).ready(function() {
         $(".quiz_finish_btn").removeClass("disabled");
         $(".answers_cont").hide();
         $(".correct_or_wrong").text("answer is ?");
-        $(".gain_or_lose_points").text("+1 or -1");
+        $(".gain_or_lose_points").text("+1 or 0");
         $(".quiz_answer_input").val("");
         $(".points_collected").text("0");
 
@@ -2159,7 +2159,7 @@ $(document).ready(function() {
                 $(`.correct_or_wrong:eq(${i})`).text(`${correctAnswers[i]}`);
                 $(`.correct_or_wrong:eq(${i})`).removeClass("text-success");
                 $(`.correct_or_wrong:eq(${i})`).addClass("text-danger");
-                $(`.gain_or_lose_points:eq(${i})`).text(`-1`);
+                $(`.gain_or_lose_points:eq(${i})`).text(`0`);
                 $(`.gain_or_lose_points:eq(${i})`).removeClass("text-success");
                 $(`.gain_or_lose_points:eq(${i})`).addClass("text-danger");
             }
@@ -2235,7 +2235,7 @@ $(document).ready(function() {
         $(".quiz_finish_btn").removeClass("disabled");
         $(".answers_cont, .after_quiz_cont").hide();
         $(".correct_or_wrong").text("answer is ?");
-        $(".gain_or_lose_points").text("+1 or -1");
+        $(".gain_or_lose_points").text("+1 or 0");
         $(".quiz_answer_input").val("");
         $(".points_collected").text("0");
         switch (playType) {
@@ -2580,7 +2580,7 @@ $(document).ready(function() {
     })    
     
     $(".type_msg_input").on("keydown", function(e){
-        var msg = $(".type_msg_input").val();
+        var msg = $(".type_msg_input").val();        
         var chatWith = $(".chat_with>span").text();
         if(e.key == "Enter" && msg != ""){
             $.ajax({
@@ -2599,6 +2599,8 @@ $(document).ready(function() {
                 }
             })
         }
+        
     })
+
 
 })
